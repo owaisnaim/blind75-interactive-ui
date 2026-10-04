@@ -129,8 +129,8 @@ class SoundFX {
     }
   }
 
-  // Boss attack sound
-  playBossAttack() {
+  // Action / punchy cue sound
+  playAction() {
     try {
       const ctx = this.getContext();
       if (!ctx) return;
@@ -148,6 +148,11 @@ class SoundFX {
     } catch {
       // ignore
     }
+  }
+
+  // Backward compatibility alias
+  playBossAttack() {
+    this.playAction();
   }
 }
 

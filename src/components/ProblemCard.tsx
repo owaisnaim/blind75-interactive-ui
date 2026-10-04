@@ -14,8 +14,10 @@ interface ProblemCardProps {
   onToggleMastered: (id: string) => void;
   onToggleReview: (id: string) => void;
   onInspectFlow: (problem: Problem) => void;
-  onStartRaid: (problem: Problem) => void;
-  onOpenFlowLab: (problem: Problem) => void;
+  onStartTimedMock?: (problem: Problem) => void;
+  onStartRaid?: (problem: Problem) => void;
+  onOpenVisualizer?: (problem: Problem) => void;
+  onOpenFlowLab?: (problem: Problem) => void;
 }
 
 export const ProblemCard: React.FC<ProblemCardProps> = ({
@@ -27,9 +29,13 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
   onToggleMastered,
   onToggleReview,
   onInspectFlow,
+  onStartTimedMock,
   onStartRaid,
+  onOpenVisualizer,
   onOpenFlowLab,
 }) => {
+  const handleStartTimedMock = onStartTimedMock || onStartRaid || (() => {});
+  const handleOpenVisualizer = onOpenVisualizer || onOpenFlowLab || (() => {});
   const categoryConfig = CATEGORIES_CONFIG[problem.category];
 
   const handleSolveClick = (e: React.MouseEvent) => {
@@ -194,7 +200,7 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
           <button
             onClick={(e) => {
               e.stopPropagation();
-              onStartRaid(problem);
+              handleStartTimedMock(problem);
             }}
             className="p-1 rounded-lg bg-slate-800/60 hover:bg-slate-700 text-slate-400 hover:text-indigo-400 transition-all cursor-pointer"
             title="Start Timed Practice Session on this problem"
@@ -207,7 +213,7 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
           <button
             onClick={(e) => {
               e.stopPropagation();
-              onOpenFlowLab(problem);
+              handleOpenVisualizer(problem);
             }}
             className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-cyan-950/60 hover:bg-cyan-900 text-cyan-300 text-xs font-bold border border-cyan-500/30 transition-all cursor-pointer shadow-sm"
             title="Launch Visual Step-by-Step Visualizer for this problem"

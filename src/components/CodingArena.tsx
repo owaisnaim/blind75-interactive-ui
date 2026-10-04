@@ -60,10 +60,12 @@ interface CodingArenaProps {
   onSelectProblem?: (problem: Problem) => void;
   onProblemSolved: (id: any) => void;
   onAddXp: (amount: number) => void;
+  onOpenVisualizer?: (problem: Problem) => void;
   onOpenFlowLab?: (problem: Problem) => void;
   activeTab?: 'arena' | 'visualizer' | 'blueprint';
   onSelectTab?: (tab: 'arena' | 'visualizer' | 'blueprint') => void;
   onClose?: () => void;
+  onStartTimedMock?: () => void;
   onStartRaid?: () => void;
 }
 
@@ -150,12 +152,16 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
   onSelectProblem,
   onProblemSolved,
   onAddXp,
+  onOpenVisualizer,
   onOpenFlowLab,
   activeTab = 'arena',
   onSelectTab,
   onClose,
+  onStartTimedMock,
   onStartRaid,
 }) => {
+  const handleOpenVisualizer = onOpenVisualizer || onOpenFlowLab;
+  const handleStartTimedMock = onStartTimedMock || onStartRaid;
   const spec = getProblemSpec(problem.id, problem.title, problem.category, problem.hook);
 
   // Core Editor State
@@ -354,7 +360,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
       }
 
       // Check if line begins with closing brackets
-      const closingMatches = line.match(/^[\}\]\)]+/);
+      const closingMatches = line.match(/^[}\])]+/);
       if (closingMatches) {
         indent = Math.max(0, indent - closingMatches[0].length);
       }
@@ -362,8 +368,8 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
       formatted.push('    '.repeat(indent) + line);
 
       // Count opened brackets
-      const openMatches = (line.match(/[\{\[\(]/g) || []).length;
-      let closeMatches = (line.match(/[\}\]\)]/g) || []).length;
+      const openMatches = (line.match(/[{[(]/g) || []).length;
+      let closeMatches = (line.match(/[}\])]/g) || []).length;
 
       if (closingMatches) {
         closeMatches -= closingMatches[0].length;
@@ -803,11 +809,11 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
 
         {/* Right: Actions, Run, Submit, External, Close */}
         <div className="flex items-center gap-2">
-          {onStartRaid && (
+          {handleStartTimedMock && (
             <button
               onClick={() => {
                 sound.playClick();
-                onStartRaid();
+                handleStartTimedMock();
               }}
               className="hidden xl:flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 hover:bg-indigo-600/30 text-xs font-semibold cursor-pointer"
               title="Timed Mock Interview"
@@ -939,9 +945,9 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                       Algorithmic Pattern: {problem.pattern}
                     </span>
 
-                    {onOpenFlowLab && (
+                    {handleOpenVisualizer && (
                       <button
-                        onClick={() => onOpenFlowLab(problem)}
+                        onClick={() => handleOpenVisualizer(problem)}
                         className="text-[11px] font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 px-2 py-1 rounded bg-indigo-950/60 border border-indigo-500/30"
                       >
                         <Layers className="w-3 h-3" />

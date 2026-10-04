@@ -10,12 +10,14 @@ import { ProblemVisualizer } from './ProblemVisualizer';
 
 type ClassicMode = 'water' | 'kadane' | 'window' | 'tortoise' | 'brackets';
 
-interface FlowLabProps {
+export interface VisualizerStudioProps {
   initialProblemId?: string;
   onOpenProblemFlowLab?: (problem: Problem) => void;
 }
 
-export const FlowLab: React.FC<FlowLabProps> = ({ initialProblemId }) => {
+export type FlowLabProps = VisualizerStudioProps;
+
+export const VisualizerStudio: React.FC<VisualizerStudioProps> = ({ initialProblemId }) => {
   const [labView, setLabView] = useState<'all75' | 'classic'>('all75');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -1175,3 +1177,6 @@ const StackBracketsSimulator: React.FC = () => {
     </div>
   );
 };
+
+export const FlowLab = VisualizerStudio;
+

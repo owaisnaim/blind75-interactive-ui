@@ -13,7 +13,7 @@ An interactive web application and coding sandbox engineered for mastering the *
 - **Draggable Console Drawer**: Resizable test result and console drawer with default 50% screen expansion, fluid drag handle, and boundary constraints.
 - **High-Contrast Themes**: Seamless toggle between sleek AMOLED Black (`#000000`) and Clean Minimalist Light mode.
 
-### 2. Interactive Step Visualizer (Flow Lab)
+### 2. Interactive Step Visualizer (Visualizer Studio)
 - **2-Column Split Workbench**: Synchronized large-format visual stage alongside code tracing.
 - **Interactive Scrubber Controls**: Play, pause, step forward, step backward, or configure custom animation playback speeds.
 - **Live Variable Watch & Line Tracer**: Watch variables update dynamically at each step alongside line-by-line Java code highlighting.
@@ -31,8 +31,8 @@ An interactive web application and coding sandbox engineered for mastering the *
 ### 5. Practice & Interview Tools
 - **Flow Trainer (Pattern Recognition Quiz)**: Fast-paced multiple-choice challenges to test instant archetype identification before touching code.
 - **15-Second Interview Decision Tree**: Interactive decision flowchart guiding you through which algorithmic pattern to apply given specific problem constraints.
-- **Boss Raid Mode (Pomodoro Focus)**: Timed challenge intervals (15 / 20 / 25 min) with dynamic boss HP bars to simulate high-pressure interview pacing.
-- **Bug Detective**: Diagnostic debugging exercises to identify logic flaws and off-by-one errors.
+- **Timed Mock Mode (Interview Focus)**: Timed challenge intervals (15 / 20 / 25 min) with 4-stage interview progression checkpoints to simulate high-pressure interview pacing.
+- **Code Debugger**: Diagnostic debugging exercises to identify logic flaws and off-by-one errors.
 - **Audio & Celebrations**: Synthesized procedural sound effects and particle confetti upon mastering problems.
 
 ---
@@ -62,14 +62,15 @@ blind75-interactive-ui/
 │   │   ├── CodingArena.tsx            # Code editor, test runner & console drawer
 │   │   ├── ProblemModal.tsx           # Full-screen Code, Visualizer & Strategy modal
 │   │   ├── ProblemVisualizer.tsx      # Visual workbench with line tracer & variable watch
-│   │   ├── InteractiveFlowLabModal.tsx# Full-screen visualizer stage
+│   │   ├── VisualizerStudio.tsx       # Algorithm visualizer studio with 75-problem selector
+│   │   ├── VisualizerModal.tsx        # Standalone step-by-step visualizer modal
 │   │   ├── Header.tsx                 # Navigation, stats & theme toggle
 │   │   ├── ProblemCard.tsx            # Problem listing card with difficulty badges
-│   │   ├── RealmCard.tsx              # Category archetype cards
+│   │   ├── TopicCard.tsx              # Topic category cards
 │   │   ├── PatternQuiz.tsx            # Flow Trainer pattern quiz
 │   │   ├── DecisionTreeModal.tsx      # 15-second interview decision tree
-│   │   ├── BossRaidModal.tsx          # Timed Pomodoro boss fight mode
-│   │   └── BugDetective.tsx           # Debugging challenge arena
+│   │   ├── TimedMockModal.tsx         # Timed interview mock session
+│   │   └── CodeDebugger.tsx           # Diagnostic code debugging arena
 │   ├── data/               # Blind 75 specifications & test cases
 │   │   ├── problems.ts                # Master problem catalogue (75 problems)
 │   │   ├── javaSolutions.ts           # Reference optimal Java solutions

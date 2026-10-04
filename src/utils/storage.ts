@@ -13,7 +13,8 @@ export interface UserState {
   searchQuery: string;
 }
 
-const STORAGE_KEY = 'algoquest_75_user_state';
+const STORAGE_KEY = 'blind75_user_state';
+const LEGACY_STORAGE_KEY = 'algoquest_75_user_state';
 
 export const INITIAL_STATE: UserState = {
   solved: [],
@@ -32,7 +33,7 @@ export const INITIAL_STATE: UserState = {
 
 export function loadUserState(): UserState {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
     if (!raw) return INITIAL_STATE;
     const parsed = JSON.parse(raw);
     return {

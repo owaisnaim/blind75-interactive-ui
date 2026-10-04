@@ -35,8 +35,10 @@ interface ProblemModalProps {
   userNotes: string;
   onSaveNotes: (id: string, notes: string) => void;
   onClose: () => void;
-  onStartRaid: (problem: Problem) => void;
-  onOpenFlowLab: (problem: Problem) => void;
+  onStartTimedMock?: (problem: Problem) => void;
+  onStartRaid?: (problem: Problem) => void;
+  onOpenVisualizer?: (problem: Problem) => void;
+  onOpenFlowLab?: (problem: Problem) => void;
   onProblemSolved: (id: string) => void;
   onAddXp: (amount: number) => void;
 }
@@ -48,11 +50,15 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
   userNotes,
   onSaveNotes,
   onClose,
+  onStartTimedMock,
   onStartRaid,
+  onOpenVisualizer,
   onOpenFlowLab,
   onProblemSolved,
   onAddXp,
 }) => {
+  const handleStartTimedMock = onStartTimedMock || onStartRaid || (() => {});
+  const handleOpenVisualizer = onOpenVisualizer || onOpenFlowLab || (() => {});
   if (!problem) return null;
 
   const [activeTab, setActiveTab] = useState<'arena' | 'visualizer' | 'blueprint'>('arena');
@@ -278,7 +284,7 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
               <button
                 onClick={() => {
                   sound.playClick();
-                  onStartRaid(problem);
+                  handleStartTimedMock(problem);
                 }}
                 className="hidden xl:flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 hover:bg-indigo-600/30 text-xs font-semibold cursor-pointer"
                 title="Timed Mock Interview"
@@ -335,11 +341,11 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
               onSelectProblem={onSelectProblem}
               onProblemSolved={onProblemSolved}
               onAddXp={onAddXp}
-              onOpenFlowLab={onOpenFlowLab}
+              onOpenVisualizer={handleOpenVisualizer}
               activeTab={activeTab}
               onSelectTab={setActiveTab}
               onClose={onClose}
-              onStartRaid={() => onStartRaid(problem)}
+              onStartTimedMock={() => handleStartTimedMock(problem)}
             />
           )}
 

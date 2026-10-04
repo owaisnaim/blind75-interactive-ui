@@ -7,14 +7,16 @@ import { ProblemVisualizer } from './ProblemVisualizer';
 import { sound } from '../utils/audio';
 import confetti from 'canvas-confetti';
 
-interface InteractiveFlowLabModalProps {
+export interface VisualizerModalProps {
   problem: Problem;
   allProblems: Problem[];
   onSelectProblem: (problem: Problem) => void;
   onClose: () => void;
 }
 
-export const InteractiveFlowLabModal: React.FC<InteractiveFlowLabModalProps> = ({
+export type InteractiveFlowLabModalProps = VisualizerModalProps;
+
+export const VisualizerModal: React.FC<VisualizerModalProps> = ({
   problem,
   allProblems,
   onSelectProblem,
@@ -159,3 +161,6 @@ export const InteractiveFlowLabModal: React.FC<InteractiveFlowLabModalProps> = (
     </div>
   );
 };
+
+export const InteractiveFlowLabModal = VisualizerModal;
+

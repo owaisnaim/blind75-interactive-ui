@@ -12,7 +12,8 @@ interface HeaderProps {
   onToggleSound: () => void;
   onOpenQuiz: () => void;
   onOpenDecisionTree: () => void;
-  onOpenBossRaid: () => void;
+  onOpenTimedMock?: () => void;
+  onOpenBossRaid?: () => void;
   onResetProgress: () => void;
 }
 
@@ -24,9 +25,11 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleSound,
   onOpenQuiz,
   onOpenDecisionTree,
+  onOpenTimedMock,
   onOpenBossRaid,
   onResetProgress,
 }) => {
+  const handleOpenTimedMock = onOpenTimedMock || onOpenBossRaid || (() => {});
   const levelInfo = calculateLevel(userState.xp);
   const solvedCount = userState.solved.length;
   const masteredCount = userState.mastered.length;
@@ -140,7 +143,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             onClick={() => {
               sound.playClick();
-              onOpenBossRaid();
+              handleOpenTimedMock();
             }}
             className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-rose-950/60 hover:bg-rose-900/60 text-rose-300 border border-rose-500/40 text-xs font-semibold transition-all hover:scale-105 active:scale-95 whitespace-nowrap cursor-pointer"
           >

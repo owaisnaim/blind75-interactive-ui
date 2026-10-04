@@ -3,15 +3,15 @@ import { Search, Shuffle, Bookmark, Crown, CheckCircle2, Circle, Sparkles, Filte
 import { Header } from './components/Header';
 import { ProblemCard } from './components/ProblemCard';
 import { ProblemModal } from './components/ProblemModal';
-import { BossRaidModal } from './components/BossRaidModal';
+import { TimedMockModal } from './components/TimedMockModal';
 import { PatternQuiz } from './components/PatternQuiz';
 import { DecisionTreeModal } from './components/DecisionTreeModal';
-import { RealmCard } from './components/RealmCard';
+import { TopicCard } from './components/TopicCard';
 import { PROBLEMS_DATA, CATEGORIES_CONFIG } from './data/problems';
 import type { Problem } from './data/problems';
-import { FlowLab } from './components/FlowLab';
-import { BugDetective } from './components/BugDetective';
-import { InteractiveFlowLabModal } from './components/InteractiveFlowLabModal';
+import { VisualizerStudio } from './components/VisualizerStudio';
+import { CodeDebugger } from './components/CodeDebugger';
+import { VisualizerModal } from './components/VisualizerModal';
 import { loadUserState, saveUserState, INITIAL_STATE } from './utils/storage';
 import type { UserState } from './utils/storage';
 import { sound } from './utils/audio';
@@ -22,13 +22,13 @@ export function App() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(null);
   const [selectedStatus, setSelectedStatus] = useState<'all' | 'unsolved' | 'solved' | 'mastered' | 'review'>('all');
-  const [mainTab, setMainTab] = useState<'simulator' | 'quest' | 'detective'>('simulator');
+  const [mainTab, setMainTab] = useState<'visualizer' | 'problems' | 'debugger'>('visualizer');
 
   // Modals state
   const [activeModalProblem, setActiveModalProblem] = useState<Problem | null>(null);
-  const [raidProblem, setRaidProblem] = useState<Problem | null>(null);
-  const [flowLabProblem, setFlowLabProblem] = useState<Problem | null>(null);
-  const [isRaidOpen, setIsRaidOpen] = useState(false);
+  const [timedMockProblem, setTimedMockProblem] = useState<Problem | null>(null);
+  const [visualizerProblem, setVisualizerProblem] = useState<Problem | null>(null);
+  const [isTimedMockOpen, setIsTimedMockOpen] = useState(false);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [isDecisionTreeOpen, setIsDecisionTreeOpen] = useState(false);
 
@@ -139,10 +139,10 @@ export function App() {
     }
   };
 
-  // Start Raid on specific problem
-  const handleStartRaid = (problem: Problem) => {
-    setRaidProblem(problem);
-    setIsRaidOpen(true);
+  // Start Timed Mock on specific problem
+  const handleStartTimedMock = (problem: Problem) => {
+    setTimedMockProblem(problem);
+    setIsTimedMockOpen(true);
     setActiveModalProblem(null);
   };
 
@@ -201,9 +201,9 @@ export function App() {
         onToggleSound={handleToggleSound}
         onOpenQuiz={() => setIsQuizOpen(true)}
         onOpenDecisionTree={() => setIsDecisionTreeOpen(true)}
-        onOpenBossRaid={() => {
-          setRaidProblem(null);
-          setIsRaidOpen(true);
+        onOpenTimedMock={() => {
+          setTimedMockProblem(null);
+          setIsTimedMockOpen(true);
         }}
         onResetProgress={handleResetProgress}
       />
@@ -262,10 +262,10 @@ export function App() {
           <button
             onClick={() => {
               sound.playClick();
-              setMainTab('simulator');
+              setMainTab('visualizer');
             }}
             className={`flex-1 py-2.5 px-3 rounded-xl text-xs md:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
-              mainTab === 'simulator'
+              mainTab === 'visualizer'
                 ? 'bg-indigo-600 text-white shadow-sm scale-105'
                 : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
             }`}
@@ -277,10 +277,10 @@ export function App() {
           <button
             onClick={() => {
               sound.playClick();
-              setMainTab('detective');
+              setMainTab('debugger');
             }}
             className={`flex-1 py-2.5 px-3 rounded-xl text-xs md:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
-              mainTab === 'detective'
+              mainTab === 'debugger'
                 ? 'bg-rose-600 text-white shadow-sm scale-105'
                 : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
             }`}
@@ -292,10 +292,10 @@ export function App() {
           <button
             onClick={() => {
               sound.playClick();
-              setMainTab('quest');
+              setMainTab('problems');
             }}
             className={`flex-1 py-2.5 px-3 rounded-xl text-xs md:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
-              mainTab === 'quest'
+              mainTab === 'problems'
                 ? 'bg-purple-600 text-white shadow-sm scale-105'
                 : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
             }`}
@@ -305,19 +305,19 @@ export function App() {
           </button>
         </div>
 
-        {/* View 1: Interactive Flow Lab */}
-        {mainTab === 'simulator' && (
-          <FlowLab
-            initialProblemId={flowLabProblem?.id || 'two-sum'}
-            onOpenProblemFlowLab={(p) => setFlowLabProblem(p)}
+        {/* View 1: Interactive Algorithm Visualizer Studio */}
+        {mainTab === 'visualizer' && (
+          <VisualizerStudio
+            initialProblemId={visualizerProblem?.id || 'two-sum'}
+            onOpenProblemFlowLab={(p) => setVisualizerProblem(p)}
           />
         )}
 
         {/* View 2: Code Debugger */}
-        {mainTab === 'detective' && <BugDetective onAddXp={handleAddXp} />}
+        {mainTab === 'debugger' && <CodeDebugger onAddXp={handleAddXp} />}
 
         {/* View 3: Problem Catalog (Topics + Problems) */}
-        {mainTab === 'quest' && (
+        {mainTab === 'problems' && (
           <div className="space-y-8">
             {/* Topic Categories */}
             <div>
@@ -345,7 +345,7 @@ export function App() {
               const total = PROBLEMS_DATA.filter(p => p.category === cat).length;
               const solved = PROBLEMS_DATA.filter(p => p.category === cat && userState.solved.includes(p.id)).length;
               return (
-                <RealmCard
+                <TopicCard
                   key={cat}
                   category={cat}
                   total={total}
@@ -474,8 +474,8 @@ export function App() {
                   onToggleMastered={handleToggleMastered}
                   onToggleReview={handleToggleReview}
                   onInspectFlow={(p) => setActiveModalProblem(p)}
-                  onStartRaid={handleStartRaid}
-                  onOpenFlowLab={(p) => setFlowLabProblem(p)}
+                  onStartTimedMock={handleStartTimedMock}
+                  onOpenVisualizer={(p) => setVisualizerProblem(p)}
                 />
               ))}
             </div>
@@ -501,10 +501,10 @@ export function App() {
           userNotes={userState.userNotes[activeModalProblem.id] || ''}
           onSaveNotes={handleSaveNotes}
           onClose={() => setActiveModalProblem(null)}
-          onStartRaid={handleStartRaid}
-          onOpenFlowLab={(p) => {
+          onStartTimedMock={handleStartTimedMock}
+          onOpenVisualizer={(p) => {
             setActiveModalProblem(null);
-            setFlowLabProblem(p);
+            setVisualizerProblem(p);
           }}
           onProblemSolved={(id) => {
             if (!userState.solved.includes(id)) {
@@ -515,18 +515,18 @@ export function App() {
         />
       )}
 
-      {flowLabProblem && (
-        <InteractiveFlowLabModal
-          problem={flowLabProblem}
+      {visualizerProblem && (
+        <VisualizerModal
+          problem={visualizerProblem}
           allProblems={PROBLEMS_DATA}
-          onSelectProblem={(p) => setFlowLabProblem(p)}
-          onClose={() => setFlowLabProblem(null)}
+          onSelectProblem={(p) => setVisualizerProblem(p)}
+          onClose={() => setVisualizerProblem(null)}
         />
       )}
 
-      {isRaidOpen && (
-        <BossRaidModal
-          selectedProblem={raidProblem}
+      {isTimedMockOpen && (
+        <TimedMockModal
+          selectedProblem={timedMockProblem}
           allProblems={PROBLEMS_DATA}
           onProblemSolved={(id) => {
             if (!userState.solved.includes(id)) {
@@ -535,8 +535,8 @@ export function App() {
           }}
           onAddXp={handleAddXp}
           onClose={() => {
-            setIsRaidOpen(false);
-            setRaidProblem(null);
+            setIsTimedMockOpen(false);
+            setTimedMockProblem(null);
           }}
         />
       )}
