@@ -195,27 +195,27 @@ export function App() {
       />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-8 space-y-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-6 space-y-6">
         {/* Hero Banner / Quick Pitch */}
-        <div className="relative rounded-3xl p-6 md:p-8 bg-slate-900 border border-slate-800 shadow-sm overflow-hidden text-left">
+        <div className="relative rounded-2xl p-4 sm:p-5 md:p-6 bg-slate-900 border border-slate-800 shadow-sm overflow-hidden text-left">
           <div className="relative z-10 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-xs font-semibold mb-3">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-[11px] font-semibold mb-2">
+              <Sparkles className="w-3 h-3 text-amber-400 shrink-0" />
               Structured Technical Interview Preparation
             </div>
-            <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight mb-2">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-black text-white tracking-tight mb-1.5">
               The 75 Essential LeetCode Problems: Understood by Pattern & Intuition.
             </h2>
-            <p className="text-xs md:text-sm text-slate-300 leading-relaxed mb-5">
+            <p className="text-xs text-slate-300 leading-relaxed mb-3.5">
               Every problem below is paired with <span className="text-amber-300 font-semibold">Core Algorithmic Intuition</span> and a <span className="text-cyan-300 font-semibold">Step-by-Step Implementation Strategy</span>. Master foundational data structures and verify solutions under timed interview conditions.
             </p>
 
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
               <button
                 onClick={handleRandomUnsolved}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs shadow-sm transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                className="flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs shadow-sm transition-all hover:scale-105 active:scale-95 cursor-pointer"
               >
-                <Shuffle className="w-4 h-4" />
+                <Shuffle className="w-3.5 h-3.5 shrink-0" />
                 Random Unsolved Problem
               </button>
 
@@ -224,9 +224,9 @@ export function App() {
                   sound.playClick();
                   setIsQuizOpen(true);
                 }}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs border border-slate-700 transition-all cursor-pointer"
+                className="flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs border border-slate-700 transition-all cursor-pointer"
               >
-                <Sparkles className="w-4 h-4 text-purple-400" />
+                <Sparkles className="w-3.5 h-3.5 text-purple-400 shrink-0" />
                 Pattern Recognition Quiz (+25 XP)
               </button>
 
@@ -235,7 +235,7 @@ export function App() {
                   sound.playClick();
                   setIsDecisionTreeOpen(true);
                 }}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-cyan-300 font-semibold text-xs border border-cyan-500/30 transition-all cursor-pointer"
+                className="flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-cyan-300 font-semibold text-xs border border-cyan-500/30 transition-all cursor-pointer"
               >
                 Pattern Cheat Sheet
               </button>
