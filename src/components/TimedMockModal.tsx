@@ -102,19 +102,19 @@ export const TimedMockModal: React.FC<TimedMockModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-5 border-b border-slate-800 bg-slate-950 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-indigo-600/20 text-indigo-400 border border-indigo-500/40 flex items-center justify-center shadow-sm">
-              <Timer className="w-5 h-5 text-indigo-400" />
+        <div className="p-4 sm:p-5 border-b border-slate-800 bg-slate-950 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-10 h-10 rounded-xl bg-indigo-600/20 text-indigo-400 border border-indigo-500/40 flex items-center justify-center shadow-sm shrink-0">
+              <Timer className="w-5 h-5 text-indigo-400 shrink-0" />
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h3 className="text-base font-black text-white m-0">TIMED MOCK SESSION: TECHNICAL PRACTICE</h3>
-                <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-indigo-300 border border-indigo-500/30">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 flex-wrap">
+                <h3 className="text-base font-black text-white m-0">TIMED MOCK SESSION</h3>
+                <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-indigo-300 border border-indigo-500/30 shrink-0">
                   {problem.difficulty} Difficulty
                 </span>
               </div>
-              <p className="text-xs text-slate-400 m-0">Solve under timed technical interview conditions without hints or distractions</p>
+              <p className="text-xs text-slate-400 m-0 truncate">Solve under timed technical interview conditions without hints or distractions</p>
             </div>
           </div>
 
@@ -123,27 +123,27 @@ export const TimedMockModal: React.FC<TimedMockModalProps> = ({
               sound.playClick();
               onClose();
             }}
-            className="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors cursor-pointer"
+            className="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors cursor-pointer shrink-0"
           >
-            <X className="w-4 h-4" />
+            <X className="w-4 h-4 shrink-0" />
           </button>
         </div>
 
         {/* Modal Content */}
-        <div className="p-6 space-y-6">
+        <div className="p-4 sm:p-6 space-y-6">
           {/* Target Problem Info */}
-          <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex items-center justify-between gap-4">
-            <div>
+          <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+            <div className="min-w-0">
               <div className="text-[11px] font-mono text-cyan-400">Target Problem #{problem.number}</div>
-              <h2 className="text-lg font-black text-white">{problem.title}</h2>
-              <div className="text-xs text-slate-400 italic mt-0.5">"{problem.hook}"</div>
+              <h2 className="text-lg font-black text-white truncate">{problem.title}</h2>
+              <div className="text-xs text-slate-400 italic mt-0.5 truncate">"{problem.hook}"</div>
             </div>
 
             <a
               href={problem.leetcodeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-300 text-xs font-semibold border border-slate-700 whitespace-nowrap"
+              className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-300 text-xs font-semibold border border-slate-700 whitespace-nowrap shrink-0"
             >
               Open on LeetCode
             </a>
@@ -153,10 +153,10 @@ export const TimedMockModal: React.FC<TimedMockModalProps> = ({
           <div>
             <div className="flex items-center justify-between text-xs mb-1.5">
               <span className="font-bold text-indigo-300 flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400" />
+                <CheckCircle2 className="w-4 h-4 shrink-0 text-indigo-400" />
                 SESSION PROGRESS: {progressPct}%
               </span>
-              <span className="text-slate-400 font-mono">
+              <span className="text-slate-400 font-mono shrink-0">
                 {isVictory ? 'COMPLETED' : `Stage ${currentStage} of ${STAGES.length}`}
               </span>
             </div>
@@ -169,15 +169,15 @@ export const TimedMockModal: React.FC<TimedMockModalProps> = ({
           </div>
 
           {/* Countdown Clock & Controls */}
-          <div className="flex flex-col items-center justify-center p-6 rounded-2xl bg-slate-950 border border-slate-800/80">
-            <div className="text-5xl font-black font-mono tracking-wider text-white mb-4 drop-shadow">
+          <div className="flex flex-col items-center justify-center p-4 sm:p-6 rounded-2xl bg-slate-950 border border-slate-800/80">
+            <div className="text-4xl sm:text-5xl font-black font-mono tracking-wider text-white mb-4 drop-shadow">
               {formatTime(timeLeft)}
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center">
               <button
                 onClick={toggleTimer}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold shadow-sm transition-all cursor-pointer ${
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold shadow-sm transition-all cursor-pointer shrink-0 ${
                   isActive
                     ? 'bg-amber-600 hover:bg-amber-500 text-white'
                     : 'bg-emerald-600 hover:bg-emerald-500 text-white'
@@ -185,12 +185,12 @@ export const TimedMockModal: React.FC<TimedMockModalProps> = ({
               >
                 {isActive ? (
                   <>
-                    <Pause className="w-4 h-4" />
+                    <Pause className="w-4 h-4 shrink-0" />
                     Pause Timer
                   </>
                 ) : (
                   <>
-                    <Play className="w-4 h-4 fill-white" />
+                    <Play className="w-4 h-4 shrink-0 fill-white" />
                     Start Timer
                   </>
                 )}
@@ -198,18 +198,18 @@ export const TimedMockModal: React.FC<TimedMockModalProps> = ({
 
               <button
                 onClick={() => resetTimer(20)}
-                className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors cursor-pointer"
+                className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors cursor-pointer shrink-0"
                 title="Reset to 20 mins"
               >
-                <RotateCcw className="w-4 h-4" />
+                <RotateCcw className="w-4 h-4 shrink-0" />
               </button>
 
-              <div className="flex items-center gap-1 ml-2">
+              <div className="flex items-center gap-1 shrink-0">
                 {[15, 20, 25].map((mins) => (
                   <button
                     key={mins}
                     onClick={() => resetTimer(mins)}
-                    className={`px-2 py-1 rounded text-[11px] font-mono font-semibold transition-colors cursor-pointer ${
+                    className={`px-2 py-1 rounded text-[11px] font-mono font-semibold transition-colors cursor-pointer shrink-0 ${
                       totalSeconds === mins * 60 ? 'bg-indigo-600 text-white' : 'bg-slate-800 text-slate-400 hover:text-white'
                     }`}
                   >
@@ -223,7 +223,7 @@ export const TimedMockModal: React.FC<TimedMockModalProps> = ({
           {/* 4-Stage Interview Workflow */}
           <div>
             <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400" />
+              <CheckCircle2 className="w-4 h-4 shrink-0 text-indigo-400" />
               Interview Workflow (Phased Execution)
             </div>
 
@@ -247,17 +247,17 @@ export const TimedMockModal: React.FC<TimedMockModalProps> = ({
                   >
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs font-bold flex items-center gap-1.5">
-                        {isCompleted && <Check className="w-3.5 h-3.5 text-emerald-400" />}
+                        {isCompleted && <Check className="w-3.5 h-3.5 shrink-0 text-emerald-400" />}
                         Stage {idx + 1}: {stg.title}
                       </span>
-                      <span className="text-[11px] font-mono text-slate-400">25%</span>
+                      <span className="text-[11px] font-mono text-slate-400 shrink-0">25%</span>
                     </div>
                     <p className="text-[11px] text-slate-400 line-clamp-2 leading-relaxed">
                       {stg.desc}
                     </p>
                     {isCurrent && !isVictory && (
                       <div className="mt-2 text-[11px] font-bold text-indigo-400 flex items-center gap-1">
-                        <ArrowRight className="w-3 h-3" />
+                        <ArrowRight className="w-3.5 h-3.5 shrink-0" />
                         Click to Mark Stage Complete
                       </div>
                     )}
@@ -271,7 +271,7 @@ export const TimedMockModal: React.FC<TimedMockModalProps> = ({
           {isVictory && (
             <div className="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-center animate-in zoom-in duration-300">
               <div className="flex items-center justify-center gap-2 text-emerald-400 font-black text-lg mb-1">
-                <Trophy className="w-5 h-5 text-amber-400" />
+                <Trophy className="w-5 h-5 shrink-0 text-amber-400" />
                 PROBLEM SOLVED! SESSION COMPLETE!
               </div>
               <p className="text-xs text-emerald-200">

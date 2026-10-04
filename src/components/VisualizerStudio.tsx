@@ -113,12 +113,12 @@ export const VisualizerStudio: React.FC<VisualizerStudioProps> = ({ initialProbl
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-800/80 pb-5">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-xs font-bold mb-2">
-            <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-spin" />
+            <Sparkles className="w-4 h-4 shrink-0 text-amber-400 animate-spin" />
             Interactive Algorithm Visualizer
           </div>
-          <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight flex items-center gap-3">
+          <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight flex items-center gap-3 flex-wrap">
             <span>Algorithm Visualizer</span>
-            <span className="text-xs px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold uppercase tracking-wider">
+            <span className="text-xs px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold uppercase tracking-wider shrink-0">
               {labView === 'all75' ? 'All 75 Questions' : '5 Classic Simulators'}
             </span>
           </h2>
@@ -128,19 +128,19 @@ export const VisualizerStudio: React.FC<VisualizerStudioProps> = ({ initialProbl
         </div>
 
         {/* Top View Toggle: 75 Questions vs Classic Sandboxes */}
-        <div className="flex items-center gap-1.5 p-1 bg-slate-950 border border-slate-800 rounded-2xl">
+        <div className="flex items-center gap-1.5 p-1 bg-slate-950 border border-slate-800 rounded-2xl shrink-0 flex-wrap">
           <button
             onClick={() => {
               sound.playClick();
               setLabView('all75');
             }}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 shrink-0 ${
               labView === 'all75'
-                ? 'bg-indigo-600 text-white shadow-sm scale-105'
+                ? 'bg-indigo-600 text-white shadow-sm'
                 : 'text-slate-400 hover:text-white hover:bg-slate-900'
             }`}
           >
-            <Layers className="w-3.5 h-3.5" />
+            <Layers className="w-4 h-4 shrink-0" />
             <span>75 Problems Visualizer</span>
           </button>
 
@@ -149,13 +149,13 @@ export const VisualizerStudio: React.FC<VisualizerStudioProps> = ({ initialProbl
               sound.playClick();
               setLabView('classic');
             }}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 shrink-0 ${
               labView === 'classic'
-                ? 'bg-purple-600 text-white shadow-sm scale-105'
+                ? 'bg-purple-600 text-white shadow-sm'
                 : 'text-slate-400 hover:text-white hover:bg-slate-900'
             }`}
           >
-            <Zap className="w-3.5 h-3.5" />
+            <Zap className="w-4 h-4 shrink-0" />
             <span>5 Classic Simulators</span>
           </button>
         </div>
@@ -195,7 +195,7 @@ export const VisualizerStudio: React.FC<VisualizerStudioProps> = ({ initialProbl
 
               {/* Search box */}
               <div className="relative min-w-[220px]">
-                <Search className="w-3.5 h-3.5 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Search className="w-4 h-4 shrink-0 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   placeholder="Search problem, pattern..."
@@ -237,18 +237,18 @@ export const VisualizerStudio: React.FC<VisualizerStudioProps> = ({ initialProbl
           {/* Active Problem Visualizer Stage */}
           <div className="p-4 md:p-6 rounded-3xl bg-slate-950/60 border border-slate-800 shadow-xl">
             <div className="flex items-center justify-between gap-3 mb-4 border-b border-slate-800 pb-3">
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-slate-800 text-slate-300">
+              <div className="flex items-center gap-2 min-w-0 flex-wrap">
+                <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-slate-800 text-slate-300 shrink-0">
                   #{currentProblem.number}
                 </span>
-                <h3 className="text-lg md:text-xl font-black text-white m-0">
+                <h3 className="text-lg md:text-xl font-black text-white m-0 truncate">
                   {currentProblem.title}
                 </h3>
-                <span className="text-xs px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-bold">
+                <span className="text-xs px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-bold shrink-0">
                   {currentProblem.pattern}
                 </span>
               </div>
-              <span className="text-xs font-mono text-amber-400">+{currentProblem.xp} XP</span>
+              <span className="text-xs font-mono text-amber-400 shrink-0">+{currentProblem.xp} XP</span>
             </div>
 
             <ProblemVisualizer
@@ -296,17 +296,17 @@ export const VisualizerStudio: React.FC<VisualizerStudioProps> = ({ initialProbl
                     sound.playClick();
                     setActiveClassicMode(tab.id as ClassicMode);
                   }}
-                  className={`px-3 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer text-left ${
+                  className={`px-3 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer text-left shrink-0 ${
                     activeClassicMode === tab.id
-                      ? 'bg-indigo-600 text-white shadow-sm scale-105'
+                      ? 'bg-indigo-600 text-white shadow-sm'
                       : 'text-slate-400 hover:text-white hover:bg-slate-900'
                   }`}
                 >
                   <div className="flex items-center gap-1.5">
-                    <TabIcon className="w-3.5 h-3.5 shrink-0" />
+                    <TabIcon className="w-4 h-4 shrink-0" />
                     <span>{tab.label}</span>
                   </div>
-                  <div className="text-[10px] font-normal opacity-70 ml-5">{tab.subtitle}</div>
+                  <div className="text-[10px] font-normal opacity-70 ml-5.5">{tab.subtitle}</div>
                 </button>
               );
             })}

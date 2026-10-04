@@ -154,16 +154,16 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
         {activeTab !== 'arena' && (
           <div className="px-3 sm:px-4 py-1.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between gap-2 shrink-0 flex-wrap min-h-[44px]">
             {/* Left: Problem Prev/Next Navigation, Title, Badges & View Switcher */}
-            <div className="flex items-center gap-2 flex-wrap">
+            <div className="flex items-center gap-2 flex-wrap min-w-0">
               {/* Prev / Next Arrows */}
-              <div className="flex items-center bg-slate-950 border border-slate-800 rounded-lg p-0.5">
+              <div className="flex items-center bg-slate-950 border border-slate-800 rounded-lg p-0.5 shrink-0">
                 <button
                   onClick={() => prevProblem && onSelectProblem?.(prevProblem)}
                   disabled={!prevProblem}
                   className="p-1 rounded text-slate-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
                   title={prevProblem ? `Previous: #${prevProblem.number} ${prevProblem.title}` : 'First problem'}
                 >
-                  <ChevronLeft className="w-4 h-4" />
+                  <ChevronLeft className="w-4 h-4 shrink-0" />
                 </button>
                 <span className="text-[11px] font-mono text-slate-400 px-1 font-semibold">
                   #{problem.number}
@@ -174,18 +174,18 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                   className="p-1 rounded text-slate-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
                   title={nextProblem ? `Next: #${nextProblem.number} ${nextProblem.title}` : 'Last problem'}
                 >
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-4 h-4 shrink-0" />
                 </button>
               </div>
 
               {/* Title */}
-              <h2 className="text-sm font-bold text-white flex items-center gap-1.5">
-                <span>{problem.title}</span>
+              <h2 className="text-sm font-bold text-white flex items-center gap-1.5 truncate max-w-[160px] sm:max-w-[260px] md:max-w-none">
+                <span className="truncate">{problem.title}</span>
               </h2>
 
               {/* Difficulty & XP Badges */}
               <span
-                className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                className={`text-[10px] font-bold px-2 py-0.5 rounded-full border shrink-0 ${
                   problem.difficulty === 'Easy'
                     ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
                     : problem.difficulty === 'Medium'
@@ -196,16 +196,16 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                 {problem.difficulty}
               </span>
 
-              <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full border ${CATEGORIES_CONFIG[problem.category]?.badgeBg || 'bg-slate-800 text-slate-300 border-slate-700'} hidden sm:inline`}>
+              <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full border shrink-0 ${CATEGORIES_CONFIG[problem.category]?.badgeBg || 'bg-slate-800 text-slate-300 border-slate-700'} hidden sm:inline`}>
                 {problem.category}
               </span>
 
-              <span className="text-[11px] font-mono text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded-full border border-amber-400/20 hidden md:inline">
+              <span className="text-[11px] font-mono text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded-full border border-amber-400/20 hidden md:inline shrink-0">
                 +{problem.xp} XP
               </span>
 
               {/* View Switcher Pills */}
-              <div className="flex items-center gap-1 ml-2 p-0.5 bg-slate-950 border border-slate-800 rounded-lg">
+              <div className="flex items-center gap-1 ml-1 sm:ml-2 p-0.5 bg-slate-950 border border-slate-800 rounded-lg shrink-0">
                 <button
                   onClick={() => {
                     sound.playClick();
@@ -214,7 +214,7 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                   className="px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white"
                   title="Code & Solve in interactive judge"
                 >
-                  <Code2 className="w-3.5 h-3.5" />
+                  <Code2 className="w-4 h-4 shrink-0" />
                   <span>Code</span>
                 </button>
 
@@ -230,7 +230,7 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                   }`}
                   title="Step-by-step visual animation"
                 >
-                  <Layers className="w-3.5 h-3.5" />
+                  <Layers className="w-4 h-4 shrink-0" />
                   <span>Visualizer</span>
                 </button>
 
@@ -246,15 +246,15 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                   }`}
                   title="Algorithm blueprint & notes"
                 >
-                  <BookOpen className="w-3.5 h-3.5" />
+                  <BookOpen className="w-4 h-4 shrink-0" />
                   <span>Strategy</span>
                 </button>
               </div>
             </div>
 
             {/* Center: Interview Stopwatch Pacing Tool */}
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">
-              <Clock className="w-3.5 h-3.5 text-indigo-400" />
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 shrink-0">
+              <Clock className="w-4 h-4 shrink-0 text-indigo-400" />
               <span className="font-bold">{formattedTime}</span>
               <button
                 onClick={() => {
@@ -264,7 +264,7 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                 className="p-1 rounded hover:bg-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer"
                 title={isTimerRunning ? 'Pause Stopwatch' : 'Start Stopwatch'}
               >
-                {isTimerRunning ? <Pause className="w-3 h-3 text-amber-400" /> : <Play className="w-3 h-3 text-emerald-400" />}
+                {isTimerRunning ? <Pause className="w-3.5 h-3.5 shrink-0 text-amber-400" /> : <Play className="w-3.5 h-3.5 shrink-0 text-emerald-400" />}
               </button>
               <button
                 onClick={() => {
@@ -275,21 +275,21 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                 className="p-1 rounded hover:bg-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer"
                 title="Reset Stopwatch"
               >
-                <RotateCcw className="w-3 h-3" />
+                <RotateCcw className="w-3.5 h-3.5 shrink-0" />
               </button>
             </div>
 
             {/* Right: Actions & Close */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 shrink-0">
               <button
                 onClick={() => {
                   sound.playClick();
                   handleStartTimedMock(problem);
                 }}
-                className="hidden xl:flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 hover:bg-indigo-600/30 text-xs font-semibold cursor-pointer"
+                className="hidden xl:flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 hover:bg-indigo-600/30 text-xs font-semibold cursor-pointer shrink-0"
                 title="Timed Mock Interview"
               >
-                <Timer className="w-3.5 h-3.5" />
+                <Timer className="w-4 h-4 shrink-0" />
                 <span>Mock</span>
               </button>
 
@@ -297,10 +297,10 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                 href={problem.leetcodeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer hidden sm:flex"
+                className="p-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer hidden sm:flex shrink-0"
                 title="Open on LeetCode"
               >
-                <ExternalLink className="w-3.5 h-3.5" />
+                <ExternalLink className="w-4 h-4 shrink-0" />
               </a>
 
               <button
@@ -308,10 +308,10 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                   sound.playClick();
                   setActiveTab('arena');
                 }}
-                className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all cursor-pointer flex items-center gap-1.5 shadow-sm"
+                className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all cursor-pointer flex items-center gap-1.5 shadow-sm shrink-0"
                 title="Go to Code & Solve"
               >
-                <Code2 className="w-3.5 h-3.5" />
+                <Code2 className="w-4 h-4 shrink-0" />
                 <span>Code & Solve</span>
               </button>
 
@@ -320,10 +320,10 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                   sound.playClick();
                   onClose();
                 }}
-                className="p-1.5 rounded-lg bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer ml-1"
+                className="p-1.5 rounded-lg bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer ml-1 shrink-0"
                 title="Close Window"
               >
-                <X className="w-4 h-4" />
+                <X className="w-4 h-4 shrink-0" />
               </button>
             </div>
           </div>
@@ -399,7 +399,7 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                 <div className="p-4 rounded-xl bg-slate-900 border border-amber-500/30 shadow-sm">
                   <div className="flex items-center justify-between gap-2 mb-1.5 flex-wrap">
                     <div className="flex items-center gap-2 text-amber-400 font-semibold text-sm">
-                      <Lightbulb className="w-4 h-4" />
+                      <Lightbulb className="w-4 h-4 shrink-0" />
                       <span>CORE ALGORITHMIC INTUITION</span>
                     </div>
                     <span className="text-[11px] font-mono text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded border border-cyan-400/20">
@@ -414,7 +414,7 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                 {/* 2. Step-by-Step Implementation Strategy */}
                 <div>
                   <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-3 flex items-center gap-2 font-mono">
-                    <BookOpen className="w-4 h-4 text-cyan-400" />
+                    <BookOpen className="w-4 h-4 shrink-0 text-cyan-400" />
                     Step-by-Step Implementation Strategy
                   </h4>
                   <div className="space-y-2.5">
@@ -435,7 +435,7 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                 {/* 3. Deadly Pitfall / Interview Trap */}
                 <div className="p-4 rounded-xl bg-rose-950/30 border border-rose-500/30">
                   <div className="flex items-center gap-2 text-rose-400 font-semibold text-xs mb-1">
-                    <AlertTriangle className="w-4 h-4" />
+                    <AlertTriangle className="w-4 h-4 shrink-0" />
                     <span>DEADLY PITFALL / INTERVIEW TRAP</span>
                   </div>
                   <p className="text-xs text-rose-200/90 leading-relaxed">
@@ -446,8 +446,8 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                 {/* 4. Complexity Cards */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
-                      <Clock className="w-4 h-4" />
+                    <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 shrink-0">
+                      <Clock className="w-4 h-4 shrink-0" />
                     </div>
                     <div>
                       <div className="text-[11px] text-slate-400 font-medium">Time Complexity</div>
@@ -456,8 +456,8 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                   </div>
 
                   <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400">
-                      <HardDrive className="w-4 h-4" />
+                    <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 shrink-0">
+                      <HardDrive className="w-4 h-4 shrink-0" />
                     </div>
                     <div>
                       <div className="text-[11px] text-slate-400 font-medium">Space Complexity</div>
@@ -470,14 +470,14 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5 font-mono">
-                      <Code2 className="w-4 h-4 text-emerald-400" />
+                      <Code2 className="w-4 h-4 shrink-0 text-emerald-400" />
                       Optimal Java 21 Reference Solution
                     </span>
                     <button
                       onClick={handleCopyJava}
-                      className="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer"
+                      className="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer shrink-0"
                     >
-                      {copiedJava ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                      {copiedJava ? <Check className="w-3.5 h-3.5 shrink-0 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 shrink-0" />}
                       <span>{copiedJava ? 'Copied!' : 'Copy Java Code'}</span>
                     </button>
                   </div>
@@ -492,7 +492,7 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                 {/* Notes Header */}
                 <div className="px-4 py-3 bg-slate-900 border-b border-slate-800 flex items-center justify-between gap-2 shrink-0">
                   <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-purple-400" />
+                    <Sparkles className="w-4 h-4 shrink-0 text-purple-400" />
                     <h4 className="text-xs font-bold text-white uppercase tracking-wider font-mono">
                       Personal Interview Notes
                     </h4>

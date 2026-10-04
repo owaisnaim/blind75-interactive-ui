@@ -258,20 +258,20 @@ export function App() {
         </div>
 
         {/* Mode Switcher Bar */}
-        <div className="flex items-center justify-center gap-2 p-1.5 bg-slate-900/90 border border-slate-800 rounded-2xl max-w-2xl mx-auto shadow-sm">
+        <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-1.5 bg-slate-900/90 border border-slate-800 rounded-2xl max-w-2xl mx-auto shadow-sm">
           <button
             onClick={() => {
               sound.playClick();
               setMainTab('visualizer');
             }}
-            className={`flex-1 py-2.5 px-3 rounded-xl text-xs md:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+            className={`flex-1 py-2 sm:py-2.5 px-2 sm:px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer ${
               mainTab === 'visualizer'
-                ? 'bg-indigo-600 text-white shadow-sm scale-105'
+                ? 'bg-indigo-600 text-white shadow-sm'
                 : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
             }`}
           >
             <Play className="w-4 h-4 shrink-0" />
-            <span>Algorithm Visualizer</span>
+            <span><span className="hidden sm:inline">Algorithm </span>Visualizer</span>
           </button>
 
           <button
@@ -279,14 +279,14 @@ export function App() {
               sound.playClick();
               setMainTab('debugger');
             }}
-            className={`flex-1 py-2.5 px-3 rounded-xl text-xs md:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+            className={`flex-1 py-2 sm:py-2.5 px-2 sm:px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer ${
               mainTab === 'debugger'
-                ? 'bg-rose-600 text-white shadow-sm scale-105'
+                ? 'bg-rose-600 text-white shadow-sm'
                 : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
             }`}
           >
             <ShieldAlert className="w-4 h-4 shrink-0" />
-            <span>Code Debugger</span>
+            <span><span className="hidden sm:inline">Code </span>Debugger</span>
           </button>
 
           <button
@@ -294,14 +294,14 @@ export function App() {
               sound.playClick();
               setMainTab('problems');
             }}
-            className={`flex-1 py-2.5 px-3 rounded-xl text-xs md:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+            className={`flex-1 py-2 sm:py-2.5 px-2 sm:px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer ${
               mainTab === 'problems'
-                ? 'bg-purple-600 text-white shadow-sm scale-105'
+                ? 'bg-purple-600 text-white shadow-sm'
                 : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
             }`}
           >
             <Code2 className="w-4 h-4 shrink-0" />
-            <span>Problem Catalog</span>
+            <span><span className="hidden sm:inline">Problem </span>Catalog</span>
           </button>
         </div>
 
@@ -323,7 +323,7 @@ export function App() {
             <div>
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-black text-white uppercase tracking-wider flex items-center gap-2">
-                  <Filter className="w-4 h-4 text-indigo-400" />
+                  <Filter className="w-4 h-4 text-indigo-400 shrink-0" />
                   Topic Categories
                 </h3>
             {selectedCategory && (
@@ -335,7 +335,7 @@ export function App() {
                 className="flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 font-semibold cursor-pointer"
               >
                 <span>Clear Topic Filter</span>
-                <X className="w-3.5 h-3.5" />
+                <X className="w-3.5 h-3.5 shrink-0" />
               </button>
             )}
           </div>
@@ -361,8 +361,8 @@ export function App() {
         {/* Filter Controls & Search Bar */}
         <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
           {/* Search Box */}
-          <div className="relative flex-1">
-            <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <div className="relative flex-1 min-w-0">
+            <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2 shrink-0" />
             <input
               type="text"
               value={searchQuery}
@@ -373,9 +373,9 @@ export function App() {
           </div>
 
           {/* Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 max-w-full">
             {/* Status Filter */}
-            <div className="flex rounded-xl bg-slate-950 p-1 border border-slate-800">
+            <div className="flex rounded-xl bg-slate-950 p-1 border border-slate-800 overflow-x-auto max-w-full custom-scroll shrink-0">
               {[
                 { id: 'all', label: 'All', icon: Circle },
                 { id: 'unsolved', label: 'To Do', icon: Circle },
@@ -389,7 +389,7 @@ export function App() {
                     sound.playClick();
                     setSelectedStatus(st.id as typeof selectedStatus);
                   }}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                     selectedStatus === st.id ? 'bg-slate-800 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
@@ -399,7 +399,7 @@ export function App() {
             </div>
 
             {/* Difficulty Filter */}
-            <div className="flex rounded-xl bg-slate-950 p-1 border border-slate-800">
+            <div className="flex rounded-xl bg-slate-950 p-1 border border-slate-800 overflow-x-auto max-w-full custom-scroll shrink-0">
               {[
                 { id: null, label: 'Any' },
                 { id: 'Easy', label: 'Easy' },
@@ -412,7 +412,7 @@ export function App() {
                     sound.playClick();
                     setSelectedDifficulty(d.id);
                   }}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                     selectedDifficulty === d.id ? 'bg-slate-800 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >

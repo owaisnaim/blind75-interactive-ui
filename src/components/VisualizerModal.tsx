@@ -88,22 +88,22 @@ export const VisualizerModal: React.FC<VisualizerModalProps> = ({
       >
         {/* Top Header */}
         <div className="px-3 sm:px-4 py-2 border-b border-slate-800 bg-slate-900 flex items-center justify-between gap-3 shrink-0 flex-wrap min-h-[44px]">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 shrink-0">
                 #{problem.number}
               </span>
-              <h2 className="text-base font-bold text-white m-0">
+              <h2 className="text-base font-bold text-white m-0 truncate max-w-[150px] sm:max-w-[280px] md:max-w-none">
                 {problem.title}
               </h2>
-              <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+              <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 shrink-0 hidden sm:inline">
                 {problem.pattern}
               </span>
             </div>
             <span className="text-xs text-slate-400 hidden lg:inline">• Interactive Step-by-Step Flow Simulator</span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             {/* Quick Switcher dropdown to any of the 75 questions */}
             <select
               value={problem.id}
@@ -114,7 +114,7 @@ export const VisualizerModal: React.FC<VisualizerModalProps> = ({
                   onSelectProblem(found);
                 }
               }}
-              className="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-semibold text-slate-200 focus:outline-none focus:border-cyan-500 cursor-pointer"
+              className="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-semibold text-slate-200 focus:outline-none focus:border-cyan-500 cursor-pointer max-w-[150px] sm:max-w-[240px] truncate"
             >
               {allProblems.map(p => (
                 <option key={p.id} value={p.id}>
@@ -128,10 +128,10 @@ export const VisualizerModal: React.FC<VisualizerModalProps> = ({
                 sound.playClick();
                 onClose();
               }}
-              className="p-1.5 rounded-lg bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer"
+              className="p-1.5 rounded-lg bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer shrink-0"
               title="Close Visualizer"
             >
-              <X className="w-4 h-4" />
+              <X className="w-4 h-4 shrink-0" />
             </button>
           </div>
         </div>

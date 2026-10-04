@@ -45,17 +45,17 @@ export const TopicCard: React.FC<TopicCardProps> = ({
   return (
     <button
       onClick={handleClick}
-      className={`group relative text-left rounded-2xl border p-4 transition-all duration-300 flex flex-col justify-between cursor-pointer ${
+      className={`group relative text-left rounded-2xl border p-3 sm:p-4 transition-all duration-300 flex flex-col justify-between cursor-pointer ${
         isSelected
           ? 'bg-slate-800/90 border-amber-400 ring-2 ring-amber-400/30 shadow-sm scale-[1.02]'
           : 'bg-slate-900/60 border-slate-800 hover:border-slate-700 hover:bg-slate-900/90'
       }`}
     >
       <div className="flex items-start justify-between gap-2 mb-3">
-        <div className={`p-2.5 rounded-xl ${config.color} text-white shadow-sm`}>
-          <IconComponent className="w-5 h-5" />
+        <div className={`p-2 sm:p-2.5 rounded-xl ${config.color} text-white shadow-sm shrink-0`}>
+          <IconComponent className="w-5 h-5 shrink-0" />
         </div>
-        <div className="text-right">
+        <div className="text-right shrink-0">
           <div className="text-xs font-bold text-white font-mono">{solved}/{total}</div>
           <div className="text-[10px] text-slate-400 font-semibold">{pct}%</div>
         </div>

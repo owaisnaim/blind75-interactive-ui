@@ -97,10 +97,10 @@ export const DecisionTreeModal: React.FC<DecisionTreeModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-5 border-b border-slate-800 bg-slate-950/60 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
-              <Compass className="w-5 h-5" />
+        <div className="p-4 sm:p-5 border-b border-slate-800 bg-slate-950/60 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="p-2 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 shrink-0">
+              <Compass className="w-5 h-5 shrink-0" />
             </div>
             <div>
               <h3 className="text-base font-bold text-white m-0">
@@ -110,14 +110,14 @@ export const DecisionTreeModal: React.FC<DecisionTreeModalProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="flex rounded-xl bg-slate-800 p-1 border border-slate-700">
+          <div className="flex items-center gap-2 sm:gap-3 w-full md:w-auto justify-between md:justify-end shrink-0">
+            <div className="flex rounded-xl bg-slate-800 p-1 border border-slate-700 overflow-x-auto max-w-full custom-scroll shrink-0">
               <button
                 onClick={() => {
                   sound.playClick();
                   setActiveTab('decisionTree');
                 }}
-                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                   activeTab === 'decisionTree' ? 'bg-cyan-600 text-white shadow' : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -128,7 +128,7 @@ export const DecisionTreeModal: React.FC<DecisionTreeModalProps> = ({
                   sound.playClick();
                   setActiveTab('archetypes');
                 }}
-                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                   activeTab === 'archetypes' ? 'bg-indigo-600 text-white shadow' : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -139,12 +139,13 @@ export const DecisionTreeModal: React.FC<DecisionTreeModalProps> = ({
                   sound.playClick();
                   setActiveTab('java');
                 }}
-                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                   activeTab === 'java' ? 'bg-amber-500 text-slate-950 font-bold shadow' : 'text-slate-400 hover:text-white'
                 }`}
               >
-                <Code2 className="w-3.5 h-3.5" />
-                <span>Java Collections & Methods</span>
+                <Code2 className="w-4 h-4 shrink-0" />
+                <span className="hidden sm:inline">Java Collections & Methods</span>
+                <span className="sm:hidden">Java Cheatsheet</span>
               </button>
             </div>
 
@@ -153,9 +154,9 @@ export const DecisionTreeModal: React.FC<DecisionTreeModalProps> = ({
                 sound.playClick();
                 onClose();
               }}
-              className="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors cursor-pointer"
+              className="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors cursor-pointer shrink-0 ml-1"
             >
-              <X className="w-4 h-4" />
+              <X className="w-4 h-4 shrink-0" />
             </button>
           </div>
         </div>
@@ -212,7 +213,7 @@ export const DecisionTreeModal: React.FC<DecisionTreeModalProps> = ({
                 <div key={idx} className="p-4 rounded-xl bg-slate-950 border border-slate-800 flex flex-col justify-between">
                   <div>
                     <div className="flex items-center gap-2 font-bold text-white text-sm mb-1.5">
-                      <Zap className="w-4 h-4 text-cyan-400" />
+                      <Zap className="w-4 h-4 shrink-0 text-cyan-400" />
                       {pt.name}
                     </div>
                     <p className="text-xs text-slate-300 leading-relaxed mb-3">
@@ -235,7 +236,7 @@ export const DecisionTreeModal: React.FC<DecisionTreeModalProps> = ({
               <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between">
                 <div>
                   <h4 className="text-sm font-bold text-amber-300 flex items-center gap-2">
-                    <Code2 className="w-4 h-4 text-amber-400" />
+                    <Code2 className="w-4 h-4 shrink-0 text-amber-400" />
                     <span>Java DSA Quick Reference (LeetCode Ready)</span>
                   </h4>
                   <p className="text-xs text-slate-300 mt-0.5">

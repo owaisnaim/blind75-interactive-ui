@@ -55,7 +55,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
             className="text-xs font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 bg-amber-400/10 px-2.5 py-1 rounded-lg border border-amber-400/30"
           >
             <span>LeetCode</span>
-            <ExternalLink className="w-3 h-3" />
+            <ExternalLink className="w-3.5 h-3.5 shrink-0" />
           </a>
           <a
             href={problem.youtubeUrl}
@@ -64,7 +64,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
             className="text-xs font-bold text-rose-400 hover:text-rose-300 flex items-center gap-1 bg-rose-500/10 px-2.5 py-1 rounded-lg border border-rose-500/30"
           >
             <span>Video</span>
-            <ExternalLink className="w-3 h-3" />
+            <ExternalLink className="w-3.5 h-3.5 shrink-0" />
           </a>
         </div>
       </div>
@@ -431,45 +431,45 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
       </div>
 
       {/* 3. Playback Controls Bar */}
-      <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4 shadow-lg">
-        <div className="flex items-center gap-3">
+      <div className="p-3 sm:p-4 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 shadow-lg">
+        <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center shrink-0">
           <button
             onClick={onStepBack}
             disabled={currentFrameIdx === 0}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 disabled:opacity-30 cursor-pointer transition-all"
+            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 disabled:opacity-30 cursor-pointer transition-all shrink-0"
             title="Step Backward"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="w-4 h-4 shrink-0" />
           </button>
 
           <button
             onClick={onPlayPause}
             disabled={currentFrameIdx >= totalFrames - 1}
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all cursor-pointer shrink-0 ${
               isPlaying
                 ? 'bg-amber-600 hover:bg-amber-500 text-white'
                 : 'bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black'
             }`}
           >
-            {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-slate-950" />}
+            {isPlaying ? <Pause className="w-4 h-4 shrink-0" /> : <Play className="w-4 h-4 shrink-0 fill-slate-950" />}
             {isPlaying ? 'Pause' : 'Auto-Play Flow'}
           </button>
 
           <button
             onClick={onStepForward}
             disabled={currentFrameIdx >= totalFrames - 1}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 disabled:opacity-30 cursor-pointer transition-all"
+            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 disabled:opacity-30 cursor-pointer transition-all shrink-0"
             title="Step Forward"
           >
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className="w-4 h-4 shrink-0" />
           </button>
 
           <button
             onClick={onReset}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white cursor-pointer transition-all"
+            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white cursor-pointer transition-all shrink-0"
             title="Reset Flow"
           >
-            <RotateCcw className="w-4 h-4" />
+            <RotateCcw className="w-4 h-4 shrink-0" />
           </button>
         </div>
 
@@ -518,10 +518,10 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
       <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col shadow-lg flex-1 min-h-[260px]">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5 font-mono">
-              <Code2 className="w-3.5 h-3.5 text-cyan-400" />
+              <Code2 className="w-4 h-4 shrink-0 text-cyan-400" />
               Java Execution Sync
             </span>
-            <span className="text-[11px] font-mono text-amber-400 font-semibold px-2 py-0.5 rounded bg-amber-400/10 border border-amber-400/20">
+            <span className="text-[11px] font-mono text-amber-400 font-semibold px-2 py-0.5 rounded bg-amber-400/10 border border-amber-400/20 shrink-0">
               Line {frame?.javaLine || 1}
             </span>
           </div>
@@ -551,7 +551,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
         <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col justify-between shadow-lg">
           <div>
             <div className="flex items-center gap-1.5 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5 font-mono">
-              <Eye className="w-3.5 h-3.5 text-indigo-400" />
+              <Eye className="w-4 h-4 shrink-0 text-indigo-400" />
               Live Variables Watch
             </div>
 
@@ -568,7 +568,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
           {/* Invariant Explanation Callout */}
           <div className="p-3 rounded-xl bg-cyan-950/20 border border-cyan-500/30 text-xs text-slate-200">
             <span className="font-bold text-cyan-400 flex items-center gap-1.5 mb-1">
-              <Lightbulb className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              <Lightbulb className="w-4 h-4 text-amber-400 shrink-0" />
               <span>Step Invariant:</span>
             </span>
             {frame?.explanation}

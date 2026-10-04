@@ -186,14 +186,14 @@ export const CodeDebugger: React.FC<{ onAddXp: (amount: number) => void }> = ({ 
     <section className="rounded-3xl border border-rose-500/30 bg-slate-900 p-6 md:p-8 shadow-xl text-left">
       {/* Header */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6 border-b border-slate-800 pb-5">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-2xl bg-rose-500/20 text-rose-400 border border-rose-500/30 flex items-center justify-center shadow-sm">
-            <ShieldAlert className="w-6 h-6 text-rose-400" />
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="w-12 h-12 rounded-2xl bg-rose-500/20 text-rose-400 border border-rose-500/30 flex items-center justify-center shadow-sm shrink-0">
+            <ShieldAlert className="w-6 h-6 shrink-0 text-rose-400" />
           </div>
-          <div>
-            <div className="flex items-center gap-2">
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 flex-wrap">
               <h2 className="text-xl md:text-2xl font-black text-white m-0">Code Debugger: Spot the Logical Error</h2>
-              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20">
+              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 shrink-0">
                 Exercise {activeCaseIdx + 1} of {DEBUG_CASES.length}
               </span>
             </div>
@@ -201,7 +201,7 @@ export const CodeDebugger: React.FC<{ onAddXp: (amount: number) => void }> = ({ 
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-1 custom-scroll shrink-0">
           {DEBUG_CASES.map((c, i) => (
             <button
               key={c.id}
@@ -211,7 +211,7 @@ export const CodeDebugger: React.FC<{ onAddXp: (amount: number) => void }> = ({ 
                 setSelectedOpt(null);
                 setIsAnswered(false);
               }}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1 shrink-0 whitespace-nowrap ${
                 activeCaseIdx === i
                   ? 'bg-rose-600 text-white shadow-sm'
                   : solvedCases.includes(c.id)
@@ -220,7 +220,7 @@ export const CodeDebugger: React.FC<{ onAddXp: (amount: number) => void }> = ({ 
               }`}
             >
               <span>Case #{i + 1}</span>
-              {solvedCases.includes(c.id) && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />}
+              {solvedCases.includes(c.id) && <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-400" />}
             </button>
           ))}
         </div>
@@ -232,7 +232,7 @@ export const CodeDebugger: React.FC<{ onAddXp: (amount: number) => void }> = ({ 
         <div>
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-bold text-rose-400 uppercase tracking-wider flex items-center gap-1.5">
-              <Bug className="w-3.5 h-3.5" />
+              <Bug className="w-4 h-4 shrink-0" />
               Flawed Implementation
             </span>
             <span className="text-xs font-semibold text-slate-400">{currentCase.problemTitle}</span>
@@ -266,7 +266,7 @@ export const CodeDebugger: React.FC<{ onAddXp: (amount: number) => void }> = ({ 
 
           <div className="p-4 rounded-2xl bg-indigo-950/20 border border-indigo-500/30">
             <div className="text-xs font-bold text-indigo-300 flex items-center gap-1.5 mb-1">
-              <Lightbulb className="w-3.5 h-3.5 text-amber-400" />
+              <Lightbulb className="w-4 h-4 shrink-0 text-amber-400" />
               Root Cause Analysis
             </div>
             <p className="text-xs text-white font-medium">
@@ -315,8 +315,8 @@ export const CodeDebugger: React.FC<{ onAddXp: (amount: number) => void }> = ({ 
 
               {isAnswered && (
                 <div className="shrink-0 mt-0.5">
-                  {opt.isCorrect && <CheckCircle2 className="w-5 h-5 text-emerald-400" />}
-                  {isChosen && !opt.isCorrect && <XCircle className="w-5 h-5 text-rose-400" />}
+                  {opt.isCorrect && <CheckCircle2 className="w-5 h-5 shrink-0 text-emerald-400" />}
+                  {isChosen && !opt.isCorrect && <XCircle className="w-5 h-5 shrink-0 text-rose-400" />}
                 </div>
               )}
             </button>
@@ -334,10 +334,10 @@ export const CodeDebugger: React.FC<{ onAddXp: (amount: number) => void }> = ({ 
 
           <button
             onClick={handleNextCase}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-sm transition-all cursor-pointer whitespace-nowrap"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-sm transition-all cursor-pointer whitespace-nowrap shrink-0"
           >
             <span>Next Debugging Case</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 shrink-0" />
           </button>
         </div>
       )}

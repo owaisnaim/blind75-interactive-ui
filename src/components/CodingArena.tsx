@@ -179,6 +179,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
 
   // Left Panel Tab State
   const [leftTab, setLeftTab] = useState<'description' | 'editorial' | 'submissions'>('description');
+  const [mobilePane, setMobilePane] = useState<'problem' | 'code'>('code');
   const [hintLevel, setHintLevel] = useState<number>(0);
 
   // Submissions State
@@ -248,7 +249,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
       const delta = dragStartYRef.current - ev.clientY; // dragging up increases console height
       const containerH = rightPanelRef.current?.clientHeight || window.innerHeight;
       const minH = 120;
-      const maxH = Math.max(minH, containerH - 120);
+      const maxH = Math.max(minH, Math.min(containerH - 120, window.innerHeight * 0.85));
       const nextH = Math.min(maxH, Math.max(minH, dragStartHRef.current + delta));
       setConsoleHeight(nextH);
     };
@@ -282,7 +283,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
       const delta = dragStartYRef.current - t.clientY;
       const containerH = rightPanelRef.current?.clientHeight || window.innerHeight;
       const minH = 120;
-      const maxH = Math.max(minH, containerH - 120);
+      const maxH = Math.max(minH, Math.min(containerH - 120, window.innerHeight * 0.85));
       const nextH = Math.min(maxH, Math.max(minH, dragStartHRef.current + delta));
       setConsoleHeight(nextH);
     };
@@ -691,31 +692,31 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
             <button
               onClick={() => prevProblem && onSelectProblem?.(prevProblem)}
               disabled={!prevProblem}
-              className="p-1 rounded text-slate-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
+              className="p-1 rounded text-slate-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer shrink-0"
               title={prevProblem ? `Previous: #${prevProblem.number} ${prevProblem.title}` : 'First problem'}
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-4 h-4 shrink-0" />
             </button>
-            <span className="text-[11px] font-mono text-slate-400 px-1 font-semibold">
+            <span className="text-[11px] font-mono text-slate-400 px-1 font-semibold shrink-0">
               #{problem.number}
             </span>
             <button
               onClick={() => nextProblem && onSelectProblem?.(nextProblem)}
               disabled={!nextProblem}
-              className="p-1 rounded text-slate-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
+              className="p-1 rounded text-slate-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer shrink-0"
               title={nextProblem ? `Next: #${nextProblem.number} ${nextProblem.title}` : 'Last problem'}
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4 shrink-0" />
             </button>
           </div>
 
-          <h2 className="text-sm sm:text-base font-black text-white truncate max-w-[160px] sm:max-w-xs md:max-w-sm">
+          <h2 className="text-sm sm:text-base font-black text-white truncate max-w-[120px] sm:max-w-xs md:max-w-sm">
             {problem.title}
           </h2>
 
           {/* Difficulty Badge */}
           <span
-            className={`text-[11px] font-bold px-2 py-0.5 rounded-full border ${
+            className={`text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-full border shrink-0 ${
               problem.difficulty === 'Easy'
                 ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
                 : problem.difficulty === 'Medium'
@@ -726,26 +727,46 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
             {problem.difficulty}
           </span>
 
-          <span className="text-[11px] font-mono text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded-full border border-amber-400/20 hidden md:inline">
+          <span className="text-[11px] font-mono text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded-full border border-amber-400/20 hidden md:inline shrink-0">
             +{problem.xp} XP
           </span>
 
+          {/* Mobile Pane Switcher: Visible on screens < 1024px */}
+          <div className="flex lg:hidden items-center p-0.5 bg-slate-950 border border-slate-800 rounded-lg shrink-0">
+            <button
+              onClick={() => setMobilePane('problem')}
+              className={`px-2 py-0.5 rounded text-xs font-bold transition-all cursor-pointer ${
+                mobilePane === 'problem' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              Problem
+            </button>
+            <button
+              onClick={() => setMobilePane('code')}
+              className={`px-2 py-0.5 rounded text-xs font-bold transition-all cursor-pointer ${
+                mobilePane === 'code' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              Code
+            </button>
+          </div>
+
           {/* View Switcher Pills */}
           {onSelectTab && (
-            <div className="hidden sm:flex items-center gap-1 ml-2 p-0.5 bg-slate-950 border border-slate-800 rounded-lg">
+            <div className="hidden sm:flex items-center gap-1 ml-1 p-0.5 bg-slate-950 border border-slate-800 rounded-lg shrink-0">
               <button
                 onClick={() => {
                   sound.playClick();
                   onSelectTab('arena');
                 }}
-                className={`px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                className={`px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer flex items-center gap-1 shrink-0 ${
                   activeTab === 'arena'
                     ? 'bg-emerald-600 text-white shadow-sm'
                     : 'text-slate-400 hover:text-white'
                 }`}
                 title="Code & Solve in interactive judge"
               >
-                <Code2 className="w-3.5 h-3.5" />
+                <Code2 className="w-4 h-4 shrink-0" />
                 <span>Code</span>
               </button>
 
@@ -754,14 +775,14 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                   sound.playClick();
                   onSelectTab('visualizer');
                 }}
-                className={`px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                className={`px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer flex items-center gap-1 shrink-0 ${
                   activeTab === 'visualizer'
                     ? 'bg-indigo-600 text-white shadow-sm'
                     : 'text-slate-400 hover:text-white'
                 }`}
                 title="Step-by-step visual animation"
               >
-                <Layers className="w-3.5 h-3.5" />
+                <Layers className="w-4 h-4 shrink-0" />
                 <span>Visualizer</span>
               </button>
 
@@ -770,14 +791,14 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                   sound.playClick();
                   onSelectTab('blueprint');
                 }}
-                className={`px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                className={`px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer flex items-center gap-1 shrink-0 ${
                   activeTab === 'blueprint'
                     ? 'bg-slate-700 text-white shadow-sm'
                     : 'text-slate-400 hover:text-white'
                 }`}
                 title="Algorithm blueprint & notes"
               >
-                <BookOpen className="w-3.5 h-3.5" />
+                <BookOpen className="w-4 h-4 shrink-0" />
                 <span>Strategy</span>
               </button>
             </div>
@@ -785,40 +806,40 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
         </div>
 
         {/* Center: Interview Stopwatch Pacing Tool */}
-        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">
-          <Clock className="w-3.5 h-3.5 text-indigo-400" />
+        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 shrink-0">
+          <Clock className="w-4 h-4 text-indigo-400 shrink-0" />
           <span className="font-bold">{formattedTime}</span>
           <button
             onClick={() => setIsTimerRunning(!isTimerRunning)}
-            className="p-0.5 hover:text-white transition-colors cursor-pointer ml-1"
+            className="p-0.5 hover:text-white transition-colors cursor-pointer ml-1 shrink-0"
             title={isTimerRunning ? 'Pause Stopwatch' : 'Start Stopwatch'}
           >
-            {isTimerRunning ? <Pause className="w-3 h-3 text-amber-400" /> : <Play className="w-3 h-3 text-emerald-400 fill-emerald-400" />}
+            {isTimerRunning ? <Pause className="w-3.5 h-3.5 text-amber-400 shrink-0" /> : <Play className="w-3.5 h-3.5 text-emerald-400 fill-emerald-400 shrink-0" />}
           </button>
           <button
             onClick={() => {
               setIsTimerRunning(false);
               setStopwatchSeconds(0);
             }}
-            className="p-0.5 hover:text-white transition-colors cursor-pointer text-slate-500"
+            className="p-0.5 hover:text-white transition-colors cursor-pointer text-slate-500 shrink-0"
             title="Reset Stopwatch"
           >
-            <RotateCcw className="w-3 h-3" />
+            <RotateCcw className="w-3.5 h-3.5 shrink-0" />
           </button>
         </div>
 
         {/* Right: Actions, Run, Submit, External, Close */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {handleStartTimedMock && (
             <button
               onClick={() => {
                 sound.playClick();
                 handleStartTimedMock();
               }}
-              className="hidden xl:flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 hover:bg-indigo-600/30 text-xs font-semibold cursor-pointer"
+              className="hidden xl:flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 hover:bg-indigo-600/30 text-xs font-semibold cursor-pointer shrink-0"
               title="Timed Mock Interview"
             >
-              <Timer className="w-3.5 h-3.5" />
+              <Timer className="w-4 h-4 shrink-0" />
               <span>Mock</span>
             </button>
           )}
@@ -827,29 +848,29 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
             href={problem.leetcodeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer hidden sm:flex"
+            className="p-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer hidden sm:flex shrink-0"
             title="Open on LeetCode"
           >
-            <ExternalLink className="w-3.5 h-3.5" />
+            <ExternalLink className="w-4 h-4 shrink-0" />
           </a>
 
           <button
             onClick={handleRunCode}
             disabled={isRunning || isSubmitting}
-            className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 disabled:opacity-50"
+            className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 disabled:opacity-50 shrink-0"
             title="Run code against sample test cases (Ctrl + Enter)"
           >
-            <Play className="w-3.5 h-3.5 fill-current text-slate-300" />
+            <Play className="w-4 h-4 fill-current text-slate-300 shrink-0" />
             <span>{isRunning ? 'Running...' : 'Run'}</span>
           </button>
 
           <button
             onClick={handleSubmit}
             disabled={isRunning || isSubmitting}
-            className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all cursor-pointer flex items-center gap-1.5 shadow-sm disabled:opacity-50"
+            className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all cursor-pointer flex items-center gap-1.5 shadow-sm disabled:opacity-50 shrink-0"
             title="Submit solution for evaluation (Ctrl + Shift + Enter)"
           >
-            <Send className="w-3.5 h-3.5" />
+            <Send className="w-4 h-4 shrink-0" />
             <span>{isSubmitting ? 'Evaluating...' : 'Submit'}</span>
           </button>
 
@@ -859,10 +880,10 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                 sound.playClick();
                 onClose();
               }}
-              className="p-1.5 rounded-lg bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer ml-1"
+              className="p-1.5 rounded-lg bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer ml-1 shrink-0"
               title="Close Coding Arena"
             >
-              <X className="w-4 h-4" />
+              <X className="w-4 h-4 shrink-0" />
             </button>
           )}
         </div>
@@ -876,7 +897,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
         {/* LEFT COLUMN: Problem Hub (Description, Editorial, Subs) */}
         {/* ====================================================== */}
         {!isFocusMode && (
-          <div className="lg:col-span-4 border-r border-slate-800 flex flex-col overflow-hidden min-h-0 bg-slate-950">
+          <div className={`${mobilePane === 'problem' ? 'flex' : 'hidden'} lg:flex lg:col-span-4 border-r border-slate-800 flex-col overflow-hidden min-h-0 bg-slate-950`}>
             {/* Left Hub Tab Bar */}
             <div className="flex items-center justify-between border-b border-slate-800 bg-slate-900/90 px-2 shrink-0">
               <div className="flex items-center overflow-x-auto">
@@ -1239,7 +1260,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
         {/* ====================================================== */}
         {/* RIGHT COLUMN: Code Editor + Collapsible Console Drawer  */}
         {/* ====================================================== */}
-        <div ref={rightPanelRef} className={`${isFocusMode ? 'lg:col-span-12' : 'lg:col-span-8'} flex flex-col overflow-hidden min-h-0 bg-slate-950`}>
+        <div ref={rightPanelRef} className={`${mobilePane === 'code' ? 'flex' : 'hidden'} lg:flex ${isFocusMode ? 'lg:col-span-12' : 'lg:col-span-8'} flex-col overflow-hidden min-h-0 bg-slate-950`}>
           {/* Editor Action Toolbar */}
           <div className="px-3 py-1.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between gap-2 shrink-0 flex-wrap">
             {/* Language & Actions */}
@@ -1250,13 +1271,13 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                   className="px-2.5 py-1 rounded-md bg-indigo-600/20 text-indigo-300 border border-indigo-500/40 hover:bg-indigo-600/30 transition-colors flex items-center gap-1.5 text-xs font-semibold cursor-pointer mr-1"
                   title="Show problem description and editorial panel"
                 >
-                  <PanelLeftOpen className="w-3.5 h-3.5 text-indigo-400" />
+                  <PanelLeftOpen className="w-3.5 h-3.5 shrink-0 text-indigo-400" />
                   <span>Show Problem</span>
                 </button>
               )}
 
               <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-amber-500 text-slate-950 flex items-center gap-1.5 shadow-sm">
-                <Code2 className="w-3.5 h-3.5" />
+                <Code2 className="w-3.5 h-3.5 shrink-0" />
                 <span>Java 21</span>
               </span>
 
@@ -1266,7 +1287,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                 className="p-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer text-xs flex items-center gap-1"
                 title="Format Code Indentation (4 Spaces)"
               >
-                <AlignLeft className="w-3.5 h-3.5" />
+                <AlignLeft className="w-3.5 h-3.5 shrink-0" />
                 <span className="hidden sm:inline">Format</span>
               </button>
 
@@ -1276,7 +1297,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                 className="p-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-400 hover:text-amber-300 transition-colors cursor-pointer text-xs flex items-center gap-1"
                 title="Load Optimal Java Reference Solution"
               >
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                <Sparkles className="w-3.5 h-3.5 shrink-0 text-amber-400" />
                 <span className="hidden md:inline">Load Solution</span>
               </button>
 
@@ -1286,7 +1307,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                 className="p-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer text-xs flex items-center gap-1"
                 title="Reset Code to Starter Template"
               >
-                <RotateCcw className="w-3.5 h-3.5" />
+                <RotateCcw className="w-3.5 h-3.5 shrink-0" />
                 <span className="hidden sm:inline">Reset</span>
               </button>
             </div>
@@ -1299,7 +1320,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                 className="p-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer"
                 title="Copy code to clipboard"
               >
-                {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                {copied ? <Check className="w-3.5 h-3.5 shrink-0 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 shrink-0" />}
               </button>
 
               {/* Font Size */}
@@ -1339,7 +1360,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                 className="p-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer"
                 title="Keyboard Shortcuts Guide"
               >
-                <HelpCircle className="w-3.5 h-3.5" />
+                <HelpCircle className="w-3.5 h-3.5 shrink-0" />
               </button>
 
               {/* Focus / Fullscreen Toggle */}
@@ -1352,7 +1373,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                 }`}
                 title={isFocusMode ? 'Restore split view' : 'Maximize code editor'}
               >
-                {isFocusMode ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
+                {isFocusMode ? <Minimize2 className="w-3.5 h-3.5 shrink-0" /> : <Maximize2 className="w-3.5 h-3.5 shrink-0" />}
               </button>
             </div>
           </div>
@@ -1458,7 +1479,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                 title={isConsoleExpanded ? 'Collapse Console Drawer' : 'Expand Console Drawer (Half Screen)'}
               >
                 <span className="text-[11px] font-mono font-semibold">Console</span>
-                {isConsoleExpanded ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronUp className="w-3.5 h-3.5" />}
+                {isConsoleExpanded ? <ChevronDown className="w-3.5 h-3.5 shrink-0" /> : <ChevronUp className="w-3.5 h-3.5 shrink-0" />}
               </button>
             </div>
 
@@ -1690,7 +1711,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                         {lastResult.status !== 'Compile Error' && lastResult.message && (
                           <div className="p-3 rounded-lg bg-slate-900 border border-rose-500/40 font-mono text-xs text-rose-300 whitespace-pre-wrap leading-relaxed">
                             <div className="font-bold text-rose-400 mb-1 flex items-center gap-1.5">
-                              <AlertCircle className="w-3.5 h-3.5 text-rose-400" />
+                              <AlertCircle className="w-3.5 h-3.5 shrink-0 text-rose-400" />
                               <span>Runtime Information:</span>
                             </div>
                             {lastResult.message}
@@ -1700,7 +1721,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                         {/* Acceptance Celebration Banner */}
                         {lastResult.status === 'Accepted' && isAccepted && (
                           <div className="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs font-bold text-emerald-400 flex items-center gap-2">
-                            <Sparkles className="w-4 h-4 text-amber-400 animate-spin" />
+                            <Sparkles className="w-4 h-4 shrink-0 text-amber-400 animate-spin" />
                             <span>Accepted! You mastered this problem and earned +{problem.xp} XP!</span>
                           </div>
                         )}

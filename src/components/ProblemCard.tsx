@@ -91,20 +91,20 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
       {/* Top Header Row */}
       <div>
         <div className="flex items-center justify-between gap-2 mb-3">
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 border border-slate-700">
+          <div className="flex items-center gap-1.5 flex-wrap min-w-0">
+            <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 border border-slate-700 shrink-0">
               #{problem.number}
             </span>
-            <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full border ${getDifficultyBadge()}`}>
+            <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full border shrink-0 ${getDifficultyBadge()}`}>
               {problem.difficulty}
             </span>
-            <span className={`text-[11px] font-medium px-2 py-0.5 rounded-full border ${categoryConfig.badgeBg}`}>
+            <span className={`text-[11px] font-medium px-2 py-0.5 rounded-full border truncate max-w-[120px] sm:max-w-none ${categoryConfig.badgeBg}`}>
               {problem.category}
             </span>
           </div>
 
           {/* Action Icons */}
-          <div className="flex items-center gap-1.5" onClick={(e) => e.stopPropagation()}>
+          <div className="flex items-center gap-1.5 shrink-0" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={handleSolveClick}
               title={isSolved ? 'Mark as Unsolved' : 'Mark as Solved (+XP)'}
@@ -114,7 +114,7 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
                   : 'bg-slate-800/80 border-slate-700 text-slate-400 hover:text-emerald-300 hover:border-emerald-500/50'
               }`}
             >
-              <CheckCircle2 className="w-4 h-4" />
+              <CheckCircle2 className="w-4 h-4 shrink-0" />
             </button>
 
             <button
@@ -126,7 +126,7 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
                   : 'bg-slate-800/80 border-slate-700 text-slate-400 hover:text-amber-300 hover:border-amber-500/50'
               }`}
             >
-              <Crown className="w-4 h-4" />
+              <Crown className="w-4 h-4 shrink-0" />
             </button>
 
             <button
@@ -142,23 +142,23 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
                   : 'bg-slate-800/80 border-slate-700 text-slate-400 hover:text-purple-300 hover:border-purple-500/50'
               }`}
             >
-              <Bookmark className="w-4 h-4" />
+              <Bookmark className="w-4 h-4 shrink-0" />
             </button>
           </div>
         </div>
 
         {/* Problem Title */}
-        <h3 className="text-base font-bold text-white group-hover:text-amber-300 transition-colors mb-2.5 flex items-center justify-between">
-          <span>{problem.title}</span>
-          <span className="text-xs font-mono text-slate-500 group-hover:text-slate-400 flex items-center gap-1">
+        <h3 className="text-base font-bold text-white group-hover:text-amber-300 transition-colors mb-2.5 flex items-center justify-between gap-2">
+          <span className="truncate">{problem.title}</span>
+          <span className="text-xs font-mono text-slate-500 group-hover:text-slate-400 flex items-center gap-1 shrink-0">
             +{problem.xp} XP
           </span>
         </h3>
 
         {/* Algorithmic Pattern Tag */}
         <div className="flex items-center gap-1.5 mb-3">
-          <Zap className="w-3.5 h-3.5 text-cyan-400" />
-          <span className="text-xs font-medium text-cyan-300/90">{problem.pattern}</span>
+          <Zap className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+          <span className="text-xs font-medium text-cyan-300/90 truncate">{problem.pattern}</span>
         </div>
 
         {/* Core Intuition Box */}
@@ -173,16 +173,16 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
       </div>
 
       {/* Footer Details & Action Bar */}
-      <div className="pt-3 border-t border-slate-800/60 flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
+      <div className="pt-3 border-t border-slate-800/60 flex items-center justify-between gap-2 flex-wrap">
+        <div className="flex items-center gap-1.5 flex-wrap" onClick={(e) => e.stopPropagation()}>
           <a
             href={problem.leetcodeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-medium transition-all"
+            className="h-7 flex items-center gap-1 px-2.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-medium transition-all shrink-0"
             title="Open problem on LeetCode"
           >
-            <ExternalLink className="w-3 h-3 text-amber-400" />
+            <ExternalLink className="w-3.5 h-3.5 text-amber-400 shrink-0" />
             <span>LeetCode</span>
           </a>
 
@@ -190,10 +190,10 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
             href={problem.youtubeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 text-xs font-medium border border-rose-500/20 transition-all"
+            className="h-7 flex items-center gap-1 px-2.5 rounded-lg bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 text-xs font-medium border border-rose-500/20 transition-all shrink-0"
             title="Watch NeetCode Video Explanation"
           >
-            <Play className="w-3 h-3 text-rose-400 fill-rose-400" />
+            <Play className="w-3.5 h-3.5 text-rose-400 fill-rose-400 shrink-0" />
             <span>Solution</span>
           </a>
 
@@ -202,34 +202,34 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
               e.stopPropagation();
               handleStartTimedMock(problem);
             }}
-            className="p-1 rounded-lg bg-slate-800/60 hover:bg-slate-700 text-slate-400 hover:text-indigo-400 transition-all cursor-pointer"
+            className="h-7 w-7 flex items-center justify-center rounded-lg bg-slate-800/60 hover:bg-slate-700 text-slate-400 hover:text-indigo-400 transition-all cursor-pointer shrink-0"
             title="Start Timed Practice Session on this problem"
           >
-            <Timer className="w-3.5 h-3.5" />
+            <Timer className="w-3.5 h-3.5 shrink-0" />
           </button>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 shrink-0">
           <button
             onClick={(e) => {
               e.stopPropagation();
               handleOpenVisualizer(problem);
             }}
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-cyan-950/60 hover:bg-cyan-900 text-cyan-300 text-xs font-bold border border-cyan-500/30 transition-all cursor-pointer shadow-sm"
+            className="h-7 flex items-center gap-1.5 px-2.5 rounded-lg bg-cyan-950/60 hover:bg-cyan-900 text-cyan-300 text-xs font-bold border border-cyan-500/30 transition-all cursor-pointer shadow-sm shrink-0"
             title="Launch Visual Step-by-Step Visualizer for this problem"
           >
-            <Play className="w-3.5 h-3.5" />
+            <Play className="w-3.5 h-3.5 shrink-0" />
             <span>Visualize</span>
           </button>
 
           <button
             onClick={() => onInspectFlow(problem)}
-            className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all cursor-pointer shadow-sm"
+            className="h-7 flex items-center gap-1.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all cursor-pointer shadow-sm shrink-0"
             title="Open in-app LeetCode Code Editor and Test Runner"
           >
-            <Code2 className="w-3.5 h-3.5" />
+            <Code2 className="w-3.5 h-3.5 shrink-0" />
             <span>Solve</span>
-            <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform shrink-0" />
           </button>
         </div>
       </div>
