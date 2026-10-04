@@ -35,15 +35,15 @@ export const Header: React.FC<HeaderProps> = ({
   const solvedPct = Math.round((solvedCount / totalProblems) * 100);
 
   return (
-    <header className="relative border-b border-slate-800 bg-slate-950 sticky top-0 z-40 px-4 lg:px-8 py-3.5 transition-all">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        {/* Logo and Brand */}
-        <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-start">
+    <header className="relative border-b border-slate-800 bg-slate-950 sticky top-0 z-40 px-4 lg:px-8 py-3 transition-all">
+      <div className="max-w-7xl mx-auto flex flex-col xl:flex-row items-center justify-between gap-3 xl:gap-4">
+        {/* Row 1 on mobile/tablet: Logo and Brand + Mobile Utilities */}
+        <div className="flex items-center justify-between w-full xl:w-auto gap-3 shrink-0">
           <div className="flex items-center gap-3 min-w-0">
             <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center shadow-sm border border-indigo-500/40 shrink-0">
               <Code2 className="w-5 h-5 text-white shrink-0" />
             </div>
-            <div className="min-w-0">
+            <div className="min-w-0 text-left">
               <div className="flex items-center gap-2">
                 <h1 className="text-lg sm:text-xl font-black tracking-tight text-white m-0 truncate">LeetCode 75 Flow</h1>
                 <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0 hidden xs:inline">
@@ -54,35 +54,42 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </div>
 
-          {/* Quick Utility icons for mobile */}
-          <div className="flex items-center gap-1.5 md:hidden shrink-0">
+          {/* Quick Utility icons for mobile/tablet */}
+          <div className="flex items-center gap-1.5 xl:hidden shrink-0">
             <button
               onClick={onToggleTheme}
-              className="h-9 w-9 rounded-xl bg-slate-800/80 border border-slate-700/60 text-slate-300 hover:text-white flex items-center justify-center cursor-pointer transition-colors"
-              title={theme === 'white' ? 'Switch to Black Theme' : 'Switch to White Theme'}
+              className="h-9 w-9 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-300 hover:text-white flex items-center justify-center cursor-pointer transition-colors shadow-sm"
+              title={theme === 'white' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
             >
               {theme === 'white' ? <Moon className="w-4 h-4 text-indigo-400 shrink-0" /> : <Sun className="w-4 h-4 text-amber-400 shrink-0" />}
             </button>
             <button
               onClick={onToggleSound}
-              className="h-9 w-9 rounded-xl bg-slate-800/80 border border-slate-700/60 text-slate-300 hover:text-white flex items-center justify-center cursor-pointer transition-colors"
+              className="h-9 w-9 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-300 hover:text-white flex items-center justify-center cursor-pointer transition-colors shadow-sm"
               title="Toggle Sound FX"
             >
               {userState.soundEnabled ? <Volume2 className="w-4 h-4 text-amber-400 shrink-0" /> : <VolumeX className="w-4 h-4 text-slate-500 shrink-0" />}
             </button>
+            <button
+              onClick={onResetProgress}
+              className="h-9 w-9 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-500 hover:text-rose-400 flex items-center justify-center cursor-pointer transition-colors shadow-sm"
+              title="Reset Progress"
+            >
+              <RefreshCw className="w-4 h-4 shrink-0" />
+            </button>
           </div>
         </div>
 
-        {/* Level, XP and Stats Bar */}
-        <div className="flex items-center gap-2.5 sm:gap-4 w-full md:w-auto justify-start md:justify-center overflow-x-auto max-w-full pb-1 md:pb-0 custom-scroll">
+        {/* Center: Fixed Level, Streak & Solved Stats Bar (NO SLIDE, NO SCROLL) */}
+        <div className="flex items-center justify-center gap-2 sm:gap-3 shrink-0 flex-wrap">
           {/* Level Badge */}
-          <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-2 px-3 flex items-center gap-2.5 min-w-[170px] sm:min-w-[210px] shadow-inner shrink-0">
+          <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-2 px-3 flex items-center gap-2.5 min-w-[150px] sm:min-w-[185px] shadow-inner shrink-0">
             <div className="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center font-black text-slate-950 text-sm shadow-sm shrink-0">
               {levelInfo.level}
             </div>
             <div className="flex-1 text-left min-w-0">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-semibold text-amber-300 truncate max-w-[90px] sm:max-w-[120px]">{levelInfo.title}</span>
+                <span className="font-semibold text-amber-300 truncate max-w-[80px] sm:max-w-[105px]">{levelInfo.title}</span>
                 <span className="text-slate-400 font-mono text-[11px] shrink-0">{userState.xp} XP</span>
               </div>
               <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden mt-1">
@@ -111,8 +118,8 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex items-center gap-2 w-full md:w-auto justify-start md:justify-end overflow-x-auto max-w-full pb-1 md:pb-0 custom-scroll">
+        {/* Right: Action Buttons & Desktop Utilities */}
+        <div className="flex items-center justify-center xl:justify-end gap-2 shrink-0 flex-wrap">
           <button
             onClick={() => {
               sound.playClick();
@@ -146,39 +153,30 @@ export const Header: React.FC<HeaderProps> = ({
             <span>Timed Mock</span>
           </button>
 
-          <button
-            onClick={onToggleTheme}
-            className="h-9 hidden md:flex items-center gap-1.5 px-3 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-300 hover:text-white transition-all cursor-pointer font-semibold text-xs shadow-sm hover:brightness-110 active:scale-95 shrink-0"
-            title={theme === 'white' ? 'Switch to Black Theme (Dark Mode)' : 'Switch to White Theme (Light Mode)'}
-          >
-            {theme === 'white' ? (
-              <>
-                <Moon className="w-4 h-4 text-indigo-400 shrink-0" />
-                <span>Black Theme</span>
-              </>
-            ) : (
-              <>
-                <Sun className="w-4 h-4 text-amber-400 shrink-0" />
-                <span>White Theme</span>
-              </>
-            )}
-          </button>
-
-          <button
-            onClick={onToggleSound}
-            className="h-9 w-9 hidden md:flex items-center justify-center rounded-xl bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer shrink-0"
-            title="Toggle Sound Effects"
-          >
-            {userState.soundEnabled ? <Volume2 className="w-4 h-4 text-amber-400 shrink-0" /> : <VolumeX className="w-4 h-4 text-slate-500 shrink-0" />}
-          </button>
-
-          <button
-            onClick={onResetProgress}
-            className="h-9 w-9 flex items-center justify-center rounded-xl bg-slate-900/80 border border-slate-800 text-slate-500 hover:text-rose-400 transition-all cursor-pointer shrink-0"
-            title="Reset Progress"
-          >
-            <RefreshCw className="w-4 h-4 shrink-0" />
-          </button>
+          {/* Desktop Utilities (Theme, Sound, Reset) */}
+          <div className="hidden xl:flex items-center gap-1.5 shrink-0 ml-1">
+            <button
+              onClick={onToggleTheme}
+              className="h-9 w-9 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-300 hover:text-white flex items-center justify-center cursor-pointer transition-colors shadow-sm"
+              title={theme === 'white' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+            >
+              {theme === 'white' ? <Moon className="w-4 h-4 text-indigo-400 shrink-0" /> : <Sun className="w-4 h-4 text-amber-400 shrink-0" />}
+            </button>
+            <button
+              onClick={onToggleSound}
+              className="h-9 w-9 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-300 hover:text-white flex items-center justify-center cursor-pointer transition-colors shadow-sm"
+              title="Toggle Sound FX"
+            >
+              {userState.soundEnabled ? <Volume2 className="w-4 h-4 text-amber-400 shrink-0" /> : <VolumeX className="w-4 h-4 text-slate-500 shrink-0" />}
+            </button>
+            <button
+              onClick={onResetProgress}
+              className="h-9 w-9 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-500 hover:text-rose-400 flex items-center justify-center cursor-pointer transition-colors shadow-sm"
+              title="Reset Progress"
+            >
+              <RefreshCw className="w-4 h-4 shrink-0" />
+            </button>
+          </div>
         </div>
       </div>
     </header>
