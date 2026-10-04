@@ -1,63 +1,57 @@
-# ⚡ Blind 75 Interactive UI
+# Blind 75 Interactive UI
 
-[![React](https://img.shields.io/badge/React-19.2-blue?logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-8.x-646CFF?logo=vite)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-An interactive, gamified web application and coding sandbox engineered for mastering the **Blind 75 / LeetCode 75** algorithms. Designed to transform rote algorithm memorization into deep, intuitive pattern recognition through real-time visualization, live code execution, mnemonic triggers, and structured analysis.
+An interactive web application and coding sandbox engineered for mastering the **Blind 75 / LeetCode 75** algorithms. Designed to transform rote algorithm memorization into deep, intuitive pattern recognition through real-time visualization, live code execution, mnemonic triggers, and structured analysis.
 
 ---
 
-## 🌟 Overview & Key Features
+## Key Features
 
-### 💻 1. Professional Coding Arena
+### 1. Coding Arena
 - **Real-Time Code Execution**: Run Java solutions directly inside the browser with execution timing and memory statistics.
-- **Full LeetCode Canonical Specs**: All 75 problems feature canonical LeetCode problem statements, mathematical constraints (e.g. $10^4 \to 10⁴$, $2^{31}-1 \to 2^{31}-1$), and step-by-step example walkthroughs with dedicated input, output, and explanation cards.
+- **Full LeetCode Canonical Specs**: All 75 problems feature canonical problem statements, mathematical constraints, and step-by-step example walkthroughs with dedicated input, output, and explanation cards.
 - **Custom Test Cases & Multi-Case Runner**: Execute individual example test cases, test all cases simultaneously, or compose custom inputs on the fly.
-- **Draggable Console Drawer**: Resizable test result and console drawer with default 50% screen expansion, fluid drag handle, and intelligent boundary constraints.
+- **Draggable Console Drawer**: Resizable test result and console drawer with default 50% screen expansion, fluid drag handle, and boundary constraints.
 - **High-Contrast Themes**: Seamless toggle between sleek AMOLED Black (`#000000`) and Clean Minimalist Light mode.
 
-### 🔬 2. Interactive Step Visualizer (Flow Lab)
+### 2. Interactive Step Visualizer (Flow Lab)
 - **2-Column Split Workbench**: Synchronized large-format visual stage alongside code tracing.
-- **Interactive Scrubber Controls**: Play, pause, step forward, step backward, or dial in custom animation playback speeds.
+- **Interactive Scrubber Controls**: Play, pause, step forward, step backward, or configure custom animation playback speeds.
 - **Live Variable Watch & Line Tracer**: Watch variables update dynamically at each step alongside line-by-line Java code highlighting.
 
-### 📚 3. Algorithm & Notes Studio
-- **Intuition & Flow Breakdown**: Deep explanations of algorithmic patterns, 4-step execution roadmaps, and common interview traps.
-- **Reference Optimal Solutions**: Clean, production-grade Java reference implementations with one-click copy and editor loading.
+### 3. Algorithm & Notes Studio
+- **Intuition & Flow Breakdown**: Detailed explanations of algorithmic patterns, 4-step execution roadmaps, and common interview traps.
+- **Reference Optimal Solutions**: Production-grade Java reference implementations with one-click copy and editor loading.
 - **Personal Notes Workspace**: Persistent Markdown notes editor with quick templates (*Summary*, *Key Trick*, *Edge Cases*) and auto-save to `localStorage`.
 
-### 🧠 4. Algorithmic Archetypes & Mental Hooks
+### 4. Algorithmic Archetypes & Mental Hooks
 - **10 Domain Categories**: Arrays, Binary, Dynamic Programming, Graphs, Heaps, Intervals, Linked Lists, Matrices, Strings, and Trees.
 - **15-Second Mnemonic Hooks**: Quick mental triggers paired with every problem to instantly anchor pattern recognition during real technical interviews.
 - **Smart Filtering**: Filter by category, difficulty level (*Easy*, *Medium*, *Hard*), status (*Solved*, *Review*, *Unsolved*), or search by title and keywords.
 
-### 🎮 5. Gamified Mastery & Interview Tools
+### 5. Practice & Interview Tools
 - **Flow Trainer (Pattern Recognition Quiz)**: Fast-paced multiple-choice challenges to test instant archetype identification before touching code.
 - **15-Second Interview Decision Tree**: Interactive decision flowchart guiding you through which algorithmic pattern to apply given specific problem constraints.
 - **Boss Raid Mode (Pomodoro Focus)**: Timed challenge intervals (15 / 20 / 25 min) with dynamic boss HP bars to simulate high-pressure interview pacing.
 - **Bug Detective**: Diagnostic debugging exercises to identify logic flaws and off-by-one errors.
-- **Custom Web Audio & Celebrations**: Synthesized 8-bit sound effects and celebratory particle confetti upon mastering problems.
+- **Audio & Celebrations**: Synthesized procedural sound effects and particle confetti upon mastering problems.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Technology | Purpose |
 | :--- | :--- |
 | **React 19** | Modern UI framework with high-performance hooks and concurrent rendering |
 | **TypeScript** | Strict static typing across all problem specifications, simulators, and components |
-| **Vite 8** | Next-generation build tool and lightning-fast HMR development server |
+| **Vite 8** | Next-generation build tool and fast HMR development server |
 | **Tailwind CSS v4** | Modern CSS utility framework powering responsive AMOLED dark/light layouts |
-| **Lucide Icons** | Clean, accessible SVG iconography |
-| **Canvas Confetti** | Dynamic celebratory particle effects |
+| **Lucide Icons** | SVG iconography |
+| **Canvas Confetti** | Celebratory particle effects |
 | **Web Audio API** | Zero-asset, in-browser synthesized procedural audio feedback |
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 blind75-interactive-ui/
@@ -106,7 +100,7 @@ blind75-interactive-ui/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -132,7 +126,7 @@ blind75-interactive-ui/
    ```
 
 4. **Open your browser:**
-   Navigate to [http://localhost:5173](http://localhost:5173) to start exploring!
+   Navigate to `http://localhost:5173` to start exploring.
 
 ### Available Scripts
 
@@ -143,9 +137,9 @@ blind75-interactive-ui/
 
 ---
 
-## 🎯 Coverage: All 75 Blind 75 Problems
+## Problem Catalog
 
-The repository contains complete specifications, interactive visualizers, canonical LeetCode problem descriptions, math constraints, and reference solutions for all 75 questions:
+The application covers all 75 Blind 75 questions with complete specifications, interactive visualizers, canonical LeetCode problem descriptions, math constraints, and reference solutions:
 
 <details>
 <summary><b>1. Arrays (10 Problems)</b></summary>
@@ -274,6 +268,6 @@ The repository contains complete specifications, interactive visualizers, canoni
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the [MIT License](LICENSE).
