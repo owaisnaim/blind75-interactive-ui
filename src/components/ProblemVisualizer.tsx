@@ -1,5 +1,4 @@
-import React from 'react';
-import { Play, Pause, RotateCcw, ChevronRight, ChevronLeft, Sparkles, Code2, Eye, ExternalLink, Lightbulb, ArrowRight } from 'lucide-react';
+import { Play, Pause, RotateCcw, ChevronRight, ChevronLeft, Sparkles, Code2, Eye, ExternalLink, Lightbulb, ArrowRight, Cpu } from 'lucide-react';
 import type { Problem } from '../data/problems';
 import type { SimFrame } from '../utils/simulatorEngine';
 
@@ -178,85 +177,204 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
               </div>
             )}
 
-            {/* TYPE 3: DP Grid */}
+            {/* TYPE 3: DP Grid (1D Array or 2D Matrix) */}
             {frame.visualType === 'dp-grid' && (
-              <div className="flex flex-col items-center gap-3">
+              <div className="flex flex-col items-center gap-3 w-full">
                 {frame.visualData.label && (
                   <span className="text-xs font-mono text-purple-400 font-bold">{frame.visualData.label}</span>
                 )}
-                <div className="flex items-center gap-2 flex-wrap justify-center">
-                  {(frame.visualData.dpTable || []).map((val: any, idx: number) => (
-                    <div
-                      key={idx}
-                      className={`w-14 h-14 rounded-xl border flex flex-col items-center justify-center font-mono font-bold transition-all duration-300 ${
-                        idx === frame.visualData.activeIndex
-                          ? 'bg-purple-600 border-purple-400 text-white ring-2 ring-purple-400 scale-110 shadow-sm'
-                          : 'bg-slate-900 border-slate-800 text-slate-400'
-                      }`}
-                    >
-                      <span className="text-sm">{val === 8 ? '∞' : val}</span>
-                      <span className="text-[9px] text-slate-500">dp[{idx}]</span>
-                    </div>
-                  ))}
-                </div>
+                {frame.visualData.matrix ? (
+                  <div className="overflow-x-auto max-w-full p-2 bg-slate-900 rounded-2xl border border-slate-800 custom-scroll">
+                    <table className="border-collapse font-mono text-xs">
+                      {frame.visualData.colHeaders && (
+                        <thead>
+                          <tr>
+                            <th className="p-1.5 text-[10px] text-slate-500"></th>
+                            {frame.visualData.colHeaders.map((col: string, cIdx: number) => (
+                              <th key={cIdx} className="p-1.5 text-[11px] text-cyan-400 font-bold min-w-[36px] text-center">
+                                {col}
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                      )}
+                      <tbody>
+                        {frame.visualData.matrix.map((row: any[], rIdx: number) => (
+                          <tr key={rIdx}>
+                            {frame.visualData.rowHeaders && (
+                              <td className="p-1.5 text-[11px] text-cyan-400 font-bold text-right pr-2">
+                                {frame.visualData.rowHeaders[rIdx]}
+                              </td>
+                            )}
+                            {row.map((val: any, cIdx: number) => {
+                              const isActive = frame.visualData.activeCell?.[0] === rIdx && frame.visualData.activeCell?.[1] === cIdx;
+                              return (
+                                <td key={cIdx} className="p-1">
+                                  <div
+                                    className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg border flex items-center justify-center font-bold text-xs transition-all ${
+                                      isActive
+                                        ? 'bg-purple-600 border-purple-400 text-white ring-2 ring-purple-400 shadow-md scale-105'
+                                        : 'bg-slate-950 border-slate-800 text-slate-300'
+                                    }`}
+                                  >
+                                    {val === 999 || val === 8 ? '∞' : val}
+                                  </div>
+                                </td>
+                              );
+                            })}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2 flex-wrap justify-center">
+                    {(frame.visualData.dpTable || []).map((val: any, idx: number) => (
+                      <div
+                        key={idx}
+                        className={`w-14 h-14 rounded-xl border flex flex-col items-center justify-center font-mono font-bold transition-all duration-300 ${
+                          idx === frame.visualData.activeIndex
+                            ? 'bg-purple-600 border-purple-400 text-white ring-2 ring-purple-400 scale-110 shadow-sm'
+                            : 'bg-slate-900 border-slate-800 text-slate-400'
+                        }`}
+                      >
+                        <span className="text-sm">{val === 8 || val === 999 ? '∞' : val}</span>
+                        <span className="text-[9px] text-slate-500">dp[{idx}]</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
 
             {/* TYPE 4: Linked List */}
             {frame.visualType === 'linked-list' && (
-              <div className="flex items-center gap-2 flex-wrap justify-center">
-                {(frame.visualData.nodes || []).map((nodeVal: any, idx: number) => {
-                  const isCurr = frame.visualData.curr === idx;
-                  const isPrev = frame.visualData.prev === idx;
-                  const isSlow = frame.visualData.slow === idx;
-                  const isFast = frame.visualData.fast === idx;
-
-                  return (
-                    <div key={idx} className="flex items-center gap-2">
-                      <div
-                        className={`w-14 h-14 rounded-2xl border flex flex-col items-center justify-center font-mono font-bold transition-all relative ${
-                          isCurr || isSlow
-                            ? 'bg-indigo-600 border-indigo-400 text-white scale-110 ring-2 ring-cyan-400'
-                            : isPrev
-                            ? 'bg-emerald-950/40 border-emerald-500/50 text-emerald-300'
-                            : 'bg-slate-900 border-slate-800 text-slate-400'
-                        }`}
-                      >
-                        {isCurr && <span className="absolute -top-3 text-[9px] bg-cyan-400 text-slate-950 px-1 rounded font-bold">curr</span>}
-                        {isPrev && <span className="absolute -bottom-3 text-[9px] bg-emerald-500 text-white px-1 rounded font-bold">prev</span>}
-                        {isSlow && <span className="absolute -top-3 text-[9px] bg-indigo-500 text-white px-1 rounded font-bold">slow</span>}
-                        {isFast && <span className="absolute -bottom-3 text-[9px] bg-rose-500 text-white px-1 rounded font-bold">fast</span>}
-                        <span>{nodeVal}</span>
+              <div className="flex flex-col items-center gap-4 w-full">
+                {frame.visualData.lists ? (
+                  frame.visualData.lists.map((lst: any, lIdx: number) => (
+                    <div key={lIdx} className="flex flex-col sm:flex-row items-center gap-2 w-full justify-center">
+                      <span className="text-xs font-mono text-cyan-400 font-bold sm:w-20 shrink-0 text-center sm:text-right">
+                        {lst.label}:
+                      </span>
+                      <div className="flex items-center gap-1.5 flex-wrap justify-center">
+                        {(lst.nodes || []).map((nodeVal: any, idx: number) => {
+                          const isCurr = lst.curr === idx;
+                          return (
+                            <div key={idx} className="flex items-center gap-1.5">
+                              <div
+                                className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl border flex items-center justify-center font-mono font-bold text-xs transition-all relative ${
+                                  isCurr
+                                    ? 'bg-indigo-600 border-indigo-400 text-white ring-2 ring-cyan-400 shadow-md scale-105'
+                                    : 'bg-slate-900 border-slate-800 text-slate-300'
+                                }`}
+                              >
+                                {isCurr && <span className="absolute -top-3 text-[8px] bg-cyan-400 text-slate-950 px-1 rounded font-bold">ptr</span>}
+                                <span>{nodeVal}</span>
+                              </div>
+                              {idx < lst.nodes.length - 1 && (
+                                <ArrowRight className="w-3 h-3 text-slate-500" />
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
-                      {idx < frame.visualData.nodes.length - 1 && (
-                        <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
-                      )}
                     </div>
-                  );
-                })}
+                  ))
+                ) : (
+                  <div className="flex items-center gap-2 flex-wrap justify-center">
+                    {(frame.visualData.nodes || []).map((nodeVal: any, idx: number) => {
+                      const isCurr = frame.visualData.curr === idx;
+                      const isPrev = frame.visualData.prev === idx;
+                      const isSlow = frame.visualData.slow === idx;
+                      const isFast = frame.visualData.fast === idx;
+
+                      return (
+                        <div key={idx} className="flex items-center gap-2">
+                          <div
+                            className={`w-14 h-14 rounded-2xl border flex flex-col items-center justify-center font-mono font-bold transition-all relative ${
+                              isCurr || isSlow
+                                ? 'bg-indigo-600 border-indigo-400 text-white scale-110 ring-2 ring-cyan-400'
+                                : isPrev
+                                ? 'bg-emerald-950/40 border-emerald-500/50 text-emerald-300'
+                                : 'bg-slate-900 border-slate-800 text-slate-400'
+                            }`}
+                          >
+                            {isCurr && <span className="absolute -top-3 text-[9px] bg-cyan-400 text-slate-950 px-1 rounded font-bold">curr</span>}
+                            {isPrev && <span className="absolute -bottom-3 text-[9px] bg-emerald-500 text-white px-1 rounded font-bold">prev</span>}
+                            {isSlow && <span className="absolute -top-3 text-[9px] bg-indigo-500 text-white px-1 rounded font-bold">slow</span>}
+                            {isFast && <span className="absolute -bottom-3 text-[9px] bg-rose-500 text-white px-1 rounded font-bold">fast</span>}
+                            <span>{nodeVal}</span>
+                          </div>
+                          {idx < frame.visualData.nodes.length - 1 && (
+                            <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             )}
 
             {/* TYPE 5: Interval Sweep */}
             {frame.visualType === 'interval-sweep' && (
               <div className="w-full max-w-xl space-y-3">
-                <div className="text-xs text-slate-400 font-mono">Interval Sweep Progress:</div>
-                <div className="space-y-2">
-                  {(frame.visualData.merged || []).map((inv: number[], i: number) => (
-                    <div key={i} className="flex items-center gap-2">
-                      <span className="text-xs font-mono text-cyan-400 w-16">[{inv[0]}, {inv[1]}]</span>
-                      <div className="flex-1 bg-slate-900 h-6 rounded-lg overflow-hidden relative border border-slate-800">
-                        <div
-                          className="h-full bg-indigo-500 rounded transition-all duration-300"
-                          style={{
-                            marginLeft: `${(inv[0] / 20) * 100}%`,
-                            width: `${Math.max(12, ((inv[1] - inv[0]) / 20) * 100)}%`
-                          }}
-                        />
-                      </div>
+                {frame.visualData.label && (
+                  <div className="text-xs text-cyan-400 font-mono font-bold text-center">{frame.visualData.label}</div>
+                )}
+                {frame.visualData.intervals && (
+                  <div className="space-y-1.5 p-3 rounded-2xl bg-slate-900/60 border border-slate-800">
+                    <span className="text-[11px] font-mono text-slate-400 block mb-1">Input Intervals:</span>
+                    <div className="space-y-1.5">
+                      {frame.visualData.intervals.map((inv: any, i: number) => {
+                        const isCurrent = i === frame.visualData.activeIdx;
+                        const start = Array.isArray(inv) ? inv[0] : inv.start;
+                        const end = Array.isArray(inv) ? inv[1] : inv.end;
+                        const maxVal = frame.visualData.maxVal || 20;
+                        return (
+                          <div key={i} className="flex items-center gap-2">
+                            <span className={`text-xs font-mono w-16 font-bold ${isCurrent ? 'text-amber-400' : 'text-slate-400'}`}>
+                              [{start}, {end}]
+                            </span>
+                            <div className="flex-1 bg-slate-950 h-5 rounded-md overflow-hidden relative border border-slate-800">
+                              <div
+                                className={`h-full rounded transition-all duration-300 ${isCurrent ? 'bg-amber-500' : 'bg-slate-700'}`}
+                                style={{
+                                  marginLeft: `${Math.min(90, (start / maxVal) * 100)}%`,
+                                  width: `${Math.max(8, Math.min(100, ((end - start) / maxVal) * 100))}%`
+                                }}
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
-                  ))}
-                </div>
+                  </div>
+                )}
+                {frame.visualData.merged && (
+                  <div className="space-y-1.5 p-3 rounded-2xl bg-slate-900/60 border border-indigo-900/40">
+                    <span className="text-[11px] font-mono text-indigo-400 font-bold block mb-1">Merged Result:</span>
+                    <div className="space-y-1.5">
+                      {frame.visualData.merged.map((inv: number[], i: number) => {
+                        const maxVal = frame.visualData.maxVal || 20;
+                        return (
+                          <div key={i} className="flex items-center gap-2">
+                            <span className="text-xs font-mono text-emerald-400 w-16 font-bold">[{inv[0]}, {inv[1]}]</span>
+                            <div className="flex-1 bg-slate-950 h-5 rounded-md overflow-hidden relative border border-slate-800">
+                              <div
+                                className="h-full bg-emerald-500 rounded transition-all duration-300"
+                                style={{
+                                  marginLeft: `${Math.min(90, (inv[0] / maxVal) * 100)}%`,
+                                  width: `${Math.max(8, Math.min(100, ((inv[1] - inv[0]) / maxVal) * 100))}%`
+                                }}
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 
@@ -282,7 +400,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                             : 'bg-slate-900 border-slate-700 text-slate-300'
                         }`}
                       >
-                        {n.val}
+                        {n.val ?? 'null'}
                       </div>
                     ))}
                   </div>
@@ -293,17 +411,41 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                       <div
                         key={idx}
                         className={`w-12 h-12 rounded-full border-2 flex items-center justify-center font-mono font-bold text-sm transition-all duration-300 ${
-                          n.val === frame.visualData.activeNode
+                          n.val === null || n.val === undefined
+                            ? 'opacity-20 border-slate-800 text-slate-600'
+                            : n.val === frame.visualData.activeNode
                             ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 ring-4 ring-cyan-400/40 scale-110 shadow-sm'
                             : n.state === 'done'
                             ? 'bg-emerald-500/20 border-emerald-400 text-emerald-300'
                             : 'bg-slate-900 border-slate-700 text-slate-300'
                         }`}
                       >
-                        {n.val}
+                        {n.val ?? 'null'}
                       </div>
                     ))}
                   </div>
+
+                  {/* Level 3: Grandchildren */}
+                  {frame.visualData.nodes && frame.visualData.nodes.length > 3 && (
+                    <div className="flex justify-center gap-3 sm:gap-6 flex-wrap">
+                      {frame.visualData.nodes.slice(3, 7).map((n: any, idx: number) => (
+                        <div
+                          key={idx}
+                          className={`w-10 h-10 rounded-full border-2 flex items-center justify-center font-mono font-bold text-xs transition-all duration-300 ${
+                            n.val === null || n.val === undefined
+                              ? 'opacity-20 border-slate-800 text-slate-600'
+                              : n.val === frame.visualData.activeNode
+                              ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 ring-4 ring-cyan-400/40 scale-110 shadow-sm'
+                              : n.state === 'done'
+                              ? 'bg-emerald-500/20 border-emerald-400 text-emerald-300'
+                              : 'bg-slate-900 border-slate-700 text-slate-300'
+                          }`}
+                        >
+                          {n.val ?? 'null'}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -422,6 +564,185 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                     )}
                   </div>
                 </div>
+              </div>
+            )}
+
+            {/* TYPE 10: Bit Binary Register */}
+            {frame.visualType === 'bit-binary' && (
+              <div className="flex flex-col items-center gap-4 w-full max-w-xl">
+                {frame.visualData.label && (
+                  <span className="text-xs font-mono text-amber-400 font-bold">{frame.visualData.label}</span>
+                )}
+                {/* 32-bit or 8-bit register */}
+                <div className="flex items-center justify-center gap-1 sm:gap-1.5 flex-wrap p-3 rounded-2xl bg-slate-900/80 border border-slate-800">
+                  {(frame.visualData.bits || []).map((b: any, bIdx: number) => {
+                    const is1 = b === '1' || b === 1 || b?.val === '1';
+                    const isActive = bIdx === frame.visualData.activeBit || b?.active;
+                    return (
+                      <div key={bIdx} className="flex flex-col items-center">
+                        <div
+                          className={`w-7 h-9 sm:w-8 sm:h-10 rounded-lg border flex items-center justify-center font-mono font-bold text-xs transition-all ${
+                            isActive
+                              ? 'bg-amber-500 text-slate-950 border-amber-300 ring-2 ring-amber-400 shadow-md scale-110'
+                              : is1
+                              ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 font-black'
+                              : 'bg-slate-950 border-slate-800 text-slate-600'
+                          }`}
+                        >
+                          {typeof b === 'object' ? b.val : b}
+                        </div>
+                        <span className="text-[8px] text-slate-500 font-mono mt-0.5">
+                          {frame.visualData.bits.length - 1 - bIdx}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {frame.visualData.operation && (
+                  <div className="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 font-mono text-xs flex items-center gap-2">
+                    <Cpu className="w-4 h-4 text-cyan-400 shrink-0" />
+                    <span className="text-slate-400">Operation:</span>
+                    <span className="text-amber-300 font-bold">{frame.visualData.operation}</span>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* TYPE 11: Frequency Map & Anagram Buckets */}
+            {frame.visualType === 'frequency-map' && (
+              <div className="flex flex-col items-center gap-4 w-full max-w-xl">
+                {frame.visualData.label && (
+                  <span className="text-xs font-mono text-cyan-400 font-bold">{frame.visualData.label}</span>
+                )}
+                {/* Character frequencies or group buckets */}
+                {frame.visualData.counts && (
+                  <div className="flex items-center justify-center gap-2 flex-wrap">
+                    {Object.entries(frame.visualData.counts).map(([ch, cnt]: [string, any]) => {
+                      const isActive = frame.visualData.activeChar === ch;
+                      return (
+                        <div
+                          key={ch}
+                          className={`px-3 py-2 rounded-xl border flex items-center gap-2 font-mono text-xs transition-all ${
+                            isActive
+                              ? 'bg-indigo-600 border-indigo-400 text-white ring-2 ring-indigo-400 shadow-md scale-105'
+                              : 'bg-slate-900 border-slate-800 text-slate-300'
+                          }`}
+                        >
+                          <span className="font-bold text-amber-300">'{ch}':</span>
+                          <span className="font-semibold text-cyan-300">{String(cnt)}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {frame.visualData.groups && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full">
+                    {frame.visualData.groups.map((grp: any, gIdx: number) => (
+                      <div key={gIdx} className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono">
+                        <span className="text-[10px] text-slate-400 block mb-1">Key: [{grp.key}]</span>
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          {grp.items.map((it: string, itIdx: number) => (
+                            <span key={itIdx} className="px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-semibold text-[11px]">
+                              {it}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* TYPE 12: Graph Network & Adjacency */}
+            {frame.visualType === 'graph-network' && (
+              <div className="flex flex-col items-center gap-4 w-full max-w-xl">
+                {frame.visualData.label && (
+                  <span className="text-xs font-mono text-emerald-400 font-bold">{frame.visualData.label}</span>
+                )}
+                {/* Graph Vertices */}
+                <div className="flex items-center justify-center gap-3 flex-wrap">
+                  {(frame.visualData.nodes || []).map((node: any, nIdx: number) => {
+                    const isActive = node.state === 'active';
+                    const isVisited = node.state === 'visited';
+                    const isProcessing = node.state === 'processing';
+                    return (
+                      <div key={nIdx} className="flex flex-col items-center">
+                        <div
+                          className={`w-12 h-12 rounded-full border-2 flex items-center justify-center font-mono font-bold text-xs transition-all shadow ${
+                            isActive
+                              ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 ring-4 ring-cyan-400/40 scale-110'
+                              : isVisited
+                              ? 'bg-emerald-500/20 border-emerald-400 text-emerald-300'
+                              : isProcessing
+                              ? 'bg-amber-500/20 border-amber-400 text-amber-300 ring-2 ring-amber-400'
+                              : 'bg-slate-900 border-slate-700 text-slate-400'
+                          }`}
+                        >
+                          {node.label || node.id}
+                        </div>
+                        <span className="text-[9px] text-slate-500 font-mono mt-1 capitalize">{node.state || 'unvisited'}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Adjacency list preview */}
+                {frame.visualData.adjList && (
+                  <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 font-mono text-xs w-full">
+                    <span className="text-slate-400 text-[10px] block mb-1">Adjacency List:</span>
+                    <div className="flex flex-wrap gap-2">
+                      {Object.entries(frame.visualData.adjList).map(([u, neighbors]: [string, any]) => (
+                        <span key={u} className="px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-800 text-[11px]">
+                          <strong className="text-cyan-400">{u}</strong> → [{Array.isArray(neighbors) ? neighbors.join(', ') : neighbors}]
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* TYPE 13: Trie Prefix Tree */}
+            {frame.visualType === 'trie-tree' && (
+              <div className="flex flex-col items-center gap-4 w-full max-w-xl">
+                {frame.visualData.label && (
+                  <span className="text-xs font-mono text-cyan-400 font-bold">{frame.visualData.label}</span>
+                )}
+                <div className="p-3 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center gap-2 flex-wrap">
+                  {(frame.visualData.path || []).map((ch: any, pIdx: number) => {
+                    const isEnd = ch.isEnd;
+                    const isActive = ch.active;
+                    return (
+                      <div key={pIdx} className="flex items-center gap-1.5">
+                        <div
+                          className={`w-10 h-10 rounded-xl border flex flex-col items-center justify-center font-mono font-bold text-xs transition-all ${
+                            isActive
+                              ? 'bg-cyan-500 text-slate-950 border-cyan-300 ring-2 ring-cyan-400 shadow-md scale-105'
+                              : isEnd
+                              ? 'bg-emerald-500/20 border-emerald-400 text-emerald-300'
+                              : 'bg-slate-950 border-slate-800 text-slate-300'
+                          }`}
+                        >
+                          <span>{ch.char}</span>
+                          {isEnd && <span className="text-[7px] text-emerald-400 font-bold">END</span>}
+                        </div>
+                        {pIdx < frame.visualData.path.length - 1 && (
+                          <ArrowRight className="w-3 h-3 text-slate-500" />
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {frame.visualData.words && (
+                  <div className="flex items-center gap-2 text-xs font-mono">
+                    <span className="text-slate-400">Stored Words:</span>
+                    <span className="text-emerald-400 font-bold">&#123; {frame.visualData.words.join(', ')} &#125;</span>
+                  </div>
+                )}
               </div>
             )}
           </div>
