@@ -22,7 +22,7 @@ export function App() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(null);
   const [selectedStatus, setSelectedStatus] = useState<'all' | 'unsolved' | 'solved' | 'review'>('all');
-  const [mainTab, setMainTab] = useState<'visualizer' | 'problems' | 'debugger'>('visualizer');
+  const [mainTab, setMainTab] = useState<'problems' | 'visualizer' | 'debugger'>('problems');
 
   // Modals state
   const [activeModalProblem, setActiveModalProblem] = useState<Problem | null>(null);
@@ -248,6 +248,21 @@ export function App() {
           <button
             onClick={() => {
               sound.playClick();
+              setMainTab('problems');
+            }}
+            className={`flex-1 py-2 sm:py-2.5 px-2 sm:px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer ${
+              mainTab === 'problems'
+                ? 'bg-purple-600 text-white shadow-sm'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+            }`}
+          >
+            <Code2 className="w-4 h-4 shrink-0" />
+            <span><span className="hidden sm:inline">Problem </span>Catalog</span>
+          </button>
+
+          <button
+            onClick={() => {
+              sound.playClick();
               setMainTab('visualizer');
             }}
             className={`flex-1 py-2 sm:py-2.5 px-2 sm:px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer ${
@@ -274,35 +289,9 @@ export function App() {
             <ShieldAlert className="w-4 h-4 shrink-0" />
             <span><span className="hidden sm:inline">Code </span>Debugger</span>
           </button>
-
-          <button
-            onClick={() => {
-              sound.playClick();
-              setMainTab('problems');
-            }}
-            className={`flex-1 py-2 sm:py-2.5 px-2 sm:px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer ${
-              mainTab === 'problems'
-                ? 'bg-purple-600 text-white shadow-sm'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-            }`}
-          >
-            <Code2 className="w-4 h-4 shrink-0" />
-            <span><span className="hidden sm:inline">Problem </span>Catalog</span>
-          </button>
         </div>
 
-        {/* View 1: Interactive Algorithm Visualizer Studio */}
-        {mainTab === 'visualizer' && (
-          <VisualizerStudio
-            initialProblemId={visualizerProblem?.id || 'two-sum'}
-            onOpenProblemFlowLab={(p) => setVisualizerProblem(p)}
-          />
-        )}
-
-        {/* View 2: Code Debugger */}
-        {mainTab === 'debugger' && <CodeDebugger onAddXp={handleAddXp} />}
-
-        {/* View 3: Problem Catalog (Topics + Problems) */}
+        {/* View 1: Problem Catalog (Topics + Problems) */}
         {mainTab === 'problems' && (
           <div className="space-y-8">
             {/* Topic Categories */}
@@ -466,6 +455,17 @@ export function App() {
         </div>
       </div>
     )}
+
+        {/* View 2: Interactive Algorithm Visualizer Studio */}
+        {mainTab === 'visualizer' && (
+          <VisualizerStudio
+            initialProblemId={visualizerProblem?.id || 'two-sum'}
+            onOpenProblemFlowLab={(p) => setVisualizerProblem(p)}
+          />
+        )}
+
+        {/* View 3: Code Debugger */}
+        {mainTab === 'debugger' && <CodeDebugger onAddXp={handleAddXp} />}
   </main>
 
       {/* Footer */}
