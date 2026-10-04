@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { Search, Shuffle, Bookmark, CheckCircle2, Circle, Sparkles, Filter, Play, ShieldAlert, Code2, X } from 'lucide-react';
 import { Header } from './components/Header';
 import { ProblemCard } from './components/ProblemCard';
@@ -31,6 +31,20 @@ export function App() {
   const [isTimedMockOpen, setIsTimedMockOpen] = useState(false);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [isDecisionTreeOpen, setIsDecisionTreeOpen] = useState(false);
+
+  // Ref for scrolling to questions section
+  const questionsSectionRef = useRef<HTMLDivElement>(null);
+
+  // Handle topic category selection with smooth scroll to questions
+  const handleSelectCategory = (category: string | null) => {
+    setSelectedCategory(category);
+    setTimeout(() => {
+      questionsSectionRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }, 50);
+  };
 
   // Sync sound setting
   useEffect(() => {
@@ -326,7 +340,7 @@ export function App() {
                   total={total}
                   solved={solved}
                   isSelected={selectedCategory === cat}
-                  onSelect={setSelectedCategory}
+                  onSelect={handleSelectCategory}
                 />
               );
             })}
@@ -334,7 +348,11 @@ export function App() {
         </div>
 
         {/* Filter Controls & Search Bar */}
-        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+        <div
+          ref={questionsSectionRef}
+          id="questions-section"
+          className="scroll-mt-28 xl:scroll-mt-20 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900/60 border border-slate-800"
+        >
           {/* Search Box */}
           <div className="relative flex-1 min-w-0">
             <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2 shrink-0" />
