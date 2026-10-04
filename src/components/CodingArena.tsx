@@ -1722,7 +1722,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                         {lastResult.status === 'Accepted' && isAccepted && (
                           <div className="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs font-bold text-emerald-400 flex items-center gap-2">
                             <Sparkles className="w-4 h-4 shrink-0 text-amber-400 animate-spin" />
-                            <span>Accepted! You mastered this problem and earned +{problem.xp} XP!</span>
+                            <span>Accepted! Problem solved! You earned +{problem.xp} XP!</span>
                           </div>
                         )}
                       </div>

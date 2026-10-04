@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Search, Shuffle, Bookmark, Crown, CheckCircle2, Circle, Sparkles, Filter, Play, ShieldAlert, Code2, X } from 'lucide-react';
+import { Search, Shuffle, Bookmark, CheckCircle2, Circle, Sparkles, Filter, Play, ShieldAlert, Code2, X } from 'lucide-react';
 import { Header } from './components/Header';
 import { ProblemCard } from './components/ProblemCard';
 import { ProblemModal } from './components/ProblemModal';
@@ -21,7 +21,7 @@ export function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(null);
-  const [selectedStatus, setSelectedStatus] = useState<'all' | 'unsolved' | 'solved' | 'mastered' | 'review'>('all');
+  const [selectedStatus, setSelectedStatus] = useState<'all' | 'unsolved' | 'solved' | 'review'>('all');
   const [mainTab, setMainTab] = useState<'visualizer' | 'problems' | 'debugger'>('visualizer');
 
   // Modals state
@@ -91,19 +91,6 @@ export function App() {
     });
   };
 
-  // Toggle Mastered
-  const handleToggleMastered = (id: string) => {
-    setUserState(prev => {
-      const isAlready = prev.mastered.includes(id);
-      return {
-        ...prev,
-        mastered: isAlready ? prev.mastered.filter(x => x !== id) : [...prev.mastered, id],
-        solved: prev.solved.includes(id) ? prev.solved : [...prev.solved, id],
-        xp: isAlready ? prev.xp : prev.xp + 50
-      };
-    });
-  };
-
   // Toggle Review
   const handleToggleReview = (id: string) => {
     setUserState(prev => {
@@ -167,7 +154,6 @@ export function App() {
       // Status filter
       if (selectedStatus === 'solved' && !userState.solved.includes(p.id)) return false;
       if (selectedStatus === 'unsolved' && userState.solved.includes(p.id)) return false;
-      if (selectedStatus === 'mastered' && !userState.mastered.includes(p.id)) return false;
       if (selectedStatus === 'review' && !userState.reviewLater.includes(p.id)) return false;
 
       // Search query
@@ -380,7 +366,6 @@ export function App() {
                 { id: 'all', label: 'All', icon: Circle },
                 { id: 'unsolved', label: 'To Do', icon: Circle },
                 { id: 'solved', label: 'Solved', icon: CheckCircle2 },
-                { id: 'mastered', label: 'Mastered', icon: Crown },
                 { id: 'review', label: 'Review', icon: Bookmark },
               ].map((st) => (
                 <button
@@ -468,10 +453,8 @@ export function App() {
                   key={problem.id}
                   problem={problem}
                   isSolved={userState.solved.includes(problem.id)}
-                  isMastered={userState.mastered.includes(problem.id)}
                   isReview={userState.reviewLater.includes(problem.id)}
                   onToggleSolved={handleToggleSolved}
-                  onToggleMastered={handleToggleMastered}
                   onToggleReview={handleToggleReview}
                   onInspectFlow={(p) => setActiveModalProblem(p)}
                   onStartTimedMock={handleStartTimedMock}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flame, Trophy, Volume2, VolumeX, Compass, Sparkles, RefreshCw, Crown, Sun, Moon, Code2, Timer } from 'lucide-react';
+import { Flame, Trophy, Volume2, VolumeX, Compass, Sparkles, RefreshCw, Sun, Moon, Code2, Timer } from 'lucide-react';
 import { calculateLevel } from '../utils/storage';
 import type { UserState } from '../utils/storage';
 import { sound } from '../utils/audio';
@@ -32,7 +32,6 @@ export const Header: React.FC<HeaderProps> = ({
   const handleOpenTimedMock = onOpenTimedMock || onOpenBossRaid || (() => {});
   const levelInfo = calculateLevel(userState.xp);
   const solvedCount = userState.solved.length;
-  const masteredCount = userState.mastered.length;
   const solvedPct = Math.round((solvedCount / totalProblems) * 100);
 
   return (
@@ -99,6 +98,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-1.5 bg-slate-900/80 border border-slate-800 px-3 h-9 rounded-xl shrink-0" title="Consecutive day streak">
             <Flame className="w-4 h-4 text-orange-500 fill-orange-500 animate-pulse shrink-0" />
             <span className="text-sm font-bold text-white">{userState.streak}d</span>
+            <span className="text-xs text-slate-400 font-medium hidden sm:inline">Streak</span>
           </div>
 
           {/* Solved Progress Counter */}
@@ -107,12 +107,7 @@ export const Header: React.FC<HeaderProps> = ({
             <span className="text-sm font-bold text-white">{solvedCount}</span>
             <span className="text-xs text-slate-500">/{totalProblems}</span>
             <span className="text-xs font-semibold text-emerald-400 ml-0.5">({solvedPct}%)</span>
-          </div>
-
-          {/* Mastered Counter */}
-          <div className="hidden sm:flex items-center gap-1.5 bg-slate-900/80 border border-slate-800 px-3 h-9 rounded-xl shrink-0" title="Mastered Problems">
-            <Crown className="w-4 h-4 text-amber-400 shrink-0" />
-            <span className="text-sm font-bold text-amber-300">{masteredCount}</span>
+            <span className="text-xs text-slate-400 font-medium hidden sm:inline ml-0.5">Solved</span>
           </div>
         </div>
 

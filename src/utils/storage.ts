@@ -1,6 +1,6 @@
 export interface UserState {
   solved: string[]; // Problem IDs
-  mastered: string[]; // Problem IDs
+  mastered?: string[]; // Problem IDs (deprecated)
   reviewLater: string[]; // Problem IDs
   xp: number;
   streak: number;

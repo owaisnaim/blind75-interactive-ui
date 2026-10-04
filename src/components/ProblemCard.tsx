@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle2, Crown, Bookmark, ExternalLink, Play, Lightbulb, ArrowRight, Zap, Code2, Timer } from 'lucide-react';
+import { CheckCircle2, Bookmark, ExternalLink, Play, Lightbulb, ArrowRight, Zap, Code2, Timer } from 'lucide-react';
 import { CATEGORIES_CONFIG } from '../data/problems';
 import type { Problem } from '../data/problems';
 import confetti from 'canvas-confetti';
@@ -8,10 +8,8 @@ import { sound } from '../utils/audio';
 interface ProblemCardProps {
   problem: Problem;
   isSolved: boolean;
-  isMastered: boolean;
   isReview: boolean;
   onToggleSolved: (id: string) => void;
-  onToggleMastered: (id: string) => void;
   onToggleReview: (id: string) => void;
   onInspectFlow: (problem: Problem) => void;
   onStartTimedMock?: (problem: Problem) => void;
@@ -23,10 +21,8 @@ interface ProblemCardProps {
 export const ProblemCard: React.FC<ProblemCardProps> = ({
   problem,
   isSolved,
-  isMastered,
   isReview,
   onToggleSolved,
-  onToggleMastered,
   onToggleReview,
   onInspectFlow,
   onStartTimedMock,
@@ -52,20 +48,6 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
       sound.playClick();
     }
     onToggleSolved(problem.id);
-  };
-
-  const handleMasterClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    sound.playLevelUp();
-    if (!isMastered) {
-      confetti({
-        particleCount: 80,
-        spread: 90,
-        origin: { y: 0.7 },
-        colors: ['#fbbf24', '#f59e0b', '#d97706']
-      });
-    }
-    onToggleMastered(problem.id);
   };
 
   const getDifficultyBadge = () => {
@@ -115,18 +97,6 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
               }`}
             >
               <CheckCircle2 className="w-4 h-4 shrink-0" />
-            </button>
-
-            <button
-              onClick={handleMasterClick}
-              title={isMastered ? 'Mastered!' : 'Mark as Mastered (Deep Flow)'}
-              className={`p-1.5 rounded-lg border transition-all cursor-pointer ${
-                isMastered
-                  ? 'bg-amber-500/20 border-amber-500 text-amber-400 shadow-sm'
-                  : 'bg-slate-800/80 border-slate-700 text-slate-400 hover:text-amber-300 hover:border-amber-500/50'
-              }`}
-            >
-              <Crown className="w-4 h-4 shrink-0" />
             </button>
 
             <button
