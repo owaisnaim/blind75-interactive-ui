@@ -735,7 +735,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
           <div className="flex lg:hidden items-center p-0.5 bg-slate-950 border border-slate-800 rounded-lg shrink-0">
             <button
               onClick={() => setMobilePane('problem')}
-              className={`px-2 py-0.5 rounded text-xs font-bold transition-all cursor-pointer ${
+              className={`px-2 py-0.5 rounded text-xs font-bold transition-colors cursor-pointer ${
                 mobilePane === 'problem' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -743,7 +743,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
             </button>
             <button
               onClick={() => setMobilePane('code')}
-              className={`px-2 py-0.5 rounded text-xs font-bold transition-all cursor-pointer ${
+              className={`px-2 py-0.5 rounded text-xs font-bold transition-colors cursor-pointer ${
                 mobilePane === 'code' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -759,7 +759,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                   sound.playClick();
                   onSelectTab('arena');
                 }}
-                className={`px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer flex items-center gap-1 shrink-0 ${
+                className={`px-2.5 py-1 rounded text-xs font-bold transition-colors cursor-pointer flex items-center gap-1 shrink-0 ${
                   activeTab === 'arena'
                     ? 'bg-emerald-600 text-white shadow-sm'
                     : 'text-slate-400 hover:text-white'
@@ -775,7 +775,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                   sound.playClick();
                   onSelectTab('visualizer');
                 }}
-                className={`px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer flex items-center gap-1 shrink-0 ${
+                className={`px-2.5 py-1 rounded text-xs font-bold transition-colors cursor-pointer flex items-center gap-1 shrink-0 ${
                   activeTab === 'visualizer'
                     ? 'bg-indigo-600 text-white shadow-sm'
                     : 'text-slate-400 hover:text-white'
@@ -791,7 +791,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                   sound.playClick();
                   onSelectTab('blueprint');
                 }}
-                className={`px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer flex items-center gap-1 shrink-0 ${
+                className={`px-2.5 py-1 rounded text-xs font-bold transition-colors cursor-pointer flex items-center gap-1 shrink-0 ${
                   activeTab === 'blueprint'
                     ? 'bg-slate-700 text-white shadow-sm'
                     : 'text-slate-400 hover:text-white'
@@ -857,7 +857,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
           <button
             onClick={handleRunCode}
             disabled={isRunning || isSubmitting}
-            className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 disabled:opacity-50 shrink-0"
+            className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition-colors transition-opacity cursor-pointer flex items-center gap-1.5 disabled:opacity-50 shrink-0"
             title="Run code against sample test cases (Ctrl + Enter)"
           >
             <Play className="w-4 h-4 fill-current text-slate-300 shrink-0" />
@@ -867,7 +867,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
           <button
             onClick={handleSubmit}
             disabled={isRunning || isSubmitting}
-            className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all cursor-pointer flex items-center gap-1.5 shadow-sm disabled:opacity-50 shrink-0"
+            className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-colors transition-opacity cursor-pointer flex items-center gap-1.5 shadow-sm disabled:opacity-50 shrink-0"
             title="Submit solution for evaluation (Ctrl + Shift + Enter)"
           >
             <Send className="w-4 h-4 shrink-0" />
@@ -903,7 +903,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
               <div className="flex items-center overflow-x-auto">
                 <button
                   onClick={() => setLeftTab('description')}
-                  className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold border-b-2 transition-all cursor-pointer ${
+                  className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold border-b-2 transition-colors cursor-pointer ${
                     leftTab === 'description'
                       ? 'border-indigo-500 text-indigo-400 bg-slate-950/60'
                       : 'border-transparent text-slate-400 hover:text-slate-200'
@@ -915,7 +915,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
 
                 <button
                   onClick={() => setLeftTab('editorial')}
-                  className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold border-b-2 transition-all cursor-pointer ${
+                  className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold border-b-2 transition-colors cursor-pointer ${
                     leftTab === 'editorial'
                       ? 'border-indigo-500 text-indigo-400 bg-slate-950/60'
                       : 'border-transparent text-slate-400 hover:text-slate-200'
@@ -927,7 +927,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
 
                 <button
                   onClick={() => setLeftTab('submissions')}
-                  className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold border-b-2 transition-all cursor-pointer ${
+                  className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold border-b-2 transition-colors cursor-pointer ${
                     leftTab === 'submissions'
                       ? 'border-indigo-500 text-indigo-400 bg-slate-950/60'
                       : 'border-transparent text-slate-400 hover:text-slate-200'
@@ -993,7 +993,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
 
                   {/* Formatted Examples */}
                   <div className="space-y-3.5">
-                    <h4 className="text-xs font-bold text-white uppercase tracking-wider font-mono flex items-center gap-1.5">
+                    <h4 className="text-xs font-bold text-white flex items-center gap-1.5">
                       <Code2 className="w-3.5 h-3.5 text-cyan-400" />
                       <span>Examples</span>
                     </h4>
@@ -1024,7 +1024,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
 
                   {/* Constraints */}
                   <div className="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 text-xs space-y-2.5 shadow-sm">
-                    <h4 className="font-bold text-white uppercase tracking-wider text-[11px] font-mono flex items-center gap-1.5">
+                    <h4 className="font-bold text-white text-xs flex items-center gap-1.5">
                       <span>Constraints:</span>
                     </h4>
                     <ul className="space-y-1.5 pl-1">
@@ -1042,7 +1042,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                   {/* Hints Accordion */}
                   <div className="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider flex items-center gap-1.5">
+                      <span className="text-xs font-bold text-indigo-400 flex items-center gap-1.5">
                         <Lightbulb className="w-3.5 h-3.5 text-amber-400" />
                         Algorithmic Hints
                       </span>
@@ -1123,7 +1123,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
               {leftTab === 'editorial' && (
                 <div className="space-y-5">
                   <div>
-                    <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-2 flex items-center gap-2">
+                    <h3 className="text-sm font-bold text-white mb-2 flex items-center gap-2">
                       <Sparkles className="w-4 h-4 text-amber-400" />
                       Official Algorithmic Strategy
                     </h3>
@@ -1134,7 +1134,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
 
                   {/* Step by step flow */}
                   <div>
-                    <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-2">
+                    <h4 className="text-xs font-bold text-white mb-2">
                       Step-by-Step Blueprint
                     </h4>
                     <div className="space-y-2">
@@ -1175,13 +1175,13 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                   {/* Reference Solution Code with Quick Insert */}
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-slate-300 uppercase tracking-wider font-mono">
+                      <span className="text-xs font-bold text-slate-300">
                         Optimal Reference Solution (Java)
                       </span>
 
                       <button
                         onClick={handleLoadSolution}
-                        className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-sm cursor-pointer"
+                        className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-colors shadow-sm cursor-pointer"
                         title="Load this tested optimal solution into the code editor"
                       >
                         <Sparkles className="w-3.5 h-3.5" />
@@ -1203,13 +1203,13 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                     <div className="text-center py-12 text-slate-500 text-xs">
                       <History className="w-8 h-8 mx-auto mb-2 text-slate-600" />
                       <p className="font-bold text-slate-400">No submissions yet for this problem.</p>
-                      <p className="mt-1">Click "Submit" to test your code against the full suite and track benchmarks!</p>
+                      <p className="mt-1">Click “Submit” to test your code against the full suite and track benchmarks!</p>
                     </div>
                   ) : (
                     submissions.map((sub, idx) => (
                       <div
                         key={sub.id}
-                        className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-2 transition-all hover:border-slate-700"
+                        className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-2 transition-colors hover:border-slate-700"
                       >
                         <div className="flex items-center justify-between text-xs">
                           <span
@@ -1366,7 +1366,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
               {/* Focus / Fullscreen Toggle */}
               <button
                 onClick={() => setIsFocusMode(!isFocusMode)}
-                className={`p-1.5 rounded-lg border transition-all cursor-pointer ${
+                className={`p-1.5 rounded-lg border transition-colors cursor-pointer ${
                   isFocusMode
                     ? 'bg-indigo-600 text-white border-indigo-500'
                     : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-white'
@@ -1444,7 +1444,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => expandConsole('testcase')}
-                  className={`px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer ${
+                  className={`px-2.5 py-1 rounded text-xs font-bold transition-colors cursor-pointer ${
                     consoleTab === 'testcase' && isConsoleExpanded
                       ? 'bg-slate-800 text-white'
                       : 'text-slate-400 hover:text-white'
@@ -1455,7 +1455,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
 
                 <button
                   onClick={() => expandConsole('result')}
-                  className={`px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                  className={`px-2.5 py-1 rounded text-xs font-bold transition-colors cursor-pointer flex items-center gap-1.5 ${
                     consoleTab === 'result' && isConsoleExpanded
                       ? 'bg-slate-800 text-white'
                       : 'text-slate-400 hover:text-white'
@@ -1499,7 +1499,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                             setIsCustomTab(false);
                             setActiveCaseIdx(idx);
                           }}
-                          className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                          className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer whitespace-nowrap ${
                             !isCustomTab && activeCaseIdx === idx
                               ? 'bg-indigo-600 text-white shadow-sm'
                               : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white'
@@ -1514,7 +1514,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                           sound.playClick();
                           setIsCustomTab(true);
                         }}
-                        className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                        className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer whitespace-nowrap ${
                           isCustomTab
                             ? 'bg-purple-600 text-white shadow-sm'
                             : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white'
@@ -1636,7 +1636,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                                       sound.playClick();
                                       setSelectedResultCaseIdx(idx);
                                     }}
-                                    className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                                    className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
                                       isSelected
                                         ? tc.passed
                                           ? 'bg-emerald-600 text-white shadow-sm ring-1 ring-emerald-400/50'
@@ -1661,7 +1661,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                                 <div className="space-y-2.5">
                                   {/* Input */}
                                   <div className="space-y-1">
-                                    <span className="text-slate-500 block text-[10px] uppercase font-bold tracking-wider">Input</span>
+                                    <span className="text-slate-500 block text-[10px] font-bold">Input</span>
                                     <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-200 font-mono text-xs break-all">
                                       {activeResult.displayInput}
                                     </div>
@@ -1670,7 +1670,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                                   {/* Your Output vs Expected Output */}
                                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                     <div className="space-y-1">
-                                      <span className={`block text-[10px] uppercase font-bold tracking-wider ${activeResult.passed ? 'text-emerald-400' : 'text-rose-400'}`}>
+                                      <span className={`block text-[10px] font-bold ${activeResult.passed ? 'text-emerald-400' : 'text-rose-400'}`}>
                                         Your Output
                                       </span>
                                       <div className={`p-2.5 rounded-lg bg-slate-900 border font-mono text-xs break-all font-semibold ${
@@ -1680,7 +1680,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                                       </div>
                                     </div>
                                     <div className="space-y-1">
-                                      <span className="text-emerald-400 block text-[10px] uppercase font-bold tracking-wider">
+                                      <span className="text-emerald-400 block text-[10px] font-bold">
                                         Expected Output
                                       </span>
                                       <div className="p-2.5 rounded-lg bg-slate-900 border border-emerald-500/30 text-emerald-300 font-mono text-xs break-all font-semibold">
@@ -1692,7 +1692,7 @@ export const CodingArena: React.FC<CodingArenaProps> = ({
                                   {/* Stdout Output (if user code logged anything) */}
                                   {activeResult.stdout && activeResult.stdout.trim() && (
                                     <div className="space-y-1">
-                                      <span className="text-slate-400 block text-[10px] uppercase font-bold tracking-wider flex items-center gap-1.5">
+                                      <span className="text-slate-400 block text-[10px] font-bold flex items-center gap-1.5">
                                         <Terminal className="w-3.5 h-3.5 text-cyan-400" />
                                         <span>Stdout</span>
                                       </span>

@@ -35,7 +35,7 @@ export const Header: React.FC<HeaderProps> = ({
   const solvedPct = Math.round((solvedCount / totalProblems) * 100);
 
   return (
-    <header className="relative border-b border-slate-800 bg-slate-950 sticky top-0 z-40 px-4 lg:px-8 py-3 transition-all">
+    <header className="relative border-b border-slate-800 bg-slate-950 sticky top-0 z-40 px-4 lg:px-8 py-3 transition-colors">
       <div className="max-w-7xl mx-auto flex flex-col xl:flex-row items-center justify-between gap-3 xl:gap-4">
         {/* Row 1 on mobile/tablet: Logo and Brand + Mobile Utilities */}
         <div className="flex items-center justify-between w-full xl:w-auto gap-3 shrink-0">
@@ -94,7 +94,7 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
               <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden mt-1">
                 <div
-                  className="bg-amber-400 h-full rounded-full transition-all duration-500"
+                  className="bg-amber-400 h-full rounded-full transition-colors duration-500"
                   style={{ width: `${levelInfo.progressPercent}%` }}
                 />
               </div>
@@ -125,7 +125,7 @@ export const Header: React.FC<HeaderProps> = ({
               sound.playClick();
               onOpenQuiz();
             }}
-            className="h-9 flex items-center gap-1.5 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-sm border border-indigo-500/30 transition-all hover:brightness-110 active:scale-95 whitespace-nowrap cursor-pointer shrink-0"
+            className="h-9 flex items-center gap-1.5 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-sm border border-indigo-500/30 transition-transform transition-colors hover:brightness-110 active:scale-95 whitespace-nowrap cursor-pointer shrink-0"
           >
             <Sparkles className="w-4 h-4 text-amber-300 shrink-0" />
             <span>Pattern Quiz</span>
@@ -136,7 +136,7 @@ export const Header: React.FC<HeaderProps> = ({
               sound.playClick();
               onOpenDecisionTree();
             }}
-            className="h-9 flex items-center gap-1.5 px-3 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-cyan-300 border border-cyan-500/30 text-xs font-semibold transition-all hover:brightness-110 active:scale-95 whitespace-nowrap cursor-pointer shrink-0"
+            className="h-9 flex items-center gap-1.5 px-3 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-cyan-300 border border-cyan-500/30 text-xs font-semibold transition-transform transition-colors hover:brightness-110 active:scale-95 whitespace-nowrap cursor-pointer shrink-0"
           >
             <Compass className="w-4 h-4 text-cyan-400 shrink-0" />
             <span>Pattern Guide</span>
@@ -147,7 +147,7 @@ export const Header: React.FC<HeaderProps> = ({
               sound.playClick();
               handleOpenTimedMock();
             }}
-            className="h-9 flex items-center gap-1.5 px-3 rounded-xl bg-rose-950/60 hover:bg-rose-900/60 text-rose-300 border border-rose-500/40 text-xs font-semibold transition-all hover:brightness-110 active:scale-95 whitespace-nowrap cursor-pointer shrink-0"
+            className="h-9 flex items-center gap-1.5 px-3 rounded-xl bg-rose-950/60 hover:bg-rose-900/60 text-rose-300 border border-rose-500/40 text-xs font-semibold transition-transform transition-colors hover:brightness-110 active:scale-95 whitespace-nowrap cursor-pointer shrink-0"
           >
             <Timer className="w-4 h-4 text-rose-400 shrink-0" />
             <span>Timed Mock</span>

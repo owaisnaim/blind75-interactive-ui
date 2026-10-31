@@ -45,7 +45,7 @@ export const TopicCard: React.FC<TopicCardProps> = ({
   return (
     <button
       onClick={handleClick}
-      className={`group relative text-left rounded-2xl border p-3 sm:p-4 transition-all duration-300 flex flex-col justify-between cursor-pointer ${
+      className={`group relative text-left rounded-2xl border p-3 sm:p-4 transition-colors duration-300 flex flex-col justify-between cursor-pointer ${
         isSelected
           ? 'bg-slate-800/90 border-amber-400 ring-2 ring-amber-400/30 shadow-sm scale-[1.02]'
           : 'bg-slate-900/60 border-slate-800 hover:border-slate-700 hover:bg-slate-900/90'
@@ -62,13 +62,13 @@ export const TopicCard: React.FC<TopicCardProps> = ({
       </div>
 
       <div>
-        <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">{category}</div>
+        <div className="text-[11px] font-semibold text-slate-400">{category}</div>
         <div className="text-sm font-black text-white group-hover:text-amber-300 transition-colors truncate">
           {config.realm}
         </div>
         <div className="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden mt-2.5 border border-slate-800">
           <div
-            className={`h-full rounded-full transition-all duration-500 ${config.color}`}
+            className={`h-full rounded-full ${config.color}`}
             style={{ width: `${pct}%` }}
           />
         </div>

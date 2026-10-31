@@ -211,7 +211,7 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                     sound.playClick();
                     setActiveTab('arena');
                   }}
-                  className="px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white"
+                  className="px-2.5 py-1 rounded text-xs font-bold transition-colors cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white"
                   title="Code & Solve in interactive judge"
                 >
                   <Code2 className="w-4 h-4 shrink-0" />
@@ -223,7 +223,7 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                     sound.playClick();
                     setActiveTab('visualizer');
                   }}
-                  className={`px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                  className={`px-2.5 py-1 rounded text-xs font-bold transition-colors cursor-pointer flex items-center gap-1 ${
                     activeTab === 'visualizer'
                       ? 'bg-indigo-600 text-white shadow-sm'
                       : 'text-slate-400 hover:text-white'
@@ -239,7 +239,7 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                     sound.playClick();
                     setActiveTab('blueprint');
                   }}
-                  className={`px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                  className={`px-2.5 py-1 rounded text-xs font-bold transition-colors cursor-pointer flex items-center gap-1 ${
                     activeTab === 'blueprint'
                       ? 'bg-slate-700 text-white shadow-sm'
                       : 'text-slate-400 hover:text-white'
@@ -308,7 +308,7 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                   sound.playClick();
                   setActiveTab('arena');
                 }}
-                className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all cursor-pointer flex items-center gap-1.5 shadow-sm shrink-0"
+                className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-colors cursor-pointer flex items-center gap-1.5 shadow-sm shrink-0"
                 title="Go to Code & Solve"
               >
                 <Code2 className="w-4 h-4 shrink-0" />
@@ -413,7 +413,7 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
 
                 {/* 2. Step-by-Step Implementation Strategy */}
                 <div>
-                  <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-3 flex items-center gap-2 font-mono">
+                  <h4 className="text-xs font-bold text-white mb-3 flex items-center gap-2">
                     <BookOpen className="w-4 h-4 shrink-0 text-cyan-400" />
                     Step-by-Step Implementation Strategy
                   </h4>
@@ -469,7 +469,7 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                 {/* 5. Optimal Java Reference Solution */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5 font-mono">
+                    <span className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
                       <Code2 className="w-4 h-4 shrink-0 text-emerald-400" />
                       Optimal Java 21 Reference Solution
                     </span>
@@ -493,7 +493,7 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
                 <div className="px-4 py-3 bg-slate-900 border-b border-slate-800 flex items-center justify-between gap-2 shrink-0">
                   <div className="flex items-center gap-2">
                     <Sparkles className="w-4 h-4 shrink-0 text-purple-400" />
-                    <h4 className="text-xs font-bold text-white uppercase tracking-wider font-mono">
+                    <h4 className="text-xs font-bold text-white">
                       Personal Interview Notes
                     </h4>
                   </div>
@@ -506,7 +506,7 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({
 
                 {/* Quick Insert Template Chips */}
                 <div className="px-3 py-2 bg-slate-950 border-b border-slate-800/80 flex items-center gap-1.5 overflow-x-auto shrink-0 custom-scroll">
-                  <span className="text-[10px] text-slate-500 font-bold uppercase shrink-0">Templates:</span>
+                  <span className="text-[10px] text-slate-400 font-bold shrink-0">Templates:</span>
                   <button
                     onClick={() => {
                       const addition = `\n### ⏱️ Time & Space Complexity\n- Time: ${problem.complexity.time}\n- Space: ${problem.complexity.space}\n`;
