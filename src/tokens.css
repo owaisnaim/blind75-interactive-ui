@@ -208,11 +208,11 @@ body:not(.theme-light) {
 .theme-dark select {
   background-color: #0a0a0a !important;
   border-color: #262626 !important;
-  color: #ffffff !important;
+  color: #fdfdfe !important;
 }
 .theme-dark select option {
   background-color: #0a0a0a !important;
-  color: #ffffff !important;
+  color: #fdfdfe !important;
 }
 
 /* Deep Modal Overlay in AMOLED Black */
@@ -248,7 +248,7 @@ body.theme-light {
 
 /* Header in White mode - Solid, zero blur, crisp border */
 .theme-light header {
-  background-color: #ffffff !important;
+  background-color: #fdfdfe !important;
   border-bottom-color: #e2e8f0 !important;
 }
 .theme-light header h1 {
@@ -269,14 +269,14 @@ body.theme-light {
 }
 
 .theme-light .bg-slate-900 {
-  background-color: #ffffff !important;
+  background-color: #fdfdfe !important;
 }
 .theme-light .bg-slate-900\/40,
 .theme-light .bg-slate-900\/60,
 .theme-light .bg-slate-900\/70,
 .theme-light .bg-slate-900\/80,
 .theme-light .bg-slate-900\/90 {
-  background-color: #ffffff !important;
+  background-color: #fdfdfe !important;
 }
 
 .theme-light .bg-slate-850,
@@ -355,7 +355,7 @@ body.theme-light {
 .theme-light .bg-purple-600,
 .theme-light .bg-blue-600,
 .theme-light .bg-amber-600 {
-  color: #ffffff !important;
+  color: #fdfdfe !important;
 }
 .theme-light .bg-indigo-600 *,
 .theme-light .bg-indigo-500 *,
@@ -364,7 +364,7 @@ body.theme-light {
 .theme-light .bg-purple-600 *,
 .theme-light .bg-blue-600 *,
 .theme-light .bg-amber-600 * {
-  color: #ffffff !important;
+  color: #fdfdfe !important;
 }
 
 /* Generic white text on dark surfaces becomes dark slate in light mode */
@@ -680,14 +680,14 @@ body.theme-light {
 
 /* Pre / Code blocks in light mode */
 .theme-light pre {
-  background-color: #ffffff !important;
+  background-color: #fdfdfe !important;
   border-color: #cbd5e1 !important;
   color: #0f172a !important;
 }
 
 /* Code Editor in Light Mode */
 .theme-light textarea {
-  background-color: #ffffff !important;
+  background-color: #fdfdfe !important;
   color: #0f172a !important;
   caret-color: #4338ca !important;
 }
@@ -700,12 +700,12 @@ body.theme-light {
 /* Input boxes and select dropdowns in light mode */
 .theme-light input[type="text"],
 .theme-light select {
-  background-color: #ffffff !important;
+  background-color: #fdfdfe !important;
   color: #0f172a !important;
   border-color: #cbd5e1 !important;
 }
 .theme-light select option {
-  background-color: #ffffff !important;
+  background-color: #fdfdfe !important;
   color: #0f172a !important;
 }
 .theme-light input[type="text"]::placeholder {

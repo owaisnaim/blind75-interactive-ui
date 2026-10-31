@@ -64,10 +64,10 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
   return (
     <div
       onClick={() => onInspectFlow(problem)}
-      className={`group relative rounded-2xl border transition-colors duration-300 p-5 flex flex-col justify-between cursor-pointer ${
+      className={`group relative rounded-xl border transition-colors p-4 sm:p-5 flex flex-col justify-between cursor-pointer ${
         isSolved
-          ? 'bg-slate-900/40 border-emerald-500/30 shadow-sm'
-          : 'bg-slate-900/70 border-slate-800/80 hover:border-slate-700 hover:shadow-md hover:-translate-y-0.5'
+          ? 'bg-slate-900/40 border-emerald-500/30 shadow-xs'
+          : 'bg-slate-900/70 border-slate-800 hover:border-slate-700 hover:bg-slate-900/90'
       }`}
     >
       {/* Top Header Row */}
@@ -136,7 +136,7 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
           <div className="flex items-start gap-2">
             <Lightbulb className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
             <p className="text-xs text-slate-300 italic leading-relaxed">
-              "{problem.hook}"
+              “{problem.hook}”
             </p>
           </div>
         </div>
@@ -185,7 +185,7 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
               e.stopPropagation();
               handleOpenVisualizer(problem);
             }}
-            className="h-7 flex items-center gap-1.5 px-2.5 rounded-lg bg-cyan-950/60 hover:bg-cyan-900 text-cyan-300 text-xs font-bold border border-cyan-500/30 transition-colors cursor-pointer shadow-sm shrink-0"
+            className="h-7 flex items-center gap-1.5 px-2.5 rounded-lg bg-cyan-950/60 hover:bg-cyan-900 text-cyan-300 text-xs font-bold border border-cyan-500/30 transition-colors cursor-pointer shadow-xs shrink-0"
             title="Launch Visual Step-by-Step Visualizer for this problem"
           >
             <Play className="w-3.5 h-3.5 shrink-0" />
@@ -194,7 +194,7 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
 
           <button
             onClick={() => onInspectFlow(problem)}
-            className="h-7 flex items-center gap-1.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-colors cursor-pointer shadow-sm shrink-0"
+            className="h-7 flex items-center gap-1.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-colors cursor-pointer shadow-xs shrink-0"
             title="Open in-app LeetCode Code Editor and Test Runner"
           >
             <Code2 className="w-3.5 h-3.5 shrink-0" />
