@@ -118,12 +118,12 @@ export const VisualizerStudio: React.FC<VisualizerStudioProps> = ({ initialProbl
           </div>
           <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight flex items-center gap-3 flex-wrap">
             <span>Algorithm Visualizer</span>
-            <span className="text-xs px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold uppercase tracking-wider shrink-0">
+            <span className="text-xs px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold shrink-0">
               {labView === 'all75' ? 'All 75 Questions' : '5 Classic Simulators'}
             </span>
           </h2>
           <p className="text-xs md:text-sm text-slate-400 mt-1">
-            Don't just stare at code. <strong>Step through, watch memory mutate</strong>, and build deep intuition for all 75 questions in Java.
+            Don’t just stare at code. <strong>Step through, watch memory mutate</strong>, and build deep intuition for all 75 questions in Java.
           </p>
         </div>
 
@@ -134,7 +134,7 @@ export const VisualizerStudio: React.FC<VisualizerStudioProps> = ({ initialProbl
               sound.playClick();
               setLabView('all75');
             }}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 shrink-0 ${
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-colors cursor-pointer flex items-center gap-2 shrink-0 ${
               labView === 'all75'
                 ? 'bg-indigo-600 text-white shadow-sm'
                 : 'text-slate-400 hover:text-white hover:bg-slate-900'
@@ -149,7 +149,7 @@ export const VisualizerStudio: React.FC<VisualizerStudioProps> = ({ initialProbl
               sound.playClick();
               setLabView('classic');
             }}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 shrink-0 ${
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-colors cursor-pointer flex items-center gap-2 shrink-0 ${
               labView === 'classic'
                 ? 'bg-purple-600 text-white shadow-sm'
                 : 'text-slate-400 hover:text-white hover:bg-slate-900'
@@ -181,7 +181,7 @@ export const VisualizerStudio: React.FC<VisualizerStudioProps> = ({ initialProbl
                         sound.playClick();
                         setSelectedCategory(cat);
                       }}
-                      className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+                      className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-colors cursor-pointer ${
                         selectedCategory === cat
                           ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
                           : 'bg-slate-950 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
@@ -217,7 +217,7 @@ export const VisualizerStudio: React.FC<VisualizerStudioProps> = ({ initialProbl
                       sound.playClick();
                       setSelectedProblemId(prob.id);
                     }}
-                    className={`px-3 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer border flex items-center gap-2 shrink-0 ${
+                    className={`px-3 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer border flex items-center gap-2 shrink-0 ${
                       isSelected
                         ? 'bg-indigo-600 border-indigo-500 text-white shadow-md'
                         : 'bg-slate-900/80 border-slate-800/80 text-slate-400 hover:text-slate-200 hover:border-slate-700'
@@ -296,7 +296,7 @@ export const VisualizerStudio: React.FC<VisualizerStudioProps> = ({ initialProbl
                     sound.playClick();
                     setActiveClassicMode(tab.id as ClassicMode);
                   }}
-                  className={`px-3 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer text-left shrink-0 ${
+                  className={`px-3 py-2 rounded-xl text-xs font-bold transition-colors cursor-pointer text-left shrink-0 ${
                     activeClassicMode === tab.id
                       ? 'bg-indigo-600 text-white shadow-sm'
                       : 'text-slate-400 hover:text-white hover:bg-slate-900'
@@ -420,7 +420,7 @@ const WaterContainerSimulator: React.FC = () => {
               GREEDY TWO-POINTER INVARIANT
             </div>
             <div className="text-xs text-slate-300">
-              "Area is trapped by the shorter wall. Shifting the taller wall can ONLY decrease width without raising height. You MUST advance the runt!"
+              “Area is trapped by the shorter wall. Shifting the taller wall can ONLY decrease width without raising height. You MUST advance the runt!”
             </div>
           </div>
         </div>
@@ -451,7 +451,7 @@ const WaterContainerSimulator: React.FC = () => {
         {/* Animated Water Reservoir Fill between Left & Right */}
         {left < right && (
           <div
-            className="absolute bottom-4 bg-cyan-500/20 border-t-2 border-cyan-400 transition-all duration-300 pointer-events-none"
+            className="absolute bottom-4 bg-cyan-500/20 border-t-2 border-cyan-400 transition-colors duration-300 pointer-events-none"
             style={{
               left: `${(left / (heights.length - 1)) * 90 + 5}%`,
               width: `${((right - left) / (heights.length - 1)) * 90}%`,
@@ -476,19 +476,19 @@ const WaterContainerSimulator: React.FC = () => {
             <div key={idx} className="flex-1 flex flex-col items-center h-full justify-end relative z-10 mx-1">
               {/* Pointer Badges on Top */}
               {isLeft && (
-                <div className="absolute -top-7 animate-bounce px-2 py-0.5 rounded-md bg-indigo-500 text-white font-mono text-[11px] font-bold shadow-sm">
+                <div className="absolute -top-7 px-2 py-0.5 rounded-md bg-indigo-500 text-white font-mono text-[11px] font-bold shadow-sm ring-1 ring-indigo-300/40">
                   L [{h}]
                 </div>
               )}
               {isRight && (
-                <div className="absolute -top-7 animate-bounce px-2 py-0.5 rounded-md bg-rose-500 text-white font-mono text-[11px] font-bold shadow-sm">
+                <div className="absolute -top-7 px-2 py-0.5 rounded-md bg-rose-500 text-white font-mono text-[11px] font-bold shadow-sm ring-1 ring-rose-300/40">
                   R [{h}]
                 </div>
               )}
 
               {/* Bar Element */}
               <div
-                className={`w-full max-w-[28px] rounded-t-lg transition-all duration-300 relative flex items-center justify-center font-mono text-[11px] font-bold ${
+                className={`w-full max-w-[28px] rounded-t-lg transition-colors duration-300 relative flex items-center justify-center font-mono text-[11px] font-bold ${
                   isShorted
                     ? 'bg-rose-600 text-white ring-2 ring-rose-400'
                     : isLeft || isRight
@@ -516,7 +516,7 @@ const WaterContainerSimulator: React.FC = () => {
               setIsPlaying(!isPlaying);
             }}
             disabled={left >= right}
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-colors cursor-pointer ${
               isPlaying
                 ? 'bg-amber-600 hover:bg-amber-500 text-white'
                 : 'bg-indigo-600 hover:bg-indigo-500 text-white'
@@ -529,7 +529,7 @@ const WaterContainerSimulator: React.FC = () => {
           <button
             onClick={stepGreedy}
             disabled={left >= right || isPlaying}
-            className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs border border-slate-700 transition-all cursor-pointer disabled:opacity-40"
+            className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs border border-slate-700 transition-colors transition-opacity cursor-pointer disabled:opacity-40"
           >
             <ChevronRight className="w-4 h-4 text-cyan-400" />
             Step 1 Pointer
@@ -627,7 +627,7 @@ const KadaneSimulator: React.FC = () => {
               KADANE'S GREEDY RESET INVARIANT
             </div>
             <div className="text-xs text-slate-300">
-              "Any running subarray prefix that sums to less than 0 cannot contribute positively to subsequent elements—reset running sum to 0 immediately."
+              “Any running subarray prefix that sums to less than 0 cannot contribute positively to subsequent elements; reset running sum to 0 immediately.”
             </div>
           </div>
         </div>
@@ -651,9 +651,9 @@ const KadaneSimulator: React.FC = () => {
       <div className="p-6 rounded-2xl bg-slate-950 border border-slate-800 relative overflow-hidden flex flex-col justify-center min-h-[180px]">
         {wasReset && (
           <div className="absolute inset-0 bg-rose-500/20 flex items-center justify-center z-20 pointer-events-none animate-pulse">
-            <span className="px-4 py-2 rounded-xl bg-rose-600 text-white font-black text-sm uppercase tracking-wider shadow-sm flex items-center gap-1.5">
+            <span className="px-4 py-2 rounded-xl bg-rose-600 text-white font-bold text-sm shadow-sm flex items-center gap-1.5">
               <AlertOctagon className="w-4 h-4 text-white" />
-              <span>NEGATIVE BAGGAGE PURGED TO 0!</span>
+              <span>Negative baggage purged to 0</span>
             </span>
           </div>
         )}
@@ -666,7 +666,7 @@ const KadaneSimulator: React.FC = () => {
             return (
               <div
                 key={i}
-                className={`w-14 h-16 rounded-xl border flex flex-col items-center justify-center font-mono transition-all duration-300 relative ${
+                className={`w-14 h-16 rounded-xl border flex flex-col items-center justify-center font-mono transition-colors duration-300 relative ${
                   isCurrent
                     ? 'bg-amber-500/20 border-amber-400 scale-110 shadow-sm text-amber-300 ring-2 ring-amber-400/50'
                     : isProcessed
@@ -695,7 +695,7 @@ const KadaneSimulator: React.FC = () => {
           <button
             onClick={stepKadane}
             disabled={currentIdx >= nums.length}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs shadow-sm transition-all cursor-pointer disabled:opacity-40"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs shadow-sm transition-colors transition-opacity cursor-pointer disabled:opacity-40"
           >
             <Play className="w-4 h-4 fill-slate-950" />
             Step Kadane ({currentIdx}/{nums.length})
@@ -803,7 +803,7 @@ const SlidingWindowSimulator: React.FC = () => {
             return (
               <div
                 key={idx}
-                className={`w-12 h-14 rounded-xl border flex flex-col items-center justify-center transition-all duration-300 relative ${
+                className={`w-12 h-14 rounded-xl border flex flex-col items-center justify-center transition-colors duration-300 relative ${
                   inWindow
                     ? 'bg-purple-600 border-purple-400 text-white shadow-sm scale-105'
                     : 'bg-slate-900 border-slate-800 text-slate-400'
@@ -829,7 +829,7 @@ const SlidingWindowSimulator: React.FC = () => {
 
       {/* Active Hash Set View */}
       <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-950 border border-slate-800">
-        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider font-mono">HashSet Memory:</span>
+        <span className="text-xs font-bold text-slate-300">HashSet Memory:</span>
         <div className="flex items-center gap-2">
           {Array.from(seenSet).length === 0 ? (
             <span className="text-xs text-slate-600 italic">Empty</span>
@@ -849,7 +849,7 @@ const SlidingWindowSimulator: React.FC = () => {
           <button
             onClick={stepWindow}
             disabled={right >= text.length && seenSet.size === 0}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shadow-sm transition-all cursor-pointer"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shadow-sm transition-colors cursor-pointer"
           >
             <ChevronRight className="w-4 h-4" />
             Step Window
@@ -959,7 +959,7 @@ const TortoiseHareSimulator: React.FC = () => {
             return (
               <div key={n} className="flex items-center gap-2">
                 <div
-                  className={`w-16 h-16 rounded-2xl border flex flex-col items-center justify-center font-mono relative transition-all duration-300 ${
+                  className={`w-16 h-16 rounded-2xl border flex flex-col items-center justify-center font-mono relative transition-colors duration-300 ${
                     hasCollided && slow === n
                       ? 'bg-rose-600 border-rose-400 text-white ring-4 ring-rose-500/50 scale-115'
                       : isLoopHead
@@ -1000,7 +1000,7 @@ const TortoiseHareSimulator: React.FC = () => {
           <button
             onClick={stepRace}
             disabled={hasCollided}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-sm transition-all cursor-pointer disabled:opacity-40"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-sm transition-colors transition-opacity cursor-pointer disabled:opacity-40 whitespace-nowrap"
           >
             <Play className="w-4 h-4 fill-white" />
             Step Pointers (Slow 1x, Fast 2x)
@@ -1114,7 +1114,7 @@ const StackBracketsSimulator: React.FC = () => {
             {stream.split('').map((c, i) => (
               <span
                 key={i}
-                className={`px-3 py-2 rounded-xl border transition-all ${
+                className={`px-3 py-2 rounded-xl border transition-colors ${
                   i === currentIdx
                     ? 'bg-amber-500/20 border-amber-400 text-amber-300 scale-110 shadow-sm'
                     : i < currentIdx
@@ -1155,7 +1155,7 @@ const StackBracketsSimulator: React.FC = () => {
           <button
             onClick={stepStack}
             disabled={currentIdx >= stream.length || isBroken}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-sm transition-all cursor-pointer disabled:opacity-40"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-sm transition-colors transition-opacity cursor-pointer disabled:opacity-40"
           >
             <ChevronRight className="w-4 h-4" />
             Step Character

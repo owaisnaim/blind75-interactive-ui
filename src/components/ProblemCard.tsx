@@ -64,10 +64,10 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
   return (
     <div
       onClick={() => onInspectFlow(problem)}
-      className={`group relative rounded-2xl border transition-all duration-300 p-5 flex flex-col justify-between cursor-pointer ${
+      className={`group relative rounded-xl border transition-colors p-4 sm:p-5 flex flex-col justify-between cursor-pointer ${
         isSolved
-          ? 'bg-slate-900/40 border-emerald-500/30 shadow-sm'
-          : 'bg-slate-900/70 border-slate-800/80 hover:border-slate-700 hover:shadow-md hover:-translate-y-0.5'
+          ? 'bg-slate-900/40 border-emerald-500/30 shadow-xs'
+          : 'bg-slate-900/70 border-slate-800 hover:border-slate-700 hover:bg-slate-900/90'
       }`}
     >
       {/* Top Header Row */}
@@ -90,7 +90,7 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
             <button
               onClick={handleSolveClick}
               title={isSolved ? 'Mark as Unsolved' : 'Mark as Solved (+XP)'}
-              className={`p-1.5 rounded-lg border transition-all cursor-pointer ${
+              className={`p-1.5 rounded-lg border transition-colors cursor-pointer ${
                 isSolved
                   ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400'
                   : 'bg-slate-800/80 border-slate-700 text-slate-400 hover:text-emerald-300 hover:border-emerald-500/50'
@@ -106,7 +106,7 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
                 onToggleReview(problem.id);
               }}
               title={isReview ? 'Marked for Review' : 'Save for Review'}
-              className={`p-1.5 rounded-lg border transition-all cursor-pointer ${
+              className={`p-1.5 rounded-lg border transition-colors cursor-pointer ${
                 isReview
                   ? 'bg-purple-500/20 border-purple-500 text-purple-400'
                   : 'bg-slate-800/80 border-slate-700 text-slate-400 hover:text-purple-300 hover:border-purple-500/50'
@@ -136,7 +136,7 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
           <div className="flex items-start gap-2">
             <Lightbulb className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
             <p className="text-xs text-slate-300 italic leading-relaxed">
-              "{problem.hook}"
+              “{problem.hook}”
             </p>
           </div>
         </div>
@@ -149,7 +149,7 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
             href={problem.leetcodeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="h-7 flex items-center gap-1 px-2.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-medium transition-all shrink-0"
+            className="h-7 flex items-center gap-1 px-2.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-medium transition-colors shrink-0"
             title="Open problem on LeetCode"
           >
             <ExternalLink className="w-3.5 h-3.5 text-amber-400 shrink-0" />
@@ -160,7 +160,7 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
             href={problem.youtubeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="h-7 flex items-center gap-1 px-2.5 rounded-lg bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 text-xs font-medium border border-rose-500/20 transition-all shrink-0"
+            className="h-7 flex items-center gap-1 px-2.5 rounded-lg bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 text-xs font-medium border border-rose-500/20 transition-colors shrink-0"
             title="Watch NeetCode Video Explanation"
           >
             <Play className="w-3.5 h-3.5 text-rose-400 fill-rose-400 shrink-0" />
@@ -172,7 +172,7 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
               e.stopPropagation();
               handleStartTimedMock(problem);
             }}
-            className="h-7 w-7 flex items-center justify-center rounded-lg bg-slate-800/60 hover:bg-slate-700 text-slate-400 hover:text-indigo-400 transition-all cursor-pointer shrink-0"
+            className="h-7 w-7 flex items-center justify-center rounded-lg bg-slate-800/60 hover:bg-slate-700 text-slate-400 hover:text-indigo-400 transition-colors cursor-pointer shrink-0"
             title="Start Timed Practice Session on this problem"
           >
             <Timer className="w-3.5 h-3.5 shrink-0" />
@@ -185,7 +185,7 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
               e.stopPropagation();
               handleOpenVisualizer(problem);
             }}
-            className="h-7 flex items-center gap-1.5 px-2.5 rounded-lg bg-cyan-950/60 hover:bg-cyan-900 text-cyan-300 text-xs font-bold border border-cyan-500/30 transition-all cursor-pointer shadow-sm shrink-0"
+            className="h-7 flex items-center gap-1.5 px-2.5 rounded-lg bg-cyan-950/60 hover:bg-cyan-900 text-cyan-300 text-xs font-bold border border-cyan-500/30 transition-colors cursor-pointer shadow-xs shrink-0"
             title="Launch Visual Step-by-Step Visualizer for this problem"
           >
             <Play className="w-3.5 h-3.5 shrink-0" />
@@ -194,7 +194,7 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
 
           <button
             onClick={() => onInspectFlow(problem)}
-            className="h-7 flex items-center gap-1.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all cursor-pointer shadow-sm shrink-0"
+            className="h-7 flex items-center gap-1.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-colors cursor-pointer shadow-xs shrink-0"
             title="Open in-app LeetCode Code Editor and Test Runner"
           >
             <Code2 className="w-3.5 h-3.5 shrink-0" />

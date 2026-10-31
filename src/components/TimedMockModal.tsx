@@ -162,7 +162,7 @@ export const TimedMockModal: React.FC<TimedMockModalProps> = ({
             </div>
             <div className="w-full bg-slate-950 border border-slate-800 h-3 rounded-full overflow-hidden p-0.5">
               <div
-                className="h-full rounded-full transition-all duration-500 bg-indigo-500"
+                className="h-full rounded-full transition-colors duration-500 bg-indigo-500"
                 style={{ width: `${progressPct}%` }}
               />
             </div>
@@ -177,7 +177,7 @@ export const TimedMockModal: React.FC<TimedMockModalProps> = ({
             <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center">
               <button
                 onClick={toggleTimer}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold shadow-sm transition-all cursor-pointer shrink-0 ${
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold shadow-sm transition-colors cursor-pointer shrink-0 ${
                   isActive
                     ? 'bg-amber-600 hover:bg-amber-500 text-white'
                     : 'bg-emerald-600 hover:bg-emerald-500 text-white'
@@ -222,7 +222,7 @@ export const TimedMockModal: React.FC<TimedMockModalProps> = ({
 
           {/* 4-Stage Interview Workflow */}
           <div>
-            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+            <div className="text-xs font-bold text-slate-300 mb-2.5 flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 shrink-0 text-indigo-400" />
               Interview Workflow (Phased Execution)
             </div>
@@ -237,7 +237,7 @@ export const TimedMockModal: React.FC<TimedMockModalProps> = ({
                     key={idx}
                     onClick={() => handleStageStrike(idx)}
                     disabled={!isCurrent || isVictory}
-                    className={`p-3 rounded-xl border text-left transition-all ${
+                    className={`p-3 rounded-xl border text-left transition-colors ${
                       isCompleted
                         ? 'bg-emerald-950/20 border-emerald-500/40 text-emerald-300 opacity-90'
                         : isCurrent

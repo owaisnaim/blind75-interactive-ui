@@ -95,13 +95,13 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                     return (
                       <div key={idx} className="flex flex-col items-center relative">
                         {pointer && (
-                          <div className="absolute -top-7 animate-bounce px-2 py-0.5 rounded bg-indigo-500 text-white font-mono text-[10px] font-bold shadow-lg">
+                          <div className="absolute -top-7 px-2 py-0.5 rounded bg-indigo-500 text-white font-mono text-[10px] font-bold shadow ring-1 ring-indigo-300/40">
                             {pointer.name}
                           </div>
                         )}
 
                         <div
-                          className={`w-14 h-16 rounded-xl border flex flex-col items-center justify-center font-mono font-bold transition-all duration-300 ${
+                          className={`w-14 h-16 rounded-xl border flex flex-col items-center justify-center font-mono font-bold transition-colors duration-300 ${
                             isHighlighted
                               ? 'bg-emerald-500/20 border-emerald-400 text-emerald-300 ring-2 ring-emerald-400/50 scale-105 shadow-sm'
                               : pointer
@@ -143,18 +143,18 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                     return (
                       <div key={idx} className="flex flex-col items-center relative">
                         {isLeft && (
-                          <div className="absolute -top-7 px-2 py-0.5 rounded bg-cyan-500 text-slate-950 font-mono text-[10px] font-bold shadow animate-bounce">
+                          <div className="absolute -top-7 px-2 py-0.5 rounded bg-cyan-500 text-slate-950 font-mono text-[10px] font-bold shadow ring-1 ring-cyan-300/40">
                             L
                           </div>
                         )}
                         {isRight && (
-                          <div className="absolute -bottom-7 px-2 py-0.5 rounded bg-rose-500 text-white font-mono text-[10px] font-bold shadow animate-bounce">
+                          <div className="absolute -bottom-7 px-2 py-0.5 rounded bg-rose-500 text-white font-mono text-[10px] font-bold shadow ring-1 ring-rose-300/40">
                             R
                           </div>
                         )}
 
                         <div
-                          className={`w-12 h-14 rounded-xl border flex flex-col items-center justify-center font-mono font-bold transition-all duration-300 ${
+                          className={`w-12 h-14 rounded-xl border flex flex-col items-center justify-center font-mono font-bold transition-colors duration-300 ${
                             isInside
                               ? 'bg-cyan-500/20 border-cyan-400 text-cyan-200 ring-2 ring-cyan-500/40 scale-105'
                               : 'bg-slate-900 border-slate-800/80 text-slate-500'
@@ -211,7 +211,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                               return (
                                 <td key={cIdx} className="p-1">
                                   <div
-                                    className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg border flex items-center justify-center font-bold text-xs transition-all ${
+                                    className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg border flex items-center justify-center font-bold text-xs transition-colors ${
                                       isActive
                                         ? 'bg-purple-600 border-purple-400 text-white ring-2 ring-purple-400 shadow-md scale-105'
                                         : 'bg-slate-950 border-slate-800 text-slate-300'
@@ -232,7 +232,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                     {(frame.visualData.dpTable || []).map((val: any, idx: number) => (
                       <div
                         key={idx}
-                        className={`w-14 h-14 rounded-xl border flex flex-col items-center justify-center font-mono font-bold transition-all duration-300 ${
+                        className={`w-14 h-14 rounded-xl border flex flex-col items-center justify-center font-mono font-bold transition-colors duration-300 ${
                           idx === frame.visualData.activeIndex
                             ? 'bg-purple-600 border-purple-400 text-white ring-2 ring-purple-400 scale-110 shadow-sm'
                             : 'bg-slate-900 border-slate-800 text-slate-400'
@@ -262,7 +262,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                           return (
                             <div key={idx} className="flex items-center gap-1.5">
                               <div
-                                className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl border flex items-center justify-center font-mono font-bold text-xs transition-all relative ${
+                                className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl border flex items-center justify-center font-mono font-bold text-xs transition-colors relative ${
                                   isCurr
                                     ? 'bg-indigo-600 border-indigo-400 text-white ring-2 ring-cyan-400 shadow-md scale-105'
                                     : 'bg-slate-900 border-slate-800 text-slate-300'
@@ -291,7 +291,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                       return (
                         <div key={idx} className="flex items-center gap-2">
                           <div
-                            className={`w-14 h-14 rounded-2xl border flex flex-col items-center justify-center font-mono font-bold transition-all relative ${
+                            className={`w-14 h-14 rounded-2xl border flex flex-col items-center justify-center font-mono font-bold transition-colors relative ${
                               isCurr || isSlow
                                 ? 'bg-indigo-600 border-indigo-400 text-white scale-110 ring-2 ring-cyan-400'
                                 : isPrev
@@ -338,7 +338,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                             </span>
                             <div className="flex-1 bg-slate-950 h-5 rounded-md overflow-hidden relative border border-slate-800">
                               <div
-                                className={`h-full rounded transition-all duration-300 ${isCurrent ? 'bg-amber-500' : 'bg-slate-700'}`}
+                                className={`h-full rounded transition-colors duration-300 ${isCurrent ? 'bg-amber-500' : 'bg-slate-700'}`}
                                 style={{
                                   marginLeft: `${Math.min(90, (start / maxVal) * 100)}%`,
                                   width: `${Math.max(8, Math.min(100, ((end - start) / maxVal) * 100))}%`
@@ -362,7 +362,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                             <span className="text-xs font-mono text-emerald-400 w-16 font-bold">[{inv[0]}, {inv[1]}]</span>
                             <div className="flex-1 bg-slate-950 h-5 rounded-md overflow-hidden relative border border-slate-800">
                               <div
-                                className="h-full bg-emerald-500 rounded transition-all duration-300"
+                                className="h-full bg-emerald-500 rounded transition-colors duration-300"
                                 style={{
                                   marginLeft: `${Math.min(90, (inv[0] / maxVal) * 100)}%`,
                                   width: `${Math.max(8, Math.min(100, ((inv[1] - inv[0]) / maxVal) * 100))}%`
@@ -392,7 +392,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                     {frame.visualData.nodes?.slice(0, 1).map((n: any, idx: number) => (
                       <div
                         key={idx}
-                        className={`w-14 h-14 rounded-full border-2 flex items-center justify-center font-mono font-bold text-base transition-all duration-300 ${
+                        className={`w-14 h-14 rounded-full border-2 flex items-center justify-center font-mono font-bold text-base transition-colors duration-300 ${
                           n.val === frame.visualData.activeNode
                             ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 ring-4 ring-cyan-400/40 scale-110 shadow-sm'
                             : n.state === 'done'
@@ -410,7 +410,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                     {frame.visualData.nodes?.slice(1, 3).map((n: any, idx: number) => (
                       <div
                         key={idx}
-                        className={`w-12 h-12 rounded-full border-2 flex items-center justify-center font-mono font-bold text-sm transition-all duration-300 ${
+                        className={`w-12 h-12 rounded-full border-2 flex items-center justify-center font-mono font-bold text-sm transition-colors duration-300 ${
                           n.val === null || n.val === undefined
                             ? 'opacity-20 border-slate-800 text-slate-600'
                             : n.val === frame.visualData.activeNode
@@ -431,7 +431,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                       {frame.visualData.nodes.slice(3, 7).map((n: any, idx: number) => (
                         <div
                           key={idx}
-                          className={`w-10 h-10 rounded-full border-2 flex items-center justify-center font-mono font-bold text-xs transition-all duration-300 ${
+                          className={`w-10 h-10 rounded-full border-2 flex items-center justify-center font-mono font-bold text-xs transition-colors duration-300 ${
                             n.val === null || n.val === undefined
                               ? 'opacity-20 border-slate-800 text-slate-600'
                               : n.val === frame.visualData.activeNode
@@ -467,7 +467,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                       return (
                         <div
                           key={`${rIdx}-${cIdx}`}
-                          className={`w-12 h-12 rounded-xl border flex flex-col items-center justify-center font-mono font-bold transition-all duration-300 ${
+                          className={`w-12 h-12 rounded-xl border flex flex-col items-center justify-center font-mono font-bold transition-colors duration-300 ${
                             isActive
                               ? 'bg-cyan-500/30 border-cyan-400 text-white ring-2 ring-cyan-400 scale-110 shadow-lg'
                               : isVisited
@@ -581,7 +581,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                     return (
                       <div key={bIdx} className="flex flex-col items-center">
                         <div
-                          className={`w-7 h-9 sm:w-8 sm:h-10 rounded-lg border flex items-center justify-center font-mono font-bold text-xs transition-all ${
+                          className={`w-7 h-9 sm:w-8 sm:h-10 rounded-lg border flex items-center justify-center font-mono font-bold text-xs transition-colors ${
                             isActive
                               ? 'bg-amber-500 text-slate-950 border-amber-300 ring-2 ring-amber-400 shadow-md scale-110'
                               : is1
@@ -623,7 +623,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                       return (
                         <div
                           key={ch}
-                          className={`px-3 py-2 rounded-xl border flex items-center gap-2 font-mono text-xs transition-all ${
+                          className={`px-3 py-2 rounded-xl border flex items-center gap-2 font-mono text-xs transition-colors ${
                             isActive
                               ? 'bg-indigo-600 border-indigo-400 text-white ring-2 ring-indigo-400 shadow-md scale-105'
                               : 'bg-slate-900 border-slate-800 text-slate-300'
@@ -671,7 +671,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                     return (
                       <div key={nIdx} className="flex flex-col items-center">
                         <div
-                          className={`w-12 h-12 rounded-full border-2 flex items-center justify-center font-mono font-bold text-xs transition-all shadow ${
+                          className={`w-12 h-12 rounded-full border-2 flex items-center justify-center font-mono font-bold text-xs transition-colors shadow ${
                             isActive
                               ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 ring-4 ring-cyan-400/40 scale-110'
                               : isVisited
@@ -718,7 +718,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
                     return (
                       <div key={pIdx} className="flex items-center gap-1.5">
                         <div
-                          className={`w-10 h-10 rounded-xl border flex flex-col items-center justify-center font-mono font-bold text-xs transition-all ${
+                          className={`w-10 h-10 rounded-xl border flex flex-col items-center justify-center font-mono font-bold text-xs transition-colors ${
                             isActive
                               ? 'bg-cyan-500 text-slate-950 border-cyan-300 ring-2 ring-cyan-400 shadow-md scale-105'
                               : isEnd
@@ -747,7 +747,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
             )}
           </div>
         ) : (
-          <div className="text-xs text-slate-500 font-mono">Loading simulation frames...</div>
+          <div className="text-xs text-slate-500 font-mono">Loading simulation frames…</div>
         )}
       </div>
 
@@ -757,7 +757,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
           <button
             onClick={onStepBack}
             disabled={currentFrameIdx === 0}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 disabled:opacity-30 cursor-pointer transition-all shrink-0"
+            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 disabled:opacity-30 cursor-pointer transition-colors transition-opacity shrink-0"
             title="Step Backward"
           >
             <ChevronLeft className="w-4 h-4 shrink-0" />
@@ -766,7 +766,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
           <button
             onClick={onPlayPause}
             disabled={currentFrameIdx >= totalFrames - 1}
-            className={`flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all cursor-pointer shrink-0 ${
+            className={`flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl font-bold text-xs shadow-sm transition-colors cursor-pointer shrink-0 ${
               isPlaying
                 ? 'bg-amber-600 hover:bg-amber-500 text-white'
                 : 'bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black'
@@ -779,7 +779,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
           <button
             onClick={onStepForward}
             disabled={currentFrameIdx >= totalFrames - 1}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 disabled:opacity-30 cursor-pointer transition-all shrink-0"
+            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 disabled:opacity-30 cursor-pointer transition-colors transition-opacity shrink-0"
             title="Step Forward"
           >
             <ChevronRight className="w-4 h-4 shrink-0" />
@@ -787,7 +787,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
 
           <button
             onClick={onReset}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white cursor-pointer transition-all shrink-0"
+            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white cursor-pointer transition-colors shrink-0"
             title="Reset Flow"
           >
             <RotateCcw className="w-4 h-4 shrink-0" />
@@ -820,7 +820,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
             <button
               key={sp.label}
               onClick={() => onSetSpeed(sp.ms)}
-              className={`px-2.5 py-1 rounded-lg cursor-pointer transition-all ${
+              className={`px-2.5 py-1 rounded-lg cursor-pointer transition-colors ${
                 playbackSpeed === sp.ms
                   ? 'bg-cyan-500 text-slate-950 font-bold shadow'
                   : 'bg-slate-800 text-slate-400 hover:text-white'
@@ -838,7 +838,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
       {/* Java Code Line Tracer */}
       <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col shadow-lg flex-1 min-h-[260px]">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5 font-mono">
+            <span className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
               <Code2 className="w-4 h-4 shrink-0 text-cyan-400" />
               Java Execution Sync
             </span>
@@ -871,7 +871,7 @@ export const ProblemVisualizer: React.FC<ProblemVisualizerProps> = ({
         {/* Variable Watch Window & Reasoning */}
         <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col justify-between shadow-lg">
           <div>
-            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5 font-mono">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300 mb-2.5">
               <Eye className="w-4 h-4 shrink-0 text-indigo-400" />
               Live Variables Watch
             </div>

@@ -117,7 +117,7 @@ export const DecisionTreeModal: React.FC<DecisionTreeModalProps> = ({
                   sound.playClick();
                   setActiveTab('decisionTree');
                 }}
-                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
                   activeTab === 'decisionTree' ? 'bg-cyan-600 text-white shadow' : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -128,7 +128,7 @@ export const DecisionTreeModal: React.FC<DecisionTreeModalProps> = ({
                   sound.playClick();
                   setActiveTab('archetypes');
                 }}
-                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
                   activeTab === 'archetypes' ? 'bg-indigo-600 text-white shadow' : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -139,7 +139,7 @@ export const DecisionTreeModal: React.FC<DecisionTreeModalProps> = ({
                   sound.playClick();
                   setActiveTab('java');
                 }}
-                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
+                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                   activeTab === 'java' ? 'bg-amber-500 text-slate-950 font-bold shadow' : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -171,7 +171,7 @@ export const DecisionTreeModal: React.FC<DecisionTreeModalProps> = ({
                   <span className="font-bold text-white">The Golden Interview Habit:</span> Never start coding immediately. Run through this 3-question filter in your head:
                   <ol className="list-decimal ml-4 mt-1 space-y-0.5 text-slate-300">
                     <li>What is the brute force time? (Can I eliminate duplicate work with a Hash Table or Pointer?)</li>
-                    <li>Does sorting unlock monotonicity or binary search?</li>
+                    <li>Does sorting reveal monotonicity or enable binary search?</li>
                     <li>Is there an invariant I can maintain (e.g., sliding window balance, two-heap median)?</li>
                   </ol>
                 </div>
@@ -179,8 +179,7 @@ export const DecisionTreeModal: React.FC<DecisionTreeModalProps> = ({
 
               {DECISION_PATHS.map((path, idx) => (
                 <div key={idx} className="border border-slate-800 rounded-2xl p-5 bg-slate-950/50">
-                  <h4 className="text-sm font-black text-cyan-300 uppercase tracking-wider mb-4 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                  <h4 className="text-sm font-bold text-cyan-300 tracking-tight mb-4 flex items-center gap-2">
                     {path.domain}
                   </h4>
 

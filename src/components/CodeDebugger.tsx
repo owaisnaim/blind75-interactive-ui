@@ -183,7 +183,7 @@ export const CodeDebugger: React.FC<{ onAddXp: (amount: number) => void }> = ({ 
   };
 
   return (
-    <section className="rounded-3xl border border-rose-500/30 bg-slate-900 p-6 md:p-8 shadow-xl text-left">
+    <section className="rounded-3xl border border-rose-500/30 bg-slate-900 p-6 md:p-8 text-left">
       {/* Header */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6 border-b border-slate-800 pb-5">
         <div className="flex items-center gap-3 min-w-0">
@@ -211,7 +211,7 @@ export const CodeDebugger: React.FC<{ onAddXp: (amount: number) => void }> = ({ 
                 setSelectedOpt(null);
                 setIsAnswered(false);
               }}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1 shrink-0 whitespace-nowrap ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors cursor-pointer flex items-center gap-1 shrink-0 whitespace-nowrap ${
                 activeCaseIdx === i
                   ? 'bg-rose-600 text-white shadow-sm'
                   : solvedCases.includes(c.id)
@@ -231,7 +231,7 @@ export const CodeDebugger: React.FC<{ onAddXp: (amount: number) => void }> = ({ 
         {/* Faulty Code Snippet */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-bold text-rose-400 uppercase tracking-wider flex items-center gap-1.5">
+            <span className="text-xs font-bold text-rose-400 flex items-center gap-1.5">
               <Bug className="w-4 h-4 shrink-0" />
               Flawed Implementation
             </span>
@@ -245,7 +245,7 @@ export const CodeDebugger: React.FC<{ onAddXp: (amount: number) => void }> = ({ 
         {/* Test Case Failure & Outputs */}
         <div className="space-y-4">
           <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-3">
-            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+            <div className="text-xs font-bold text-slate-300">
               Test Case Failure & Outputs
             </div>
             <div className="text-xs font-mono">
@@ -297,7 +297,7 @@ export const CodeDebugger: React.FC<{ onAddXp: (amount: number) => void }> = ({ 
               key={idx}
               onClick={() => handleSelectOption(idx)}
               disabled={isAnswered}
-              className={`w-full p-4 rounded-xl border text-xs text-left flex items-start justify-between gap-3 transition-all cursor-pointer ${btnStyle}`}
+              className={`w-full p-4 rounded-xl border text-xs text-left flex items-start justify-between gap-3 transition-colors cursor-pointer ${btnStyle}`}
             >
               <div className="flex items-start gap-3">
                 <span className="w-6 h-6 rounded-lg bg-slate-800 text-slate-300 flex items-center justify-center font-mono text-xs font-bold shrink-0 mt-0.5">
@@ -334,7 +334,7 @@ export const CodeDebugger: React.FC<{ onAddXp: (amount: number) => void }> = ({ 
 
           <button
             onClick={handleNextCase}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-sm transition-all cursor-pointer whitespace-nowrap shrink-0"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-sm transition-colors cursor-pointer whitespace-nowrap shrink-0"
           >
             <span>Next Debugging Case</span>
             <ArrowRight className="w-4 h-4 shrink-0" />

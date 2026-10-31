@@ -154,7 +154,7 @@ export const PatternQuiz: React.FC<PatternQuizProps> = ({
           </div>
 
           <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800 mb-6">
-            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+            <div className="text-xs font-semibold text-slate-300 mb-1 flex items-center gap-1.5">
               {currentQuestion.questionType === 'pattern' ? (
                 <>
                   <Zap className="w-4 h-4 shrink-0 text-amber-400" />
@@ -200,7 +200,7 @@ export const PatternQuiz: React.FC<PatternQuizProps> = ({
                   key={idx}
                   onClick={() => handleSelectOption(opt)}
                   disabled={isAnswered}
-                  className={`w-full p-4 rounded-xl border text-xs text-left flex items-center justify-between transition-all cursor-pointer ${btnClass}`}
+                  className={`w-full p-4 rounded-xl border text-xs text-left flex items-center justify-between transition-colors cursor-pointer ${btnClass}`}
                 >
                   <div className="flex items-center gap-3">
                     <span className="w-6 h-6 rounded-lg bg-slate-800 text-slate-300 flex items-center justify-center font-mono text-xs font-bold shrink-0">
@@ -235,7 +235,7 @@ export const PatternQuiz: React.FC<PatternQuizProps> = ({
                 </div>
                 <button
                   onClick={handleNext}
-                  className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-sm transition-all cursor-pointer whitespace-nowrap shrink-0"
+                  className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-sm transition-colors cursor-pointer whitespace-nowrap shrink-0"
                 >
                   <span>Next Run</span>
                   <ArrowRight className="w-4 h-4 shrink-0" />
