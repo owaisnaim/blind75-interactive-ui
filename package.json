@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "hallmark:lint": "node .agents/skills/hallmark/scripts/sloplint.mjs src index.html",
+    "hallmark:deal": "node .agents/skills/hallmark/scripts/theme.mjs deal"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",
